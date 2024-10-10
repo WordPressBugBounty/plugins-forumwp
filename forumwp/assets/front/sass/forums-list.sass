@@ -1,0 +1,78 @@
+@import "color"
+@import "selectors"
+@import "mixins"
+@import "notice"
+@import "tooltip"
+@import "dropdown"
+@import "forums-wrapper"
+
+.#{$forums}list-head
+  +flex( row, space-between, stretch, nowrap )
+  font-size: 16px
+  border-bottom: 1px solid $border-color
+  margin: 0 0 5px 0
+  padding: 0 0 7px 0
+  &.#{$prefix}align-right
+    +flex( row, flex-end, baseline, nowrap )
+  .#{$forums}search
+    +flex( row, flex-start, baseline, nowrap )
+    label
+      +flex( row, flex-start, baseline, nowrap )
+      margin: 0 5px 0 0
+      padding: 0
+      input
+        margin: 0
+
+
+.#{$prefix}archive-forums-wrapper
+  +flex( column, flex-start, stretch, nowrap )
+  font-size: 14px
+  +forums-wrapper
+  &.#{$prefix}unlogged-data
+    .#{$forums}wrapper-heading
+      padding: 0 0 5px 0
+      .#{$forum}col-forum
+        width: calc( 100% - 164px )
+      .#{$forum}col-updated
+        padding: 0
+        width: 65px
+
+
+    .#{$forums}wrapper
+      .#{$forum}row
+        .#{$forum}row-lines
+          width: 100%
+          .#{$forum}primary-data
+            width: calc( 100% - 164px )
+          .#{$forum}statistics-data
+            .#{$forum}last-upgrade
+              margin: 0
+        .#{$forum}actions
+          display: none
+  &.#{$prefix}ui-xs
+    +forums-wrapper-mobile
+    .#{$forums}list-head
+      +flex( column, flex-start, baseline, nowrap )
+      .#{$prefix}create-forum
+        margin: 0 0 5px 0
+      .#{$forums}search
+        +flex( row, flex-start, center, nowrap )
+        width: 100%
+        margin: 0
+        padding: 0
+        label
+          +flex( row, flex-start, baseline, nowrap )
+          margin: 0
+          padding: 0
+          input
+            margin: 0
+        .#{$prefix}search-forum
+          margin: 0 0 0 5px
+      &.#{$prefix}align-right
+        .#{$forums}search
+          +flex( row, flex-end, center, nowrap )
+
+.#{$forums}list-footer
+  +flex( row, flex-start, stretch, nowrap )
+  font-size: 16px
+  margin: 7px 0 0 0

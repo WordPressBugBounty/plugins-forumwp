@@ -1,0 +1,385 @@
+@import "color"
+@import "selectors"
+@import "mixins"
+@import "suggest"
+@import "dropdown"
+@import "notice"
+@import "tooltip"
+@import "replies-wrapper"
+
+.#{$topic}main-wrapper
+  .#{$topic}head
+    font-size: 14px
+    margin: 0 0 15px 0
+    .#{$topic}info
+      +flex( row, flex-start, baseline, wrap )
+      .#{$topic}forum-link
+        margin: 0 10px 0 0
+        padding: 0 10px 0 0
+        line-height: 1.5
+      & > :not( :last-child )
+        border-right: 1px solid $border-color
+      .#{$topic}stats
+        display: inline
+        padding: 0 10px 0 0
+        margin: 0 10px 0 0
+        line-height: 1.5
+
+  .#{$topic}content
+    font-size: 14px
+    margin: 0
+    .#{$topic}base
+      border-top: 1px solid $border-color
+      padding: 25px 0 20px
+      +flex( column, flex-start, stretch, nowrap )
+      .#{$topic}base-header
+        +flex( row, flex-start, stretch, nowrap )
+        width: 100%
+        .#{$topic}avatar
+          width: 60px
+          margin-right: 23px
+          a
+            position: relative
+            display: block
+            width: 60px
+            height: 60px
+            img
+              border-radius: 100%
+              width: 60px
+              height: 60px
+              &:hover
+                opacity: 0.85
+        .#{$topic}data
+          +flex( column, space-between, stretch, nowrap )
+          width: calc( 100% - 83px )
+          .#{$topic}data-top
+            +flex( row, space-between, baseline, nowrap )
+            width: 100%
+            line-height: 1
+            margin-bottom: 5px
+            .#{$topic}data-head
+              +flex( row, space-between, baseline, nowrap )
+              width: calc( 100% - 10px )
+              .#{$topic}data-head-section
+                +flex( row, flex-start, baseline, wrap )
+                max-width: 80%
+                a
+                  +flex( row, flex-start, baseline, nowrap )
+                  font-weight: bold
+                  font-size: 1.1em
+                  +link( $link, $active_link )
+                  margin: 0 10px 0 0
+                  .#{$topic}status-marker
+                    font-size: 14px
+                    margin: 0 7px 0 0
+                    display: none
+                .#{$topic}author-tags-wrapper
+                  +flex( row, flex-start, baseline, wrap )
+                  padding: 0 10px 0 0
+                  line-height: 1
+                  .#{$topic}status-tag
+                    display: none
+                  .#{$topic}tag
+                    border: 1px solid $border-color
+                    +border-radius( 3px,3px,3px,3px )
+                    font-size: 0.8em
+                    padding: 3px 5px
+                    margin-right: 3px
+                    line-height: 1
+                    cursor: default
+
+              .#{$topic}subdata
+                color: $sub-color
+                padding: 0 10px
+                font-size: 0.8em
+                font-weight: normal
+                +border-box
+            .#{$topic}top-actions
+              width: 10px
+              span
+                cursor: pointer
+                color: $sub-color
+                position: relative
+                &:hover
+                  color: $sub-color-hover
+          .#{$topic}data-content
+            width: 100%
+            word-wrap: break-word
+        &.#{$topic}no-actions
+          .#{$topic}data
+            .#{$topic}data-top
+              .#{$topic}data-head
+                width: 100%
+                .#{$topic}subdata
+                  padding: 0 0 0 10px
+
+      .#{$topic}base-footer
+        +flex( row, space-between, baseline, nowrap )
+        width: 100%
+        margin: 10px 0 0 0
+        .#{$topic}left-panel
+          +flex( row, flex-start, baseline, nowrap )
+          min-width: 130px
+          span.#{$topic}sort-wrapper
+            +flex( row, flex-start, baseline, nowrap )
+            label
+              +flex( row, flex-start, baseline, nowrap )
+              font-weight: normal
+            .#{$topic}sort
+              font-weight: normal
+            &.#{$topic}hidden-sort
+              display: none !important
+          span.#{$topic}closed-notice
+            display: none
+        .#{$topic}right-panel
+          +flex( row, flex-end, baseline, nowrap )
+          max-width: calc( 100% - 130px )
+          line-height: 1
+          span.#{$topic}action
+            font-size: 16px
+            cursor: pointer
+            color: $sub-color
+            &:hover
+              color: $sub-color-hover
+          > span.#{$topic}action
+            margin-left: 10px
+          span.#{$topic}sort-wrapper
+            margin-left: 10px
+            +flex( row, flex-start, baseline, nowrap )
+            label
+              +flex( row, flex-start, baseline, nowrap )
+              font-weight: normal
+            .#{$topic}sort
+              background: none
+              border: solid 1px #ddd
+              font-weight: normal
+            &.#{$topic}hidden-sort
+              display: none !important
+
+  .#{$topic}wrapper
+    border-top: 1px solid $border-color
+    padding: 15px 0
+    +flex( column, flex-start, stretch, nowrap )
+    .#{$topic}no-replies
+      width: 100%
+    +replies-wrapper
+  .#{$topic}footer
+    +flex( row, flex-start, baseline, nowrap )
+    font-size: 14px
+    padding: 0
+    .#{$topic}closed-notice
+      display: none
+
+
+  &.#{$topic}pinned
+    .#{$topic}content
+      .#{$topic}base
+        .#{$topic}base-header
+          .#{$topic}data
+            .#{$topic}data-top
+              .#{$topic}data-head
+                a
+                  .#{$topic}pinned-marker
+                    display: inline
+  &.#{$topic}locked
+    .#{$topic}content
+      .#{$topic}base
+        .#{$topic}base-header
+          .#{$topic}data
+            .#{$topic}data-top
+              .#{$topic}data-head
+                a
+                  .#{$topic}locked-marker
+                    display: inline
+        .#{$topic}base-footer
+          .#{$topic}left-panel
+            .#{$topic}closed-notice
+              display: inline
+            .#{$prefix}write-reply
+              display: none
+    .#{$topic}footer
+      .#{$topic}closed-notice
+        display: inline
+      .#{$prefix}write-reply
+        display: none
+  &.#{$topic}announcement
+    .#{$topic}content
+      .#{$topic}base
+        .#{$topic}base-header
+          .#{$topic}data
+            .#{$topic}data-top
+              .#{$topic}data-head
+                a
+                  .#{$topic}announcement-marker
+                    display: inline
+  &.#{$topic}global
+    .#{$topic}content
+      .#{$topic}base
+        .#{$topic}base-header
+          .#{$topic}data
+            .#{$topic}data-top
+              .#{$topic}data-head
+                a
+                  .#{$topic}global-marker
+                    display: inline
+
+  &.#{$topic}trashed
+    .#{$topic}content
+      .#{$topic}base
+        .#{$topic}base-header
+          .#{$topic}data
+            .#{$topic}data-top
+              .#{$topic}data-head
+                .#{$topic}data-head-section
+                  .#{$topic}author-tags-wrapper
+                    .#{$topic}status-tag
+                      &.#{$topic}tag-trashed
+                        color: $trashed-row
+                        border-color: $trashed-row
+                        display: inline
+        .#{$topic}base-footer
+          .#{$topic}right-panel
+            .#{$topic}action
+              opacity: 0.3
+              cursor: default
+            .#{$prefix}upvotes-counter,
+            .#{$prefix}downvotes-counter
+              opacity: 0.3
+          .#{$topic}left-panel
+            .#{$topic}closed-notice
+              display: inline
+            .#{$prefix}write-reply
+              display: none
+    .#{$topic}footer
+      .#{$topic}closed-notice
+        display: inline
+      .#{$prefix}write-reply
+        display: none
+  &.#{$topic}pending
+    .#{$topic}content
+      .#{$topic}base
+        .#{$topic}base-header
+          .#{$topic}data
+            .#{$topic}data-top
+              .#{$topic}data-head
+                .#{$topic}data-head-section
+                  .#{$topic}author-tags-wrapper
+                    .#{$topic}status-tag
+                      &.#{$topic}tag-pending
+                        display: inline
+                        color: $pending-row
+                        border-color: $pending-row
+        .#{$topic}base-footer
+          .#{$topic}right-panel
+            .#{$topic}action
+              opacity: 0.3
+              cursor: default
+            .#{$prefix}upvotes-counter,
+            .#{$prefix}downvotes-counter
+              opacity: 0.3
+          .#{$topic}left-panel
+            .#{$topic}closed-notice
+              display: inline
+            .#{$prefix}write-reply
+              display: none
+    .#{$topic}footer
+      .#{$topic}closed-notice
+        display: inline
+      .#{$prefix}write-reply
+        display: none
+  &.#{$topic}spam
+    .#{$topic}content
+      .#{$topic}base
+        .#{$topic}base-header
+          .#{$topic}data
+            .#{$topic}data-top
+              .#{$topic}data-head
+                .#{$topic}data-head-section
+                  .#{$topic}author-tags-wrapper
+                    .#{$topic}status-tag
+                      &.#{$topic}tag-spam
+                        display: inline
+        .#{$topic}base-footer
+          .#{$topic}right-panel
+            .#{$topic}action
+              opacity: 0.3
+              cursor: default
+            .#{$prefix}upvotes-counter,
+            .#{$prefix}downvotes-counter
+              opacity: 0.3
+          .#{$topic}left-panel
+            .#{$topic}closed-notice
+              display: inline
+            .#{$prefix}write-reply
+              display: none
+    .#{$topic}footer
+      .#{$topic}closed-notice
+        display: inline
+      .#{$prefix}write-reply
+        display: none
+
+  &.#{$topic}reported
+    .#{$topic}content
+      .#{$topic}base
+        .#{$topic}base-header
+          .#{$topic}data
+            .#{$topic}data-top
+              .#{$topic}data-head
+                .#{$topic}data-head-section
+                  .#{$topic}author-tags-wrapper
+                    .#{$topic}status-tag
+                      &.#{$topic}tag-reported
+                        display: inline
+                        border-color: $trashed-row
+                        color: $trashed-row
+
+
+  &.#{$prefix}ui-xs
+    .#{$topic}head
+      .#{$topic}info
+        .#{$topic}forum-link
+          margin: 0 9px 0 0
+          padding: 0 9px 0 0
+        .#{$topic}stats
+          padding: 0 9px 0 0
+          margin: 0 9px 0 0
+
+
+    .#{$topic}content
+      .#{$topic}base
+        .#{$topic}base-header
+          .#{$topic}avatar
+            width: 40px
+            margin-right: 10px
+            a
+              width: 40px
+              height: 40px
+              img
+                border-radius: 100%
+                width: 40px
+                height: 40px
+          .#{$topic}data
+            width: calc( 100% - 50px )
+            .#{$topic}data-top
+              .#{$topic}data-head
+                .#{$topic}data-head-section
+                  max-width: 65%
+                  a
+                    font-size: 1em
+                  .#{$topic}author-tags-wrapper
+                    padding: 0
+
+        .#{$topic}base-footer
+          +flex( column-reverse, flex-start, stretch, nowrap )
+          .#{$topic}left-panel
+            +flex( row, space-between, baseline, nowrap )
+            width: 100%
+            min-width: auto
+            padding: 10px 0 0 0
+          .#{$topic}right-panel
+            +flex( row, flex-end, center, nowrap )
+            width: 100%
+            max-width: none
+            padding: 0
+    .#{$topic}wrapper
+      +replies-wrapper-mobile

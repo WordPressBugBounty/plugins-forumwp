@@ -1,0 +1,60 @@
+@import "color"
+@import "selectors"
+@import "mixins"
+
+.#{$prefix}popup
+  +border-radius( 5px, 5px, 5px, 5px )
+##{$prefix}login-popup-wrapper
+  display: none
+  position: fixed
+  z-index: 20
+  background: $white
+  padding: 15px 30px
+  font-size: 16px
+  text-align: center
+  .#{$prefix}popup-topbar
+    +flex( row, space-between, center, nowrap )
+    text-align: right
+    .#{$prefix}popup-header
+      text-align: left
+      font-size: 1.2em
+      font-weight: bold
+    .#{$prefix}popup-close
+      color: $sub-color
+      cursor: pointer
+      &:hover
+        color: $sub-color-hover
+  ##{$prefix}loginform
+    +flex( column, flex-start, stretch, nowrap )
+    margin: 10px 0 0 0
+    padding: 0
+    text-align: left
+    @media (min-width: 350px)
+      min-width: 280px
+    @media (min-width: 370px)
+      min-width: 300px
+    @media (min-width: 390px)
+      min-width: 320px
+
+    p
+      +flex( column, flex-start, stretch, nowrap )
+      line-height: 1.5
+      font-size: 1em
+      margin: 0 0 10px 0
+      padding: 0
+      label
+        cursor: pointer
+        vertical-align: middle
+  ##{$prefix}rp-link
+    font-size: 16px
+
+
+##{$prefix}popup-overlay
+  display: none
+  position: fixed
+  top: 0
+  bottom: 0
+  left: 0
+  right: 0
+  z-index: 19
+  background: $overlay

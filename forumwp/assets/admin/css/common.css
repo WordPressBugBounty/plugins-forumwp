@@ -1,0 +1,99 @@
+#wp-admin-bar-fmwp_edit_topic > .ab-item .ab-icon:before {
+  content: "\f464";
+  top: 2px; }
+
+#wp-admin-bar-fmwp_edit_forum > .ab-item .ab-icon:before {
+  content: "\f464";
+  top: 2px; }
+
+body.post-type-fmwp_topic .wp-list-table .column-title {
+  width: 41%; }
+
+body.post-type-fmwp_topic .wp-list-table .column-forum {
+  width: 15%; }
+
+body.post-type-fmwp_topic .wp-list-table .column-type {
+  width: 7%; }
+
+body.post-type-fmwp_topic .wp-list-table .column-topic_tags {
+  width: 10%; }
+
+body.post-type-fmwp_topic .wp-list-table .column-status {
+  width: 7%; }
+
+body.post-type-fmwp_topic .wp-list-table .column-author {
+  width: 10%; }
+
+body.post-type-fmwp_topic .wp-list-table .column-date {
+  width: 10%; }
+
+#fmwp-settings-emails table.emailnotifications th.column-email.column-primary {
+  padding-left: 48px; }
+
+#fmwp-settings-emails table.emailnotifications .column-configure {
+  width: 60px;
+  text-align: center; }
+  #fmwp-settings-emails table.emailnotifications .column-configure .fmwp-email-configure span {
+    line-height: 24px; }
+
+#fmwp-settings-emails table.emailnotifications .fmwp-notification-status {
+  margin-right: 18px;
+  font-size: 28px;
+  line-height: 22px;
+  color: #a00;
+  float: left;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box; }
+  #fmwp-settings-emails table.emailnotifications .fmwp-notification-status.fmwp-notification-is-active {
+    color: #46b450; }
+
+#fmwp-settings-wrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+  flex-wrap: nowrap; }
+
+.fmwp-wrap {
+  clear: both;
+  scroll-snap-align: center; }
+
+body.taxonomy-fmwp_topic_tag table.wp-list-table .column-ID {
+  width: 74px;
+  text-align: center; }
+
+body.forums_page_forumwp-settings .wp-list-table .column-core_version {
+  width: 100px;
+  text-align: center; }
+
+body.forums_page_forumwp-settings .wp-list-table .column-theme_version {
+  width: 100px;
+  text-align: center; }
+
+body.forums_page_forumwp-settings .wp-list-table .column-status {
+  width: 260px; }
+
+body.forums_page_forumwp-settings .wp-list-table .fmwp-notification-status {
+  margin-right: 18px;
+  font-size: 28px;
+  line-height: 22px;
+  color: #a00;
+  float: left;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box; }
+  body.forums_page_forumwp-settings .wp-list-table .fmwp-notification-status.fmwp-notification-is-active {
+    color: #46b450; }
+
+@media screen and (max-width: 782px) {
+  body.taxonomy-fmwp_topic_tag table.wp-list-table .column-ID {
+    text-align: left; } }
+
+body.taxonomy-fmwp_forum_category table.wp-list-table .column-ID {
+  width: 74px;
+  text-align: center; }
+
+@media screen and (max-width: 782px) {
+  body.taxonomy-fmwp_forum_category table.wp-list-table .column-ID {
+    text-align: left; } }

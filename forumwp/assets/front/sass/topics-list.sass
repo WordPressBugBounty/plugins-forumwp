@@ -1,0 +1,146 @@
+@import "color"
+@import "selectors"
+@import "mixins"
+@import "suggest"
+@import "dropdown"
+@import "notice"
+@import "tooltip"
+@import "topics-wrapper"
+
+.#{$topics}list-head
+  +flex( row, space-between, baseline, nowrap )
+  border-bottom: 1px solid $border-color
+  margin: 0 0 5px 0
+  padding: 0 0 7px 0
+  font-size: 14px
+  .#{$topics}list-head-line
+    +flex( row, flex-start, baseline, nowrap )
+    label
+      +flex( row, flex-start, baseline, nowrap )
+      margin: 0
+      padding: 0
+    .#{$prefix}sort-wrapper
+      margin: 0 10px 0 0
+      padding: 0
+      select, label
+        font-weight: normal
+    .#{$topics}search
+      +flex( row, flex-start, baseline, nowrap )
+      label
+        +flex( row, flex-start, baseline, nowrap )
+        margin: 0 5px 0 0
+        padding: 0
+        input
+          margin: 0
+  &.#{$prefix}align-right
+    .#{$topics}list-head-line
+      width: 100%
+      justify-content: flex-end
+    .#{$topics}search
+      justify-content: flex-end
+
+.#{$topics}list-head-mobile
+  +flex( column, flex-start, stretch, nowrap )
+  border-bottom: 1px solid $border-color
+  margin: 0 0 5px 0
+  padding: 0 0 7px 0
+  font-size: 14px
+  .#{$topics}list-head-line-mobile
+    +flex( row, space-between, baseline, nowrap )
+    margin: 0
+    padding: 0
+    .#{$topics}list-head-subline-mobile
+      +flex( row, flex-start, baseline, nowrap )
+      margin: 0
+      padding: 0
+      .#{$prefix}sort-wrapper
+        margin: 0 10px 0 0
+        padding: 0
+        select
+          font-weight: normal
+        label
+          +flex( row, flex-start, baseline, nowrap )
+          margin: 0
+          padding: 0
+          font-weight: normal
+          span
+            display: none
+      .#{$prefix}search-toggle
+        cursor: pointer
+        i
+          font-size: 18px
+          color: $sub-color
+          &:hover
+            color: $sub-color-hover
+        &.#{$prefix}active
+          i
+            color: $active-link
+
+    &.#{$prefix}search-wrapper
+      display: none
+      .#{$topics}search
+        +flex( row, space-between, baseline, nowrap )
+        width: 100%
+        label
+          padding: 0
+          margin: 0 5px 0 0
+          min-width: 70%
+  & > :not(:last-child)
+    margin: 0 0 5px 0
+  &.#{$prefix}align-right
+    .#{$topics}list-head-line-mobile
+      justify-content: flex-end
+
+.#{$prefix}archive-topics-wrapper
+  font-size: 14px
+  +topics-wrapper
+  &.#{$prefix}ui-xs
+    .#{$topics}list-head
+      .#{$prefix}create-topic
+        margin-bottom: 5px
+      .#{$topics}search
+        +flex( row, flex-start, center, nowrap )
+        width: 100%
+        margin: 0
+        padding: 0
+        label
+          +flex( row, flex-start, baseline, nowrap )
+          margin: 0
+          padding: 0
+          input
+            margin: 0
+        .#{$prefix}search-topic
+          margin: 0 0 0 5px
+      &.#{$prefix}align-right
+        .#{$topics}search
+          +flex( row, flex-end, center, nowrap )
+    +topics-wrapper-mobile
+  &.#{$prefix}unlogged-data
+    .#{$topics}wrapper-heading
+      padding: 0 0 5px 0
+      .#{$topic}col-topic
+        width: calc( 100% - 232px )
+      .#{$topic}col-updated
+        padding: 0
+        width: 65px
+    .#{$topics}wrapper
+      .#{$topic}row
+        .#{$topic}row-lines
+          width: 100%
+          .#{$topic}primary-data
+            width: calc( 100% - 232px )
+          .#{$topic}statistics-data
+            .#{$topic}last-upgrade
+              margin: 0
+        .#{$topic}actions
+          display: none
+    &.#{$prefix}ui-xs
+      .#{$topics}wrapper
+        .#{$topic}row
+          .#{$topic}row-lines
+            width: calc( 100% - 50px )
+
+.#{$topics}list-footer
+  +flex( row, flex-start, stretch, nowrap )
+  font-size: 16px
+  margin: 7px 0 0 0

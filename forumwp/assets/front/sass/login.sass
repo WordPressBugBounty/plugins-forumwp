@@ -1,0 +1,31 @@
+@import "color"
+@import "selectors"
+@import "mixins"
+@import "notice"
+@import "tooltip"
+
+body
+  ##{$prefix}login-form-wrapper
+    +flex( column, flex-start, stretch, nowrap )
+    ##{$prefix}login-form-notice
+      font-size: 16px
+      border-left: 3px solid red
+      padding: 10px
+      margin: 0 0 25px 0
+      +box-shadow
+    ##{$prefix}loginform
+      +flex( column, flex-start, stretch, nowrap )
+      font-size: 16px
+      margin: 0
+      padding: 0
+      p
+        +flex( column, flex-start, stretch, nowrap )
+        line-height: 1.5
+        font-size: 1em
+        margin: 0 0 10px 0
+        padding: 0
+        label
+          cursor: pointer
+          vertical-align: middle
+    ##{$prefix}rp-link
+      font-size: 16px

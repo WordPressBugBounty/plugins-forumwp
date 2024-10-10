@@ -1,0 +1,176 @@
+@import "color"
+@import "selectors"
+@import "mixins"
+@import "suggest"
+
+##{$topic}popup-wrapper
+  form
+    z-index: 1
+    height: 100%
+    ##{$topic}popup-head
+      & > :not(:last-child)
+        min-width: 55%
+      label.#{$topic}popup-label
+        margin: 0
+      label.#{$topic}title-label
+        width: calc( 75% - 5px )
+        margin: 0 5px 0 0
+        input##{$topic}title
+          width: 100%
+      label.#{$topic}tags-label
+        width: 25%
+        input##{$topic}tags
+          width: 100%
+    ##{$topic}popup-editors
+      +flex( row, space-between, top, nowrap )
+      position: relative
+      height: calc( 100% - 60px )
+      ##{$topic}popup-preview-action
+        display: inline-block
+        position: absolute
+        top: 8px
+        right: 25px
+        cursor: pointer
+        color: $sub-color
+        font-size: 0.8em
+        text-transform: uppercase
+        z-index: 10
+      ##{$topic}popup-editor
+        padding: 0 10px 0 0
+        width: 50%
+        +border-box
+        label
+          width: 100%
+          height: 100%
+        #wp-fmwptopiccontent-wrap
+          height: 100%
+          #wp-fmwptopiccontent-editor-container
+            height: 100%
+            textarea
+              height: calc( 100% - 40px )
+            .mce-btn
+              button:hover, button:active
+                color: inherit
+                background: none
+                border: none
+      ##{$topic}popup-editor-preview
+        +flex( row, flex-start, stretch, nowrap )
+        padding: 0 0 0 10px
+        width: 50%
+        +border-box
+        #fmwptopiccontent-preview
+          padding: 36px 5px 5px 5px
+          width: 100%
+          border: 1px solid $sub-color
+          overflow-y: auto
+      &.#{$topic}popup-preview-hidden
+        ##{$topic}popup-editor
+          padding: 0
+          width: 100%
+        ##{$topic}popup-editor-preview
+          display: none
+
+  &.#{$prefix}ui-xs
+    form
+      ##{$topic}popup-head
+        +flex( row, flex-start, center, nowrap )
+        .#{$popup}header-section
+          min-width: auto
+          label.#{$topic}title-label
+            width: 54%
+            input##{$topic}title
+              width: 100%
+          label.#{$topic}tags-label
+            width: 45%
+            input##{$topic}tags
+              width: 100%
+      //##{$topic}popup-avatar
+      //  width: 35px
+      //  height: 35px
+      //  img
+      //    width: 35px
+      //    height: 35px
+      //##{$topic}popup-quote
+      //  margin-left: 10px
+      //  width: calc( 68% - 45px )
+      //  font-size: 0.9em
+
+      ##{$topic}popup-editors
+        +flex( column, flex-start, top, nowrap )
+        height: calc( 100% - 100px )
+        ##{$topic}popup-preview-action
+          top: 12px
+        ##{$topic}popup-editor
+          width: 100%
+          padding: 0
+          height: 70%
+          #wp-fmwptopiccontent-wrap
+            width: 100%
+            #wp-fmwptopiccontent-editor-container textarea
+              height: calc( 100% - 120px )
+        ##{$topic}popup-editor-preview
+          width: 100%
+          padding: 10px 0 10px 0
+          height: 30%
+          #fmwptopiccontent-preview
+            padding: 5px
+        &.#{$topic}popup-preview-hidden ##{$topic}popup-editor
+          height: 100%
+          padding: 0 0 10px 0
+  &.#{$prefix}ui-s
+    form
+      ##{$topic}popup-head
+        +flex( row, flex-start, center, nowrap )
+        .#{$popup}header-section
+          min-width: auto
+          label.#{$topic}title-label
+            width: 54%
+            input##{$topic}title
+              width: 100%
+          label.#{$topic}tags-label
+            width: 45%
+            input##{$topic}tags
+              width: 100%
+        //##{$topic}popup-avatar
+        //  width: 35px
+        //  height: 35px
+        //  img
+        //    width: 35px
+        //    height: 35px
+        //##{$topic}popup-quote
+        //  margin-left: 10px
+        //  width: calc( 68% - 45px )
+        //  font-size: 0.9em
+
+      ##{$topic}popup-editors
+        +flex( column, flex-start, top, nowrap )
+        height: calc( 100% - 100px )
+        ##{$topic}popup-preview-action
+          top: -48px
+        ##{$topic}popup-editor
+          width: 100%
+          padding: 0
+          height: 70%
+          #wp-fmwptopiccontent-wrap
+            width: 100%
+            #wp-fmwptopiccontent-editor-container textarea
+              height: calc( 100% - 120px )
+        ##{$topic}popup-editor-preview
+          width: 100%
+          padding: 10px 0 10px 0
+          height: 30%
+          #fmwptopiccontent-preview
+            padding: 5px
+        &.#{$topic}popup-preview-hidden ##{$topic}popup-editor
+          height: 100%
+          padding: 0 0 10px 0
+  &.#{$prefix}ui-m
+    form
+      ##{$topic}popup-head
+        .#{$popup}header-section
+          min-width: auto
+  &.#{$prefix}ui-l
+    form
+      ##{$topic}popup-head
+        & > :not(:last-child)
+          min-width: 50%

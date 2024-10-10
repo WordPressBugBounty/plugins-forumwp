@@ -1,0 +1,21 @@
+@import "color"
+@import "selectors"
+@import "mixins"
+@import "suggest"
+@import "dropdown"
+@import "notice"
+@import "replies-wrapper"
+
+.#{$prefix}user-replies
+  +flex( column, flex-start, stretch, nowrap )
+  +replies-wrapper
+  .#{$reply}row
+    .#{$reply}base
+      .#{$reply}data
+        .#{$reply}top
+          .#{$reply}head
+            width: 100%
+          .#{$reply}top-actions
+            display: none
+  &.#{$prefix}ui-xs
+    +replies-wrapper-mobile

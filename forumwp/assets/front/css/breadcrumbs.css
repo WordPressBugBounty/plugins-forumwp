@@ -1,0 +1,36 @@
+.fmwp-breadcrumbs {
+  clear: both;
+  width: 100%;
+  line-height: 40px;
+  margin-bottom: 10px; }
+  .fmwp-breadcrumbs ul {
+    list-style: none;
+    clear: both;
+    padding: 0;
+    margin: 0;
+    display: block; }
+    .fmwp-breadcrumbs ul li {
+      display: inline-block;
+      float: left;
+      padding: 0;
+      margin: 0; }
+      .fmwp-breadcrumbs ul li.fmwp-breadcrumb-item a {
+        text-decoration: none;
+        font-size: 0.8em; }
+      .fmwp-breadcrumbs ul li.fmwp-breadcrumb-item:not(:last-child) a:hover {
+        text-decoration: underline; }
+      .fmwp-breadcrumbs ul li:after {
+        content: "\0203A";
+        padding-left: 5px;
+        margin-right: 5px;
+        color: rgba(0, 0, 0, 0.6); }
+      .fmwp-breadcrumbs ul li:last-child a {
+        cursor: text; }
+      .fmwp-breadcrumbs ul li:last-child:after {
+        content: ''; }
+
+.fmwp-archive-topics-wrapper,
+.fmwp-topic-main-wrapper,
+.fmwp-forum-head,
+.fmwp-archive-forums-wrapper {
+  clear: both; }

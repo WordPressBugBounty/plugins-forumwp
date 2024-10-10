@@ -1,0 +1,128 @@
+@import "color"
+@import "selectors"
+@import "mixins"
+@import "suggest"
+
+##{$reply}popup-wrapper
+  form
+    z-index: 1
+    height: 100%
+
+    ##{$reply}popup-head
+      ##{$reply}popup-avatar
+        padding: 0
+        margin: 0 10px 0 0
+        width: 50px
+        height: 50px
+        img
+          width: 50px
+          height: 50px
+      ##{$reply}popup-quote
+        +flex( row, flex-start, baseline, nowrap )
+        margin: 0
+        padding: 0
+        max-width: calc( 100% - 60px )
+        font-size: 1em
+        > span
+          padding: 0 0 0 5px
+
+    ##{$reply}popup-editors
+      +flex( row, space-between, top, nowrap )
+      position: relative
+      height: calc( 100% - 60px )
+      ##{$reply}popup-preview-action
+        display: inline-block
+        position: absolute
+        top: 8px
+        right: 25px
+        cursor: pointer
+        color: $sub-color
+        font-size: 0.8em
+        text-transform: uppercase
+        z-index: 10
+      ##{$reply}popup-editor
+        padding: 0 10px 0 0
+        width: 50%
+        +border-box
+        label
+          width: 100%
+        #wp-fmwpreplycontent-wrap
+          height: 100%
+          #wp-fmwpreplycontent-editor-container
+            height: 100%
+            textarea
+              height: calc( 100% - 40px )
+            .mce-btn
+              button:hover, button:active
+                color: inherit
+                background: none
+                border: none
+            .mce-tinymce
+              height: 100%
+              .mce-container-body
+                height: 100%
+                iframe
+                  height: 145px
+      ##{$reply}popup-editor-preview
+        +flex( row, flex-start, stretch, nowrap )
+        padding: 0 0 0 10px
+        width: 50%
+        +border-box
+        #fmwpreplycontent-preview
+          padding: 36px 5px 5px 5px
+          width: 100%
+          border: 1px solid $sub-color
+          overflow-y: auto
+      &.#{$reply}popup-preview-hidden
+        ##{$reply}popup-editor
+          padding: 0
+          width: 100%
+        ##{$reply}popup-editor-preview
+          display: none
+
+  &.#{$prefix}ui-xs, &.#{$prefix}ui-s
+    form
+      ##{$reply}popup-head
+        ##{$reply}popup-avatar
+          width: 35px
+          height: 35px
+          img
+            width: 35px
+            height: 35px
+        ##{$reply}popup-quote
+          max-width: calc( 100% - 45px )
+          font-size: 0.9em
+      ##{$reply}popup-editors
+        +flex( column, flex-start, top, nowrap )
+        height: calc( 100% - 90px )
+        ##{$reply}popup-preview-action
+          top: -43px
+        ##{$reply}popup-editor
+          width: 100%
+          padding: 0
+          height: 70%
+          #wp-fmwpreplycontent-wrap
+            width: 100%
+            #wp-fmwpreplycontent-editor-container
+              textarea
+                height: calc( 100% - 120px )
+              .mce-tinymce
+                height: 100%
+                .mce-container-body
+                  height: 100%
+                  iframe
+                    height: 145px
+        ##{$reply}popup-editor-preview
+          width: 100%
+          padding: 10px 0 10px 0
+          height: 30%
+          #fmwpreplycontent-preview
+            padding: 5px
+        &.#{$reply}popup-preview-hidden ##{$reply}popup-editor
+          height: 100%
+          padding: 0 0 10px 0
+  &.#{$prefix}ui-m, &.#{$prefix}ui-l
+    form
+      ##{$reply}popup-head
+        ##{$reply}popup-quote
+          min-width: calc( 40% - 45px )

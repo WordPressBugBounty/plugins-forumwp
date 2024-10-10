@@ -1,0 +1,121 @@
+@import "color"
+@import "selectors"
+@import "mixins"
+@import "suggest"
+@import "dropdown"
+@import "notice"
+@import "tooltip"
+
+
+.#{$prefix}archive-forum-categories-wrapper
+  +flex( column, flex-start, stretch, nowrap )
+  font-size: 14px
+  .#{$prefix}forum-categories-list-head
+    +flex( row, flex-start, stretch, nowrap )
+    .#{$prefix}forum-categories-search
+      text-align: right
+      width: 100%
+  .#{$prefix}forum-categories-wrapper
+    +flex( column, flex-start, stretch, nowrap )
+    width: 100%
+    .#{$prefix}no-forum-categories
+      text-align: center
+      width: 100%
+    .#{$prefix}forum-category-row
+      +flex( row, flex-start, stretch, nowrap )
+      width: 100%
+      margin: 0
+      padding: 8px 0
+      border-bottom: 1px solid $border-color
+      &.#{$prefix}forum-category-disabled
+        opacity: 0.3
+      .#{$prefix}forum-category-row-lines
+        +flex( row, flex-start, center, nowrap )
+        width: calc( 100% - 10px )
+        .#{$prefix}forum-category-row-line
+          +flex( row, flex-start, center, nowrap )
+          &.#{$prefix}forum-category-primary-data
+            width: 75%
+          &.#{$prefix}forum-category-statistics-data
+            width: 25%
+          .#{$prefix}forum-category-data
+            +flex( column, space-between, stretch, nowrap )
+            margin-right: 5px
+            width: calc( 100% - 5px )
+            .#{$prefix}forum-category-first-line
+              +flex( row, flex-start, baseline, nowrap )
+              .#{$prefix}forum-category-title
+                margin: 0 7px 10px 0
+                font-size: 1em
+                a
+                  +link( $link, $active_link )
+          .#{$prefix}forum-category-replies
+            display: flex
+            align-items: center
+            justify-content: center
+            margin-right: 5px
+            width: 30px
+          .#{$prefix}forum-category-topics
+            display: flex
+            align-items: center
+            justify-content: center
+            margin-right: 5px
+            width: 30px
+          .#{$prefix}forum-category-forums
+            display: flex
+            align-items: center
+            justify-content: center
+            margin-right: 5px
+            width: 30px
+
+    .#{$prefix}forum-category-actions
+      position: relative
+      width: 10px
+      display: flex
+      align-items: center
+      .#{$prefix}forum-category-actions-dropdown
+        display: flex
+        align-items: center
+        cursor: pointer
+        color: $sub-color
+        &:hover
+          color: $sub-color-hover
+
+
+  &.#{$prefix}ui-xs
+    .#{$prefix}forum-categories-wrapper
+      .#{$prefix}forum-category-row
+        +flex( row, flex-start, end, nowrap )
+        .#{$prefix}forum-category-row-lines
+          +flex( column, flex-start, stretch, nowrap )
+          .#{$prefix}forum-category-row-line
+            +flex( row, flex-start, flex-start, nowrap )
+            width: 100%
+            .#{$prefix}forum-category-data
+              margin: 0
+              width: 100%
+
+            .#{$prefix}forum-category-replies
+              display: flex
+              align-items: center
+              justify-content: center
+              margin-right: 5px
+              width: 30px
+            .#{$prefix}forum-category-forums
+              display: flex
+              align-items: center
+              justify-content: center
+              margin-right: 5px
+              width: 30px
+            .#{$prefix}forum-category-topics
+              display: flex
+              align-items: center
+              justify-content: center
+              margin-right: 5px
+              width: 30px
+          //& > :nth-child(2)
+          //  padding-left: 55px
+          //  flex-direction: row-reverse
+          //  align-items: center
+          //  justify-content: flex-end
+          //  margin: 4px 0 0 0

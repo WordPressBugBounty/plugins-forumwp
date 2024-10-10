@@ -1,0 +1,45 @@
+@import "color"
+@import "selectors"
+@import "mixins"
+
+.#{$prefix}breadcrumbs
+  clear: both
+  width: 100%
+  line-height: 40px
+  margin-bottom: 10px
+  ul
+    list-style: none
+    clear: both
+    padding: 0
+    margin: 0
+    display: block
+    li
+      display: inline-block
+      float: left
+      padding: 0
+      margin: 0
+      &.#{$prefix}breadcrumb-item
+        a
+          text-decoration: none
+          font-size: 0.8em
+        &:not(:last-child)
+          a:hover
+            text-decoration: underline
+
+      &:after
+        content: "\0203A"
+        padding-left: 5px
+        margin-right: 5px
+        color: rgba( 0, 0, 0, 0.6 )
+
+      &:last-child
+        a
+          cursor: text
+        &:after
+          content: ''
+
+.#{$prefix}archive-topics-wrapper,
+.#{$prefix}topic-main-wrapper,
+.#{$prefix}forum-head,
+.#{$prefix}archive-forums-wrapper
+  clear: both

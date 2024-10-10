@@ -1,0 +1,31 @@
+@import "color"
+@import "selectors"
+@import "mixins"
+@import "suggest"
+@import "dropdown"
+@import "notice"
+@import "topics-wrapper"
+
+.#{$prefix}user-topics
+  +flex( column, flex-start, stretch, nowrap )
+  +topics-wrapper
+  .#{$topics}wrapper-heading
+    padding: 0 0 5px 0
+    .#{$topic}col-topic
+      width: calc( 100% - 232px )
+    .#{$topic}col-updated
+      padding: 0
+      width: 65px
+  .#{$topics}wrapper
+    .#{$topic}row
+      .#{$topic}row-lines
+        width: 100%
+        .#{$topic}primary-data
+          width: calc( 100% - 232px )
+        .#{$topic}statistics-data
+          .#{$topic}last-upgrade
+            margin: 0
+      .#{$topic}actions
+        display: none
+  &.#{$prefix}ui-xs
+    +topics-wrapper-mobile

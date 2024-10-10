@@ -1,0 +1,281 @@
+@import "color"
+@import "selectors"
+@import "mixins"
+@import "suggest"
+@import "dropdown"
+@import "notice"
+@import "tooltip"
+@import "topics-wrapper"
+
+article.fmwp_forum
+  header.fmwp
+    +flex( column, flex-start, stretch, nowrap )
+    font-size: 16px
+    margin-bottom: 7px
+  .#{$forum}info
+    +flex( row, flex-start, flex-start, nowrap )
+    padding: 0
+    margin: 0
+    .#{$forum}avatar
+      width: 100px
+      height: 100px
+      margin-right: 20px
+      margin-bottom: 10px
+      border-radius: 100%
+      img
+        border-radius: 100%
+        width: 100px
+        height: 100px
+        +box-shadow
+      &.#{$forum}icon
+        text-align: center
+        font-size: 2em
+        line-height: 98px
+        +box-shadow
+    .#{$forum}data
+      +flex( column, flex-start, stretch, nowrap )
+      width: calc( 100% - 120px )
+      &.#{$forum}no-avatar
+        width: 100%
+      .#{$forum}data-line
+        +flex( row, flex-start, baseline, wrap )
+        margin: 0 0 5px 0
+        padding: 0
+        width: 100%
+        word-break: break-word
+        h1, h3
+          +flex( row, flex-start, baseline, wrap )
+          margin: 0 10px 0 0
+          padding: 0
+          &:before
+            content: none
+        .#{$forum}categories
+          +flex( row, flex-start, center, wrap )
+          margin: 0
+          .#{$forum}category
+            border: 1px solid $border-color
+            +border-radius( 3px,3px,3px,3px )
+            padding: 3px 5px
+            margin-right: 3px
+            line-height: 1
+            cursor: default
+            font-size: 0.8em
+        &.#{$forum}content
+          margin: 0
+          padding: 0
+          position: relative
+          .wp-block-embed
+            width: 100%
+        &.#{$forum}new-topic
+          justify-content: flex-end
+          margin: 0
+          padding: 0
+  &.#{$prefix}ui-xs
+    .#{$forum}info
+      .#{$forum}avatar
+        width: 60px
+        height: 60px
+        margin-right: 15px
+        border-radius: 100%
+        img
+          border-radius: 100%
+          width: 60px
+          height: 60px
+          +box-shadow
+        &.#{$forum}icon
+          text-align: center
+          font-size: 1.5em
+          line-height: 58px
+          +box-shadow
+      .#{$forum}data
+        +flex( column, flex-start, stretch, nowrap )
+        &:not(.#{$forum}no-avatar)
+          width: calc( 100% - 75px )
+
+.#{$forum}head
+  +flex( column, flex-start, stretch, nowrap )
+  font-size: 16px
+  margin: 0 0 7px 0
+  .#{$forum}info
+    +flex( row, flex-start, stretch, nowrap )
+    padding: 0 0 7px 0
+    margin: 0 0 7px 0
+    .#{$forum}avatar
+      width: 100px
+      height: 100px
+      margin-right: 20px
+      margin-bottom: 10px
+      border-radius: 100%
+      img
+        border-radius: 100%
+        width: 100px
+        height: 100px
+        +box-shadow
+      &.#{$forum}icon
+        text-align: center
+        font-size: 2em
+        line-height: 98px
+        +box-shadow
+    .#{$forum}data
+      +flex( column, flex-start, stretch, nowrap )
+      width: calc( 100% - 120px )
+      .#{$forum}data-line
+        +flex( row, flex-start, baseline, wrap )
+        margin: 0 0 5px 0
+        padding: 0
+        width: 100%
+        word-break: break-word
+        h3
+          margin: 0 10px 0 0
+          padding: 0
+        .#{$forum}categories
+          +flex( row, flex-start, center, nowrap )
+          margin: 0
+          .#{$forum}category
+            border: 1px solid $border-color
+            +border-radius( 3px,3px,3px,3px )
+            padding: 3px 5px
+            margin-right: 3px
+            line-height: 1
+            cursor: default
+            font-size: 0.8em
+
+
+  .#{$forum}nav-bar
+    +flex( row, space-between, baseline, nowrap )
+    border-top: 1px solid $border-color
+    border-bottom: 1px solid $border-color
+    margin: 0 0 5px 0
+    padding: 7px 0
+    font-size: 14px
+    .#{$forum}nav-bar-line
+      +flex( row, flex-start, baseline, nowrap )
+      label
+        +flex( row, flex-start, baseline, nowrap )
+        margin: 0
+        padding: 0
+      .#{$forum}sort-wrapper
+        margin: 0 10px 0 0
+        padding: 0
+        select, label
+          font-weight: normal
+
+      .#{$forum}search-bar
+        +flex( row, flex-start, baseline, nowrap )
+        label
+          margin: 0 5px 0 0
+          padding: 0
+
+  .#{$forum}nav-bar-mobile
+    +flex( column, flex-start, stretch, nowrap )
+    border-bottom: 1px solid $border-color
+    margin: 0 0 5px 0
+    padding: 0 0 7px 0
+    font-size: 14px
+    .#{$forum}nav-bar-line-mobile
+      +flex( row, space-between, baseline, nowrap )
+      margin: 0
+      padding: 0
+      .#{$forum}nav-bar-subline-mobile
+        +flex( row, flex-start, baseline, nowrap )
+        margin: 0
+        padding: 0
+        .#{$forum}sort-wrapper
+          margin: 0 10px 0 0
+          padding: 0
+          select
+            font-weight: normal
+          label
+            +flex( row, flex-start, baseline, nowrap )
+            margin: 0
+            padding: 0
+            font-weight: normal
+            span
+              display: none
+        .#{$prefix}search-toggle
+          cursor: pointer
+          i
+            font-size: 18px
+            color: $sub-color
+            &:hover
+              color: $sub-color-hover
+          &.#{$prefix}active
+            i
+              color: $active-link
+
+      &.#{$prefix}search-wrapper
+        display: none
+        .#{$forum}search-bar
+          +flex( row, space-between, baseline, nowrap )
+          width: 100%
+          label
+            padding: 0
+            margin: 0 5px 0 0
+            min-width: 70%
+    & > :not(:last-child)
+      margin: 0 0 5px 0
+
+
+.#{$forum}wrapper.#{$prefix}ui-xs
+  .#{$forum}head
+    .#{$forum}info
+      .#{$forum}avatar
+        width: 60px
+        height: 60px
+        margin-right: 15px
+        border-radius: 100%
+        img
+          border-radius: 100%
+          width: 60px
+          height: 60px
+          +box-shadow
+        &.#{$forum}icon
+          text-align: center
+          font-size: 1.5em
+          line-height: 58px
+          +box-shadow
+      .#{$forum}data
+        +flex( column, flex-start, stretch, nowrap )
+        width: calc( 100% - 75px )
+  +topics-wrapper-mobile
+
+
+.#{$forum}content
+  +flex( column, flex-start, stretch, nowrap )
+  font-size: 14px
+  margin: 0 0 15px 0
+  +topics-wrapper
+  position: relative
+  .wp-block-embed
+    width: 100%
+.#{$forum}footer
+  +flex( row, flex-start, baseline, nowrap )
+  margin: 0 0 10px 0
+  font-size: 16px
+
+.#{$forum}wrapper.#{$prefix}unlogged-data
+  .#{$forum}content
+    .#{$topics}wrapper-heading
+      padding: 0 0 5px 0
+      .#{$topic}col-topic
+        width: calc( 100% - 232px )
+      .#{$topic}col-updated
+        padding: 0
+        width: 65px
+    .#{$topics}wrapper
+      .#{$topic}row
+        .#{$topic}row-lines
+          width: 100%
+          .#{$topic}primary-data
+            width: calc( 100% - 232px )
+          .#{$topic}statistics-data
+            .#{$topic}last-upgrade
+              margin: 0
+        .#{$topic}actions
+          display: none
+  &.#{$prefix}ui-xs
+    .#{$forum}content
+      .#{$topics}wrapper
+        .#{$topic}row
+          .#{$topic}row-lines
+            width: calc( 100% - 50px )

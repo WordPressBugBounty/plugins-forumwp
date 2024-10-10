@@ -1,0 +1,335 @@
+@import "color"
+@import "selectors"
+@import "mixins"
+@import "suggest"
+@import "dropdown"
+@import "notice"
+@import "forums-wrapper"
+@import "topics-wrapper"
+@import "replies-wrapper"
+
+$tabs: ( 'topics', 'replies', 'edit', 'notifications' )
+$subtabs_arr: ()
+
+=tabs-css
+  @each $tab in $tabs
+    &[data-active_tab="#{$tab}"]
+      .#{$profile}#{$tab}-content
+        display: flex
+
+body
+  .#{$profile}wrapper
+    +flex( row, flex-start, stretch, nowrap )
+    font-size: 14px
+    .#{$profile}nav
+      +flex( column, flex-start, stretch, nowrap )
+      width: 150px
+      text-align: left
+      .#{$profile}avatar
+        padding-bottom: 10px
+        img
+          border-radius: 100%
+          width: 100px
+          height: 100px
+      .#{$profile}menu
+        margin: 0
+        padding: 0
+        li
+          list-style: none
+          border-bottom: 1px solid $border-color
+          padding: 3px 0
+          a
+            +link( $link, $active-link )
+          &.#{$prefix}active-tab
+            a
+              font-weight: bold
+
+    .#{$profile}content
+      +flex( column, flex-start, stretch, nowrap )
+      width: calc( 100% - 130px )
+      position: relative
+      padding-left: 30px
+      .#{$profile}top-content
+        +flex( column, flex-start, stretch, nowrap )
+        .#{$profile}username
+          font-weight: bold
+          font-size: 1.5em
+          margin: 0 10px 5px 0
+          padding: 0
+          text-align: left
+        .#{$profile}user-stats
+          +flex( row, flex-start, stretch, nowrap )
+          span
+            margin: 0
+        .#{$profile}user-top-info
+          font-size: 1em
+          margin: 0 0 5px 0
+          > :not(:last-child)
+            margin: 0 10px 0 0
+        .#{$profile}user-description
+          margin: 0
+      .#{$profile}tab-content
+        +flex( column, flex-start, stretch, nowrap )
+        margin: 10px 0 0 0
+        padding: 0
+        position: relative
+        min-height: 240px
+        display: none
+        .#{$profile}subtab-content
+          +flex( column, flex-start, stretch, nowrap )
+          display: none
+        @each $tab, $subtabs in $subtabs_arr
+          @each $subtab in $subtabs
+            &[data-active_subtab="#{$subtab}"]
+              .#{$profile}#{$subtab}-#{$tab}-wrapper
+                display: flex
+      +tabs-css
+
+      .#{$prefix}ajax-loading
+        display: none
+
+    .#{$profile}submenu
+      margin: 0 0 15px 0
+      padding: 0
+      +flex( row, flex-start, flex-end, nowrap )
+      li
+        list-style: none
+        border-bottom: 1px solid $border-color
+        padding: 3px 10px
+        a
+          +link( $link, $active-link )
+        &.#{$prefix}active-tab
+          border: 1px solid $border-color
+          border-bottom: none
+          padding: 7px 10px 3px
+          a
+            font-weight: bold
+
+
+    +topics-wrapper
+    +replies-wrapper
+
+    .#{$profile}topics-content
+      .#{$topics}wrapper-heading
+        padding: 0 0 5px 0
+        .#{$topic}col-topic
+          width: calc( 100% - 232px )
+        .#{$topic}col-updated
+          padding: 0
+          width: 65px
+      .#{$topics}wrapper
+        .#{$topic}row
+          .#{$topic}row-lines
+            width: 100%
+            .#{$topic}primary-data
+              width: calc( 100% - 232px )
+            .#{$topic}statistics-data
+              .#{$topic}last-upgrade
+                margin: 0
+          .#{$topic}actions
+            display: none
+
+    .#{$profile}replies-content
+      .#{$reply}row
+        .#{$reply}base
+          .#{$reply}data
+            .#{$reply}top
+              .#{$reply}head
+                width: 100%
+              .#{$reply}top-actions
+                display: none
+
+
+    ##{$prefix}edit-profile
+      +flex( column, flex-start, stretch, nowrap )
+      p
+        +flex( row, space-between, center, nowrap )
+        line-height: 1.5
+        font-size: 1em
+        margin: 0 0 10px 0
+        padding: 0
+        label
+          max-width: 25%
+          cursor: pointer
+          vertical-align: middle
+        &:not( .fmwp-submit-row )
+          input, select, textarea
+            width: 75%
+        &.fmwp-submit-row
+          input
+            width: auto
+        @media screen and (max-width: 640px)
+          +flex( column, flex-start, stretch, nowrap )
+          label
+            max-width: none
+          &:not( .fmwp-submit-row )
+            input, select, textarea
+              width: 100%
+          &.fmwp-submit-row
+            input
+              width: auto
+        &.#{$prefix}align-top
+          +flex( row, space-between, baseline, nowrap )
+          @media screen and (max-width: 640px)
+            +flex( column, flex-start, stretch, nowrap )
+
+
+    &.#{$prefix}ui-xs
+      .#{$prefix}responsive
+        width: 100%
+        margin: 0
+        padding: 0
+        .#{$profile}general-info
+          +flex( column, flex-start, stretch, nowrap )
+          padding: 0 0 7px 0
+          border-bottom: 1px solid $border-color
+          .#{$profile}user-top-info
+            font-size: 1em
+            margin: 0 0 5px 0
+          .#{$profile}info-line
+            +flex( row, flex-start, top, nowrap )
+            .#{$profile}avatar
+              width: 60px
+              margin: 0 20px 0 0
+              img
+                border-radius: 100%
+                width: 60px
+                height: 60px
+            .#{$profile}info-wrapper
+              +flex( column, flex-start, stretch, nowrap )
+              width: calc( 100% - 80px )
+              .#{$profile}info-subline
+                +flex( row, flex-start, baseline, wrap )
+              .#{$profile}username
+                font-weight: bold
+                font-size: 1.5em
+                margin: 0 10px 0 0
+                padding: 0
+                text-align: left
+                line-height: 1
+              .#{$profile}user-stats
+                +flex( row, flex-start, baseline, nowrap )
+                margin: 0
+                span
+                  margin-right: 10px
+              .#{$profile}user-description
+                margin: 15px 0 0 0
+            &:not(.fmwp-profile-user-top-info)
+              margin: 0 0 2px 0
+        nav
+          width: 100%
+          margin: 0
+          padding: 0 0 0 30px
+          white-space: nowrap
+          -webkit-overflow-scrolling: touch
+          overflow: auto
+          border-bottom: 1px solid $border-color
+          +border-box
+          &::-webkit-scrollbar
+            width: 0
+            background: transparent
+            display: none
+          .#{$profile}menu
+            +border-box
+            display: block
+            //width: calc( 100% - 30px )
+            margin: 0
+            padding: 0
+            position: relative
+            white-space: nowrap
+            &::-webkit-scrollbar
+              width: 0
+              background: transparent
+              display: none
+            li
+              cursor: pointer
+              width: auto
+              display: inline-block
+              list-style: none
+              padding: 10px 15px
+              text-align: center
+              +border-box
+              a
+                cursor: pointer
+                +link( $link, $active-link )
+              &.#{$prefix}active-tab
+                //border-bottom: 2px solid red
+                //position: relative
+                //top: 1px
+                //z-index: 10
+                a
+                  font-weight: bold
+              &.#{$profile}menu-indicator
+                min-width: 10%
+                position: absolute
+                bottom: 0
+                left: 0
+                height: 2px
+                background-color: #f6b2b5
+                will-change: left, right
+                padding: 0
+        .#{$profile}scroll-content
+          display: inline-block
+          width: 100%
+          overflow: hidden
+          margin: 10px 0 0 0
+          position: relative
+          -webkit-perspective: 500px
+          perspective: 500px
+          -webkit-transform-style: preserve-3d
+          transform-style: preserve-3d
+          -webkit-transform-origin: 0 50%
+          transform-origin: 0 50%
+          white-space: nowrap
+          -webkit-overflow-scrolling: touch
+          border-bottom: 1px solid $border-color
+          +border-box
+          &::-webkit-scrollbar
+            width: 0
+            background: transparent
+            display: none
+
+          .#{$profile}tab-content
+            width: 100%
+            height: 100%
+            min-height: 500px
+            display: inline-block
+            position: relative
+            margin: 0
+            padding: 0
+            overflow: hidden
+            vertical-align: top
+            &:not(.#{$profile}blank-content)
+              .#{$prefix}ajax-loading
+                display: none
+
+            .#{$profile}subtab-content
+              +flex( column, flex-start, stretch, nowrap )
+              display: none
+            @each $tab, $subtabs in $subtabs_arr
+              @each $subtab in $subtabs
+                &[data-active_subtab="#{$subtab}"]
+                  .#{$profile}#{$subtab}-#{$tab}-wrapper
+                    display: flex
+                    width: 99%
+          +tabs-css
+          +replies-wrapper-mobile
+
+
+      .#{$profile}mobile
+        +topics-wrapper-mobile
+        +forums-wrapper-mobile
+
+.fmwp ##{$prefix}profile-notifications
+  .#{$prefix}form-row
+    &.#{$prefix}field-checkbox-type
+      flex-direction: row-reverse
+      min-height: 20px
+      justify-content: flex-end
+      column-gap: 5px
+      .#{$prefix}form-row-label
+        width: auto
+        &:after
+          content: ''
+      .#{$prefix}form-field-content
+        width: auto

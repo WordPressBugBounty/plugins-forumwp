@@ -1,0 +1,269 @@
+=topics-wrapper
+  .#{$topics}wrapper-heading
+    +flex( row, flex-start, baseline, nowrap )
+    margin: 0 0 5px 0
+    padding: 0 10px 5px 0
+    font-size: 0.8em
+    font-weight: bold
+    border-bottom: solid 1px $border-color
+    .#{$topic}head-line
+      +flex( row, flex-start, baseline, nowrap )
+      .#{$topic}col-people
+        width: 67px
+        text-align: center
+        padding-right: 5px
+        box-sizing: border-box
+      .#{$topic}col-replies
+        width: 50px
+        text-align: center
+        padding-right: 5px
+        box-sizing: border-box
+      .#{$topic}col-views
+        width: 50px
+        text-align: center
+        padding-right: 5px
+        box-sizing: border-box
+      .#{$topic}col-updated
+        width: 70px
+        text-align: center
+        padding-right: 5px
+        box-sizing: border-box
+      &.#{$topic}col-topic
+        width: calc( 100% - 237px )
+    &.#{$prefix}no-actions-heading
+      padding: 0 0 5px 0
+      .#{$topic}head-line
+        .#{$topic}col-updated
+          width: 65px
+          padding: 0
+        &.#{$topic}col-topic
+          width: calc( 100% - 232px )
+
+  .#{$topics}wrapper
+    +flex( column, flex-start, stretch, nowrap )
+    margin: 0
+    padding: 0
+    font-size: 14px
+    .#{$forum}no-topics
+      text-align: center
+      width: 100%
+    .#{$topic}row
+      +flex( row, space-between, center, nowrap )
+      border-bottom: solid 1px $border-color
+      padding: 9px 0
+      .#{$topic}row-lines
+        +flex( row, flex-start, center, nowrap )
+        width: calc( 100% - 10px )
+        .#{$topic}row-line
+          +flex( row, flex-start, center, nowrap )
+          &.#{$topic}primary-data
+            +flex( column, flex-start, stretch, nowrap )
+            width: calc( 100% - 237px )
+            padding: 0 5px 0 0
+            .#{$topic}title-line
+              +flex( row, flex-start, baseline, nowrap )
+              width: 100%
+              margin: 0
+              font-size: 1em
+              a
+                +flex( row, flex-start, baseline, nowrap )
+                width: 100%
+                +link( $link, $active_link )
+                //display: inline
+                .#{$topic}title
+                  font-weight: bold
+                  word-break: break-word
+                &:visited
+                  .#{$topic}title
+                    color: $visited-link
+                .#{$topic}status-marker
+                  margin: 0 7px 0 0
+                  font-size: 12px
+                  float: left
+                  display: none
+            .#{$topic}tags-wrapper
+              +flex( row, flex-start, baseline, wrap )
+              margin: 0
+              width: 100%
+              display: none
+              .#{$topic}tag
+                border: 1px solid $border-color
+                +border-radius( 3px,3px,3px,3px )
+                font-size: 0.8em
+                padding: 3px 5px
+                margin-right: 3px
+                line-height: 1
+                cursor: default
+                &.#{$topic}tag-reported, &.#{$topic}tag-trashed, &.#{$topic}tag-spam
+                  border-color: $trashed-row
+                  color: $trashed-row
+                  display: none
+                &.#{$topic}tag-pending
+                  border-color: $pending-row
+                  color: $pending-row
+                  display: none
+            .#{$topic}forum
+              width: 100%
+              font-size: 0.9em
+          &.#{$topic}statistics-data
+            .#{$topic}statistics-section
+              +flex( row, flex-start, baseline, nowrap )
+            .#{$topic}replies
+              +flex( row, flex-start, center, nowrap )
+              position: relative
+              width: 62px
+              margin: 0 5px 0 0
+              font-size: 3px
+              & > :first-child
+                img
+                  margin: 0 2px 0 0
+              a
+                width: 30px
+                height: 30px
+                margin: auto
+                img
+                  border-radius: 100%
+                  width: 30px
+                  height: 30px
+                  +box-shadow
+                  &:hover
+                    opacity: 0.85
+            .#{$topic}replies-count
+              text-align: center
+              margin-right: 5px
+              width: 45px
+              font-size: 0.9em
+            .#{$topic}views
+              text-align: center
+              margin-right: 5px
+              width: 45px
+              font-size: 0.9em
+            .#{$topic}last-upgrade
+              text-align: center
+              margin-right: 5px
+              width: 65px
+              font-size: 0.9em
+
+      .#{$topic}actions
+        +flex( row, flex-end, center, nowrap )
+        position: relative
+        width: 10px
+        .#{$topic}actions-dropdown
+          cursor: pointer
+          color: $sub-color
+          &:hover
+            color: $sub-color-hover
+        .#{$prefix}dropdown
+          top: 30px !important
+
+
+
+      &.#{$topic}tagged
+        .#{$topic}row-lines
+          .#{$topic}row-line
+            .#{$topic}tags-wrapper
+              display: flex
+      &.#{$topic}spam
+        .#{$topic}row-lines
+          .#{$topic}row-line
+            .#{$topic}tags-wrapper
+              display: flex
+              .#{$topic}tag
+                &.#{$topic}tag-spam
+                  display: inline
+      &.#{$topic}trashed
+        .#{$topic}row-lines
+          .#{$topic}row-line
+            .#{$topic}tags-wrapper
+              display: flex
+              .#{$topic}tag
+                &.#{$topic}tag-trashed
+                  display: inline
+      &.#{$topic}pending
+        .#{$topic}row-lines
+          .#{$topic}row-line
+            .#{$topic}tags-wrapper
+              display: flex
+              .#{$topic}tag
+                &.#{$topic}tag-pending
+                  display: inline
+      &.#{$topic}reported
+        .#{$topic}row-lines
+          .#{$topic}row-line
+            .#{$topic}tags-wrapper
+              display: flex
+              .#{$topic}tag
+                &.#{$topic}tag-reported
+                  display: inline
+      &.#{$topic}pinned
+        .#{$topic}row-lines
+          .#{$topic}row-line
+            .#{$topic}title-line a
+              .#{$topic}pinned-marker
+                display: inline
+      &.#{$topic}locked
+        .#{$topic}row-lines
+          .#{$topic}row-line
+            .#{$topic}title-line a
+              .#{$topic}locked-marker
+                display: inline
+      &.#{$topic}announcement
+        .#{$topic}row-lines
+          .#{$topic}row-line
+            .#{$topic}title-line a
+              .#{$topic}announcement-marker
+                display: inline
+      &.#{$topic}global
+        .#{$topic}row-lines
+          .#{$topic}row-line
+            .#{$topic}title-line a
+              .#{$topic}global-marker
+                display: inline
+    & > :first-child
+      padding: 6px 0 9px 0
+
+=topics-wrapper-mobile
+  .#{$topics}wrapper-heading
+    display: none
+
+  .#{$topics}wrapper
+    .#{$topic}row
+      +flex( row, flex-start, start, nowrap )
+      .#{$topic}avatar
+        width: 40px
+        margin-right: 10px
+        a
+          width: 40px
+          height: 40px
+          img
+            border-radius: 100%
+            width: 40px
+            height: 40px
+      .#{$topic}row-lines
+        +flex( column, flex-start, stretch, nowrap )
+        width: calc( 100% - 60px )
+        .#{$topic}row-line
+          +flex( row, flex-start, center, nowrap )
+          &.#{$topic}primary-data
+            +flex( column, flex-start, stretch, nowrap )
+            width: 100%
+            margin: 0
+            padding: 0
+            .#{$topic}title-line
+              line-height: inherit
+            .#{$topic}last-upgrade
+              text-align: right
+              width: 60px
+              margin: 0 5px 0 0
+              color: $sub-color
+              font-size: 0.8em
+          &.#{$topic}statistics-data
+            +flex( row, space-between, baseline, nowrap )
+            .#{$topic}replies
+              display: none
+            .#{$topic}replies-count
+              margin-right: 10px
+              width: auto
+            .#{$topic}views
+              margin: 0 5px 0 0
+              width: auto

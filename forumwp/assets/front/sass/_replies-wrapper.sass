@@ -1,0 +1,419 @@
+=replies-wrapper
+  .#{$reply}row
+    +flex( column, flex-start, stretch, nowrap )
+    margin-bottom: 15px
+    border-bottom: solid 1px $border-color
+    padding: 10px 0
+    +background-transition(250)
+    &:not(:first-child)
+      margin-top: 5px
+    .#{$reply}base
+      +flex( row, flex-start, stretch, nowrap )
+      +border-box
+      .#{$reply}avatar
+        +flex( row, flex-start, stretch, nowrap )
+        margin-right: 23px
+        width: 60px
+        height: 60px
+        a
+          position: relative
+          display: block
+          width: 60px
+          height: 60px
+          img
+            width: 60px
+            height: 60px
+            +box-shadow
+            border-radius: 100%
+            &:hover
+              opacity: 0.85
+      .#{$reply}content
+        word-wrap: break-word
+        margin-bottom: 15px
+      .#{$reply}data
+        +flex( column, flex-start, stretch, nowrap )
+        width: calc( 100% - 83px )
+        .#{$reply}top
+          +flex( row, space-between, baseline, nowrap )
+          margin-top: 0
+          margin-bottom: 5px
+          line-height: 1
+          .#{$reply}head
+            +flex( row, space-between, baseline, nowrap )
+            width: calc( 100% - 10px )
+            font-size: 1em
+            line-height: 1
+            .#{$reply}head-data
+              +flex( row, flex-start, baseline, wrap )
+              max-width: 80%
+              a
+                margin: 0 10px 0 0
+                font-weight: bold
+                font-size: 1.1em
+                word-break: break-word
+                +link( $link, $active_link )
+                &.#{$reply}title
+                  font-size: 14px
+              .#{$reply}author-tags-wrapper
+                +flex( row, flex-start, baseline, wrap )
+                padding: 0 10px 0 0
+                .#{$reply}tag
+                  border: 1px solid $border-color
+                  +border-radius( 3px,3px,3px,3px )
+                  font-size: 0.8em
+                  padding: 3px 5px
+                  margin-right: 3px
+                  line-height: 1
+                  cursor: default
+              .#{$reply}tags-wrapper
+                +flex( row, flex-start, baseline, wrap )
+                padding: 0 10px 0 0
+                .#{$reply}tag
+                  border: 1px solid $border-color
+                  +border-radius( 3px,3px,3px,3px )
+                  font-size: 0.8em
+                  padding: 3px 5px
+                  margin-right: 3px
+                  line-height: 1
+                  cursor: default
+                  &.#{$reply}tag-trashed, &.#{$reply}tag-reported, &.#{$reply}tag-spam
+                    border-color: $trashed-row
+                    color: $trashed-row
+                    display: none
+                  &.#{$reply}tag-pending
+                    border-color: $pending-row
+                    color: $pending-row
+                    display: none
+            .#{$reply}subdata
+              color: $sub-color
+              padding: 0 10px
+              font-size: 0.8em
+              font-weight: normal
+              +border-box
+              a
+                +link( $sub-color, fade-out( $sub-color,.2 ) )
+          .#{$reply}top-actions
+            +flex( row, flex-end, baseline, nowrap )
+            width: 10px
+            span
+              cursor: pointer
+              color: $sub-color
+              position: relative
+              &:hover
+                color: $sub-color-hover
+      .#{$reply}bottom
+        +flex( row, space-between, center, nowrap )
+        .#{$reply}left-panel
+          .#{$reply}avatars
+            +flex( row, space-between, center, nowrap )
+            img
+              width: 24px
+              height: 24px
+              margin-right: 3px
+              +box-shadow
+              border-radius: 100%
+              cursor: pointer
+              &:hover
+                opacity: 0.85
+            .#{$reply}more-answers
+              border: 1px solid $border-color
+              color: $border-color
+              font-size: 0.9em
+              border-radius: 12px
+              width: 24px
+              height: 24px
+              line-height: 16px
+              text-align: center
+              +box-shadow
+          .#{$reply}last-child
+            width: calc( 100% - 150px )
+            font-size: 0.8em
+        .#{$reply}right-panel
+          +flex( row, space-between, baseline, nowrap )
+          > span
+            margin-left: 10px
+          span.#{$reply}action-link
+            font-size: 16px
+            cursor: pointer
+            color: $sub-color
+            &:hover
+              color: $sub-color-hover
+    .#{$reply}children
+      margin: 0
+      padding: 15px 0 0 0
+      > .#{$reply}row
+        &.#{$reply}spam
+          > .#{$reply}base
+            > .#{$reply}data
+              > .#{$reply}top
+                > .#{$reply}head
+                  > .#{$reply}head-data
+                    > .#{$reply}tags-wrapper
+                      > .#{$reply}tag.#{$reply}tag-spam
+                        display: inline
+        &.#{$reply}trashed
+          > .#{$reply}base
+            > .#{$reply}data
+              > .#{$reply}top
+                > .#{$reply}head
+                  > .#{$reply}head-data
+                    > .#{$reply}tags-wrapper
+                      > .#{$reply}tag.#{$reply}tag-trashed
+                        display: inline
+        &.#{$reply}reported
+          > .#{$reply}base
+            > .#{$reply}data
+              > .#{$reply}top
+                > .#{$reply}head
+                  > .#{$reply}head-data
+                    > .#{$reply}tags-wrapper
+                      > .#{$reply}tag.#{$reply}tag-reported
+                        display: inline
+        &.#{$reply}pending
+          > .#{$reply}base
+            > .#{$reply}data
+              > .#{$reply}top
+                > .#{$reply}head
+                  > .#{$reply}head-data
+                    > .#{$reply}tags-wrapper
+                      > .#{$reply}tag.#{$reply}tag-pending
+                        display: inline
+        &:not(.#{$reply}reported):not(.#{$reply}trashed):not(.#{$reply}spam):not(.#{$reply}pending):not(.#{$reply}private)
+          > .#{$reply}base
+            > .#{$reply}data
+              > .#{$reply}top
+                > .#{$reply}head
+                  > .#{$reply}head-data
+                    > .#{$reply}tags-wrapper
+                      display: none
+        > .#{$reply}children
+          > .#{$reply}row
+            &.#{$reply}spam
+              > .#{$reply}base
+                > .#{$reply}data
+                  > .#{$reply}top
+                    > .#{$reply}head
+                      > .#{$reply}head-data
+                        > .#{$reply}tags-wrapper
+                          > .#{$reply}tag.#{$reply}tag-spam
+                            display: inline
+                  > .#{$reply}bottom
+                    > .#{$reply}right-panel
+                      span.#{$reply}action-link
+                        opacity: 0.3
+                        cursor: default
+                        &:hover
+                          color: $sub-color
+                        ~ span
+                          opacity: 0.3
+            &.#{$reply}trashed
+              > .#{$reply}base
+                > .#{$reply}data
+                  > .#{$reply}top
+                    > .#{$reply}head
+                      > .#{$reply}head-data
+                        > .#{$reply}tags-wrapper
+                          > .#{$reply}tag.#{$reply}tag-trashed
+                            display: inline
+                  > .#{$reply}bottom
+                    > .#{$reply}right-panel
+                      span.#{$reply}action-link
+                        opacity: 0.3
+                        cursor: default
+                        &:hover
+                          color: $sub-color
+                        ~ span
+                          opacity: 0.3
+            &.#{$reply}reported
+              > .#{$reply}base
+                > .#{$reply}data
+                  > .#{$reply}top
+                    > .#{$reply}head
+                      > .#{$reply}head-data
+                        > .#{$reply}tags-wrapper
+                          > .#{$reply}tag.#{$reply}tag-reported
+                            display: inline
+            &.#{$reply}pending
+              > .#{$reply}base
+                > .#{$reply}data
+                  > .#{$reply}top
+                    > .#{$reply}head
+                      > .#{$reply}head-data
+                        > .#{$reply}tags-wrapper
+                          > .#{$reply}tag.#{$reply}tag-pending
+                            display: inline
+                  > .#{$reply}bottom
+                    > .#{$reply}right-panel
+                      span.#{$reply}action-link
+                        opacity: 0.3
+                        cursor: default
+                        &:hover
+                          color: $sub-color
+                        ~ span
+                          opacity: 0.3
+            &:not(.#{$reply}reported):not(.#{$reply}trashed):not(.#{$reply}spam):not(.#{$reply}pending):not(.#{$reply}private)
+              > .#{$reply}base
+                > .#{$reply}data
+                  > .#{$reply}top
+                    > .#{$reply}head
+                      > .#{$reply}head-data
+                        > .#{$reply}tags-wrapper
+                          display: none
+    &.#{$prefix}child-reply
+      background-color: $child-sub
+      padding: 15px
+      border-bottom: none
+      margin-top: 0
+      margin-bottom: 15px
+      border-radius: 10px
+      position: relative
+      .#{$reply}child-connect
+        position: absolute
+        left: 37px
+        top: 15px
+        bottom: 20px
+        border-left: 5px solid $border-color
+        z-index: 0
+        display: none
+      .#{$reply}children
+        padding: 0
+        .#{$prefix}child-reply
+          padding: 0
+          margin: 7px 0 0 0
+          &.#{$reply}trashed
+            border-radius: 25px 10px 10px 10px
+          &.#{$reply}pending
+            > .#{$reply}base
+              > .#{$reply}data
+                > .#{$reply}bottom
+                  > .#{$reply}right-panel
+                    .#{$reply}likes-wrapper
+                      .#{$reply}likes-counter
+                        opacity: 0.3
+        & > :first-child
+          margin: 15px 0 0 0
+        & > :not(:last-child)
+          background-color: transparent
+      .#{$reply}base
+        .#{$reply}avatar
+          margin-right: 20px
+          width: 50px
+          height: 50px
+          img
+            width: 50px
+            height: 50px
+        .#{$reply}data
+          width: calc( 100% - 70px )
+          .#{$reply}subdata
+            font-size: 0.7em
+          .#{$reply}top
+            .#{$reply}head
+              a
+                font-size: 1em
+    &.#{$reply}spam
+      > .#{$reply}base
+        > .#{$reply}data
+          > .#{$reply}top
+            > .#{$reply}head
+              > .#{$reply}head-data
+                > .#{$reply}tags-wrapper
+                  > .#{$reply}tag.#{$reply}tag-spam
+                    display: inline
+          > .#{$reply}bottom
+            > .#{$reply}right-panel
+              span.#{$reply}action-link
+                opacity: 0.3
+                cursor: default
+                &:hover
+                  color: $sub-color
+                ~ span
+                  opacity: 0.3
+    &.#{$reply}trashed
+      > .#{$reply}base
+        > .#{$reply}data
+          > .#{$reply}top
+            > .#{$reply}head
+              > .#{$reply}head-data
+                > .#{$reply}tags-wrapper
+                  > .#{$reply}tag.#{$reply}tag-trashed
+                    display: inline
+          > .#{$reply}bottom
+            > .#{$reply}right-panel
+              span.#{$reply}action-link
+                opacity: 0.3
+                cursor: default
+                &:hover
+                  color: $sub-color
+                ~ span
+                  opacity: 0.3
+    &.#{$reply}reported
+      > .#{$reply}base
+        > .#{$reply}data
+          > .#{$reply}top
+            > .#{$reply}head
+              > .#{$reply}head-data
+                > .#{$reply}tags-wrapper
+                  > .#{$reply}tag.#{$reply}tag-reported
+                    display: inline
+    &.#{$reply}pending
+      > .#{$reply}base
+        > .#{$reply}data
+          > .#{$reply}top
+            > .#{$reply}head
+              > .#{$reply}head-data
+                > .#{$reply}tags-wrapper
+                  > .#{$reply}tag.#{$reply}tag-pending
+                    display: inline
+          > .#{$reply}bottom
+            > .#{$reply}right-panel
+              span.#{$reply}action-link
+                opacity: 0.3
+                cursor: default
+                &:hover
+                  color: $sub-color
+                ~ span
+                  opacity: 0.3
+    &:not(.#{$reply}reported):not(.#{$reply}trashed):not(.#{$reply}spam):not(.#{$reply}pending):not(.#{$reply}private)
+      > .#{$reply}base
+        > .#{$reply}data
+          > .#{$reply}top
+            > .#{$reply}head
+              > .#{$reply}head-data
+                > .#{$reply}tags-wrapper
+                  display: none
+
+=replies-wrapper-mobile
+  .#{$reply}row
+    .#{$reply}base
+      .#{$reply}avatar
+        width: 40px
+        margin-right: 10px
+        a
+          width: 40px
+          height: 40px
+          img
+            width: 40px
+            height: 40px
+      .#{$reply}data
+        width: calc( 100% - 50px )
+        .#{$reply}top
+          .#{$reply}head
+            .#{$reply}head-data
+              max-width: 65%
+              a
+                font-size: 1em
+                &.#{$reply}title
+                  font-size: 14px
+    &.#{$prefix}child-reply
+      .#{$reply}child-connect
+        left: 30px
+      .#{$reply}base
+        .#{$reply}avatar
+          width: 35px
+          height: 35px
+          margin-right: 10px
+          img
+            width: 35px
+            height: 35px
+        .#{$reply}data
+          width: calc( 100% - 45px )

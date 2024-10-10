@@ -1,0 +1,2156 @@
+# Copyright (C) 2024 ForumWP
+# This file is distributed under the same license as the ForumWP plugin.
+msgid ""
+msgstr ""
+"Project-Id-Version: ForumWP 2.1.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/forumwp\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2024-10-01T21:16:10+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.11.0\n"
+"X-Domain: forumwp\n"
+
+#. Plugin Name of the plugin
+#. Author of the plugin
+#: forumwp.php
+msgid "ForumWP"
+msgstr ""
+
+#. Plugin URI of the plugin
+#: forumwp.php
+msgid "https://forumwpplugin.com/"
+msgstr ""
+
+#. Description of the plugin
+#: forumwp.php
+msgid "A full-featured, powerful forum plugin for WordPress"
+msgstr ""
+
+#: includes/admin/class-actions-listener.php:52
+msgid "Security Check"
+msgstr ""
+
+#: includes/admin/class-columns.php:59
+#: includes/admin/class-columns.php:68
+#: includes/admin/class-columns.php:409
+#: includes/admin/class-columns.php:419
+#: includes/common/class-reply.php:755
+#: includes/common/class-topic.php:476
+msgid "Reported"
+msgstr ""
+
+#: includes/admin/class-columns.php:101
+#: includes/admin/class-columns.php:134
+#: includes/admin/class-columns.php:396
+#: includes/admin/class-columns.php:400
+#: includes/admin/class-columns.php:484
+#: includes/common/class-topic.php:235
+#: templates/js/forum-row.php:41
+#: templates/single-forum-info.php:88
+#: templates/single-forum-info.php:105
+msgid "Locked"
+msgstr ""
+
+#: includes/admin/class-columns.php:167
+#: includes/admin/class-columns.php:200
+#: includes/admin/class-columns.php:404
+#: includes/admin/class-columns.php:414
+#: includes/common/class-reply.php:750
+#: includes/common/class-topic.php:474
+msgid "Spam"
+msgstr ""
+
+#: includes/admin/class-columns.php:312
+msgid "Are you sure?"
+msgstr ""
+
+#: includes/admin/class-columns.php:313
+msgid "Clear Reports"
+msgstr ""
+
+#: includes/admin/class-columns.php:436
+#: includes/admin/class-menu.php:52
+#: includes/admin/class-settings.php:428
+#: includes/admin/templates/reply/creator.php:27
+#: includes/admin/templates/reply/creator.php:28
+#: includes/admin/templates/topic/creator.php:27
+#: includes/admin/templates/topic/creator.php:28
+#: includes/class-config.php:566
+#: includes/class-fmwp-functions.php:185
+#: includes/class-fmwp-functions.php:678
+#: includes/class-fmwp-functions.php:696
+#: includes/frontend/class-profile.php:62
+#: templates/archive-forum-header.php:15
+msgid "Topics"
+msgstr ""
+
+#: includes/admin/class-columns.php:437
+#: includes/admin/class-menu.php:57
+#: includes/admin/class-settings.php:432
+#: includes/admin/templates/reply/creator.php:33
+#: includes/admin/templates/reply/creator.php:34
+#: includes/admin/templates/topic/creator.php:33
+#: includes/admin/templates/topic/creator.php:34
+#: includes/class-fmwp-functions.php:224
+#: includes/frontend/class-profile.php:66
+#: templates/archive-forum-header.php:16
+#: templates/archive-topic-header.php:15
+msgid "Replies"
+msgstr ""
+
+#: includes/admin/class-columns.php:438
+msgid "Category"
+msgstr ""
+
+#: includes/admin/class-columns.php:439
+#: includes/admin/class-columns.php:578
+#: includes/admin/templates/settings/version-template-list-table.php:30
+msgid "Status"
+msgstr ""
+
+#: includes/admin/class-columns.php:440
+#: includes/admin/templates/forum/attributes.php:25
+#: templates/new-forum.php:38
+msgid "Visibility"
+msgstr ""
+
+#: includes/admin/class-columns.php:482
+msgid "Unknown"
+msgstr ""
+
+#: includes/admin/class-columns.php:511
+msgid "Category ID"
+msgstr ""
+
+#: includes/admin/class-columns.php:543
+msgid "Tag ID"
+msgstr ""
+
+#: includes/admin/class-columns.php:575
+#: includes/admin/templates/topic/attributes.php:81
+#: includes/class-fmwp-functions.php:140
+#: includes/common/class-common.php:990
+#: templates/archive-forum-header.php:21
+msgid "Forum"
+msgstr ""
+
+#: includes/admin/class-columns.php:576
+#: includes/admin/templates/topic/attributes.php:54
+msgid "Type"
+msgstr ""
+
+#: includes/admin/class-columns.php:577
+#: includes/class-fmwp-functions.php:682
+msgid "Tags"
+msgstr ""
+
+#: includes/admin/class-emails-list-table.php:40
+#: includes/admin/class-version-template-list-table.php:40
+msgid "item"
+msgstr ""
+
+#: includes/admin/class-emails-list-table.php:41
+#: includes/admin/class-version-template-list-table.php:41
+msgid "items"
+msgstr ""
+
+#: includes/admin/class-emails-list-table.php:46
+#: includes/admin/class-version-template-list-table.php:46
+msgid "not found."
+msgstr ""
+
+#: includes/admin/class-emails-list-table.php:169
+msgid "Member"
+msgstr ""
+
+#: includes/admin/class-forms.php:208
+#: includes/frontend/class-forms.php:445
+msgid "Required"
+msgstr ""
+
+#: includes/admin/class-forms.php:633
+msgid "Select media"
+msgstr ""
+
+#: includes/admin/class-forms.php:656
+msgid "Select"
+msgstr ""
+
+#: includes/admin/class-forms.php:657
+msgid "Clear"
+msgstr ""
+
+#: includes/admin/class-menu.php:36
+#: includes/admin/class-menu.php:47
+#: includes/admin/class-settings.php:424
+#: includes/class-config.php:563
+#: includes/class-fmwp-functions.php:139
+#: includes/class-fmwp-functions.php:641
+#: includes/class-fmwp-functions.php:660
+#: includes/class-fmwp-functions.php:707
+#: includes/class-fmwp-functions.php:724
+msgid "Forums"
+msgstr ""
+
+#: includes/admin/class-menu.php:45
+msgid "Dashboard"
+msgstr ""
+
+#: includes/admin/class-menu.php:49
+#: includes/class-fmwp-functions.php:299
+#: includes/class-fmwp-functions.php:315
+msgid "Forum Categories"
+msgstr ""
+
+#: includes/admin/class-menu.php:54
+#: includes/admin/class-settings.php:227
+#: includes/class-fmwp-functions.php:336
+#: includes/class-fmwp-functions.php:352
+msgid "Topic Tags"
+msgstr ""
+
+#: includes/admin/class-menu.php:59
+msgid "Settings"
+msgstr ""
+
+#: includes/admin/class-metabox.php:108
+msgid "Forum Settings"
+msgstr ""
+
+#: includes/admin/class-metabox.php:109
+msgid "Forum Styling"
+msgstr ""
+
+#: includes/admin/class-metabox.php:116
+msgid "Topic Settings"
+msgstr ""
+
+#: includes/admin/class-metabox.php:117
+msgid "Topic Styling"
+msgstr ""
+
+#: includes/admin/class-metabox.php:118
+msgid "Topic Creator"
+msgstr ""
+
+#: includes/admin/class-metabox.php:125
+msgid "Reply Creator"
+msgstr ""
+
+#. translators: %s is a plugin name.
+#: includes/admin/class-notices.php:204
+msgid "To add forum functionality to your website %s needs to create several front-end pages (Forums, Topics, Profile, Registration & Login)."
+msgstr ""
+
+#: includes/admin/class-notices.php:209
+msgid "Create Pages"
+msgstr ""
+
+#: includes/admin/class-notices.php:213
+msgid "No thanks"
+msgstr ""
+
+#: includes/admin/class-notices.php:252
+msgid "ForumWP - We have made some changes to ForumWP and launched a free version of the plugin. If you are were using ForumWP prior to this update you will need to install <a href=\"https://forumwpplugin.com/addons/forumwp-pro/\">ForumWP - Pro</a> as the basic modules are not available in the free version. In order to continue using the modules that extend the functionality of the free plugin, please install ForumWP - Pro. <a href=\"https://forumwpplugin.com/topic/changes-to-forumwp/\">details</a>."
+msgstr ""
+
+#. translators: %1$s,%3$s is a plugin name; %2$s,%4$s is a plugin version; %5$s is a upgrade page URL.
+#: includes/admin/class-notices.php:277
+msgid "<strong>%1$s version %2$s</strong> needs to be updated to work correctly.<br />It is necessary to update the structure of the database and options that are associated with <strong>%3$s %4$s</strong>.<br />Please visit \"<a href=\"%5$s\">Upgrade</a>\" page and run the upgrade process."
+msgstr ""
+
+#: includes/admin/class-notices.php:281
+msgid "Upgrade Now"
+msgstr ""
+
+#. translators: %1$s is a plugin name; %2$s is a plugin version.
+#: includes/admin/class-notices.php:302
+msgid "<strong>%1$s %2$s</strong> Successfully Upgraded"
+msgstr ""
+
+#. translators: %1$s is a post title; %2$s is a post name (slug).
+#: includes/admin/class-notices.php:352
+msgid "Permalink Conflict! Please change permalink for the <strong>\"%1$s\"</strong> post, the <strong>\"%2$s\"</strong> slug is reserved."
+msgstr ""
+
+#: includes/admin/class-notices.php:357
+msgid "Edit page"
+msgstr ""
+
+#: includes/admin/class-notices.php:388
+msgid "Settings updated successfully."
+msgstr ""
+
+#. translators: %s override templates page link.
+#: includes/admin/class-notices.php:417
+msgid "Your templates are out of date. Please visit <a href=\"%s\">override templates status page</a> and update templates."
+msgstr ""
+
+#: includes/admin/class-settings.php:57
+msgid "Forum base"
+msgstr ""
+
+#: includes/admin/class-settings.php:64
+msgid "Topic base"
+msgstr ""
+
+#: includes/admin/class-settings.php:73
+msgid "Forum Category base"
+msgstr ""
+
+#: includes/admin/class-settings.php:83
+msgid "Topic Tag base"
+msgstr ""
+
+#: includes/admin/class-settings.php:201
+msgid "(None)"
+msgstr ""
+
+#. translators: %s is a page title.
+#: includes/admin/class-settings.php:216
+msgid "%s page"
+msgstr ""
+
+#: includes/admin/class-settings.php:218
+msgid "Choose a page..."
+msgstr ""
+
+#: includes/admin/class-settings.php:228
+msgid "Enable tags for topics"
+msgstr ""
+
+#: includes/admin/class-settings.php:234
+msgid "Time between new topics (seconds)"
+msgstr ""
+
+#: includes/admin/class-settings.php:240
+msgid "Show forum title"
+msgstr ""
+
+#: includes/admin/class-settings.php:241
+msgid "Show forum title at individual topic page and at topics lists"
+msgstr ""
+
+#: includes/admin/class-settings.php:248
+msgid "Default topics order"
+msgstr ""
+
+#: includes/admin/class-settings.php:249
+msgid "Default topics order on latest topics list"
+msgstr ""
+
+#: includes/admin/class-settings.php:258
+msgid "Default topics template"
+msgstr ""
+
+#: includes/admin/class-settings.php:261
+#: includes/admin/class-settings.php:352
+msgid "Default Template"
+msgstr ""
+
+#: includes/admin/class-settings.php:265
+msgid "Default template for all topics at your site. You may set different for each topic in the topic's styling section"
+msgstr ""
+
+#: includes/admin/class-settings.php:280
+msgid "Use AJAX To Update Views"
+msgstr ""
+
+#: includes/admin/class-settings.php:281
+msgid "There is an ability to count views via AJAX in some cases when WP cache is active"
+msgstr ""
+
+#: includes/admin/class-settings.php:307
+msgid "None"
+msgstr ""
+
+#: includes/admin/class-settings.php:318
+msgid "Forum categories"
+msgstr ""
+
+#: includes/admin/class-settings.php:319
+msgid "Enable categories for forums"
+msgstr ""
+
+#: includes/admin/class-settings.php:326
+msgid "Default forum"
+msgstr ""
+
+#: includes/admin/class-settings.php:327
+msgid "When you create a topic from topics list it will be added to the default forum"
+msgstr ""
+
+#: includes/admin/class-settings.php:334
+#: includes/common/class-reply.php:112
+#: includes/common/class-topic.php:256
+msgid "Newest to Oldest"
+msgstr ""
+
+#: includes/admin/class-settings.php:335
+#: includes/common/class-reply.php:111
+#: includes/common/class-topic.php:255
+msgid "Oldest to Newest"
+msgstr ""
+
+#: includes/admin/class-settings.php:336
+msgid "Most Priority"
+msgstr ""
+
+#: includes/admin/class-settings.php:337
+msgid "Lower Priority"
+msgstr ""
+
+#: includes/admin/class-settings.php:339
+msgid "Default forums order"
+msgstr ""
+
+#: includes/admin/class-settings.php:340
+msgid "Default forums order on latest forums list"
+msgstr ""
+
+#: includes/admin/class-settings.php:349
+msgid "Default forums template"
+msgstr ""
+
+#: includes/admin/class-settings.php:356
+msgid "Default template for all forums at your site. You may set different for each forum in the forum's styling section"
+msgstr ""
+
+#: includes/admin/class-settings.php:371
+msgid "General"
+msgstr ""
+
+#: includes/admin/class-settings.php:374
+msgid "Pages"
+msgstr ""
+
+#: includes/admin/class-settings.php:378
+msgid "General Options"
+msgstr ""
+
+#: includes/admin/class-settings.php:384
+msgid "Default Role"
+msgstr ""
+
+#: includes/admin/class-settings.php:385
+msgid "New members will get this forum role automatically"
+msgstr ""
+
+#: includes/admin/class-settings.php:391
+msgid "Enable raw HTML in topic/reply content"
+msgstr ""
+
+#: includes/admin/class-settings.php:392
+msgid "If enabled can be less secure. Please enable only if you plan to get an ability for users create topics and replies with HTML tags"
+msgstr ""
+
+#: includes/admin/class-settings.php:397
+msgid "Enable Breadcrumbs"
+msgstr ""
+
+#: includes/admin/class-settings.php:398
+msgid "If enabled, breadcrumbs will be displayed on ForumWP templates"
+msgstr ""
+
+#: includes/admin/class-settings.php:404
+msgid "Login Redirect"
+msgstr ""
+
+#: includes/admin/class-settings.php:405
+msgid "If empty user will be redirected to the same page. This option can be rewritten via login shortcode \"redirect\" attribute"
+msgstr ""
+
+#: includes/admin/class-settings.php:411
+msgid "Registration Redirect"
+msgstr ""
+
+#: includes/admin/class-settings.php:412
+msgid "If empty user will be redirected to the Profile page. This option can be rewritten via register shortcode \"redirect\" attribute"
+msgstr ""
+
+#: includes/admin/class-settings.php:418
+msgid "Logout Redirect"
+msgstr ""
+
+#: includes/admin/class-settings.php:419
+msgid "If empty user will be redirected to the Login page."
+msgstr ""
+
+#: includes/admin/class-settings.php:438
+msgid "Time between new replies"
+msgstr ""
+
+#: includes/admin/class-settings.php:444
+msgid "Reply deletion: sub-reply action to take"
+msgstr ""
+
+#: includes/admin/class-settings.php:446
+msgid "Delete all sub replies"
+msgstr ""
+
+#: includes/admin/class-settings.php:447
+msgid "Change sub replies' level"
+msgstr ""
+
+#: includes/admin/class-settings.php:449
+msgid "When a reply to a topic is removed/deleted, what would you like to happen to replies to that reply (sub replies)?"
+msgstr ""
+
+#: includes/admin/class-settings.php:454
+msgid "Show user role tag on replies"
+msgstr ""
+
+#: includes/admin/class-settings.php:455
+msgid "If turned on the role of the user will appear to the right of their name on topic page"
+msgstr ""
+
+#: includes/admin/class-settings.php:462
+#: includes/admin/templates/settings/emails-list-table.php:27
+#: templates/profile/edit-form.php:43
+#: templates/registration.php:43
+msgid "Email"
+msgstr ""
+
+#: includes/admin/class-settings.php:467
+msgid "Admin Email Address"
+msgstr ""
+
+#: includes/admin/class-settings.php:468
+#: includes/admin/class-settings.php:480
+msgid "e.g. admin@companyname.com"
+msgstr ""
+
+#: includes/admin/class-settings.php:473
+msgid "Mail appears from"
+msgstr ""
+
+#: includes/admin/class-settings.php:474
+msgid "e.g. Site Name"
+msgstr ""
+
+#: includes/admin/class-settings.php:479
+msgid "Mail appears from address"
+msgstr ""
+
+#. translators: %s is a plan data.
+#: includes/admin/class-settings.php:500
+msgid "%s modules"
+msgstr ""
+
+#: includes/admin/class-settings.php:518
+msgid "Enabled Modules"
+msgstr ""
+
+#: includes/admin/class-settings.php:525
+msgid "Modules"
+msgstr ""
+
+#: includes/admin/class-settings.php:531
+msgid "Advanced"
+msgstr ""
+
+#: includes/admin/class-settings.php:536
+msgid "Disable FontAwesome styles"
+msgstr ""
+
+#: includes/admin/class-settings.php:537
+msgid "To avoid duplicates if you have enqueued FontAwesome styles you could disable it."
+msgstr ""
+
+#: includes/admin/class-settings.php:542
+msgid "Delete settings on uninstall"
+msgstr ""
+
+#: includes/admin/class-settings.php:543
+msgid "Once removed, this data cannot be restored."
+msgstr ""
+
+#: includes/admin/class-settings.php:549
+msgid "Override templates"
+msgstr ""
+
+#: includes/admin/class-settings.php:816
+msgid "Subject Line"
+msgstr ""
+
+#: includes/admin/class-settings.php:817
+msgid "This is the subject line of the email"
+msgstr ""
+
+#: includes/admin/class-settings.php:823
+msgid "Message Body"
+msgstr ""
+
+#: includes/admin/class-settings.php:824
+msgid "This is the content of the email"
+msgstr ""
+
+#: includes/admin/class-settings.php:839
+msgid "Re-check templates"
+msgstr ""
+
+#. translators: %s: Last checking templates time.
+#: includes/admin/class-settings.php:844
+msgid "Last update: %s. You could re-check changes manually."
+msgstr ""
+
+#: includes/admin/class-settings.php:846
+msgid "Templates haven't check yet. You could check changes manually."
+msgstr ""
+
+#. translators: %s: Link to the docs article.
+#: includes/admin/class-settings.php:853
+msgid "You may get more details about overriding templates <a href=\"%s\" target=\"_blank\">here</a>."
+msgstr ""
+
+#: includes/admin/class-settings.php:938
+msgid "Theme version up to date"
+msgstr ""
+
+#: includes/admin/class-settings.php:941
+msgid "Theme version is out of date"
+msgstr ""
+
+#: includes/admin/class-settings.php:945
+msgid "Theme version is empty"
+msgstr ""
+
+#. translators: %s is a new plugins version
+#: includes/admin/class-upgrade.php:122
+msgid "%s is a major update, and we highly recommend creating a full backup of your site before updating."
+msgstr ""
+
+#: includes/admin/class-upgrade.php:206
+msgid "Upgrade"
+msgstr ""
+
+#: includes/admin/class-upgrade.php:213
+msgid "empty"
+msgstr ""
+
+#. translators: %s is the plugin name.
+#: includes/admin/class-upgrade.php:227
+msgid "%s - Upgrade Process"
+msgstr ""
+
+#. translators: %1$s is the installed version. %2$s is the DB version.
+#: includes/admin/class-upgrade.php:233
+msgid "You have installed <strong>%1$s</strong> version. Your latest DB version is <strong>%2$s</strong>. We recommend creating a backup of your site before running the update process. Do not exit the page before the update process has complete."
+msgstr ""
+
+#: includes/admin/class-upgrade.php:236
+msgid "After clicking the <strong>\"Run\"</strong> button, the update process will start. All information will be displayed in the <strong>\"Upgrade Log\"</strong> field."
+msgstr ""
+
+#: includes/admin/class-upgrade.php:237
+msgid "If the update was successful, you will see a corresponding message. Otherwise, contact technical support if the update failed."
+msgstr ""
+
+#: includes/admin/class-upgrade.php:238
+msgid "Upgrade Log"
+msgstr ""
+
+#: includes/admin/class-upgrade.php:241
+msgid "Run"
+msgstr ""
+
+#: includes/admin/class-version-template-list-table.php:142
+msgid "Core path - "
+msgstr ""
+
+#: includes/admin/class-version-template-list-table.php:144
+msgid "Theme path - "
+msgstr ""
+
+#: includes/admin/packages/2.0.1/functions.php:35
+msgid "Spam posts were upgraded successfully"
+msgstr ""
+
+#: includes/admin/packages/2.0.1/init.php:10
+msgid "Upgrade Spam Replies and Topics..."
+msgstr ""
+
+#: includes/admin/packages/2.0.1/spam.php:9
+msgctxt "Spam status"
+msgid "Spam"
+msgstr ""
+
+#. translators: %s is a count.
+#: includes/admin/packages/2.0.1/spam.php:15
+msgid "Spam <span class=\"count\">(%s)</span>"
+msgid_plural "Spam <span class=\"count\">(%s)</span>"
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/admin/packages/2.0/functions.php:33
+msgid "Solved posts were upgraded successfully"
+msgstr ""
+
+#: includes/admin/packages/2.0/functions.php:47
+msgid "Locked forums were upgraded successfully"
+msgstr ""
+
+#: includes/admin/packages/2.0/functions.php:63
+msgid "Subscriptions were upgraded successfully"
+msgstr ""
+
+#: includes/admin/packages/2.0/init.php:10
+msgid "Upgrade Solved Topics..."
+msgstr ""
+
+#: includes/admin/packages/2.0/init.php:31
+msgid "Upgrade Locked Forums..."
+msgstr ""
+
+#: includes/admin/packages/2.0/init.php:52
+msgid "Upgrade Users Subscriptions..."
+msgstr ""
+
+#: includes/admin/packages/2.0/locked.php:9
+msgctxt "Locked status"
+msgid "Locked"
+msgstr ""
+
+#. translators: %s is a count
+#: includes/admin/packages/2.0/locked.php:15
+msgid "Locked <span class=\"count\">(%s)</span>"
+msgid_plural "Locked <span class=\"count\">(%s)</span>"
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/admin/templates/forum/attributes.php:15
+#: includes/admin/templates/topic/attributes.php:61
+msgid "Is Locked?"
+msgstr ""
+
+#: includes/admin/templates/forum/attributes.php:17
+#: includes/admin/templates/topic/attributes.php:63
+#: includes/admin/templates/topic/attributes.php:73
+msgid "No"
+msgstr ""
+
+#: includes/admin/templates/forum/attributes.php:18
+#: includes/admin/templates/topic/attributes.php:64
+#: includes/admin/templates/topic/attributes.php:74
+msgid "Yes"
+msgstr ""
+
+#: includes/admin/templates/forum/attributes.php:32
+msgid "Order"
+msgstr ""
+
+#: includes/admin/templates/forum/attributes.php:49
+msgid "Learn more about forum settings"
+msgstr ""
+
+#: includes/admin/templates/forum/styling.php:9
+#: includes/admin/templates/topic/styling.php:9
+msgid "Global settings"
+msgstr ""
+
+#: includes/admin/templates/forum/styling.php:10
+#: includes/admin/templates/topic/styling.php:10
+msgid "Default template"
+msgstr ""
+
+#: includes/admin/templates/forum/styling.php:20
+#: includes/admin/templates/settings/version-template-list-table.php:8
+#: includes/admin/templates/settings/version-template-list-table.php:27
+#: includes/admin/templates/topic/styling.php:20
+msgid "Template"
+msgstr ""
+
+#: includes/admin/templates/forum/styling.php:38
+msgid "Icon"
+msgstr ""
+
+#: includes/admin/templates/forum/styling.php:44
+msgid "Icon Background Color"
+msgstr ""
+
+#: includes/admin/templates/forum/styling.php:50
+msgid "Icon Color"
+msgstr ""
+
+#: includes/admin/templates/forum/styling.php:69
+msgid "Learn more about forum styling"
+msgstr ""
+
+#: includes/admin/templates/settings/emails-list-table.php:8
+msgid "Email Notification"
+msgstr ""
+
+#: includes/admin/templates/settings/emails-list-table.php:9
+#: includes/frontend/class-profile.php:70
+msgid "Email Notifications"
+msgstr ""
+
+#: includes/admin/templates/settings/emails-list-table.php:28
+msgid "Recipient(s)"
+msgstr ""
+
+#. translators: %s is a plugin name.
+#: includes/admin/templates/settings/settings.php:12
+msgid "%s - Settings"
+msgstr ""
+
+#: includes/admin/templates/settings/settings.php:54
+msgid "Save Changes"
+msgstr ""
+
+#: includes/admin/templates/settings/version-template-list-table.php:9
+msgid "Templates"
+msgstr ""
+
+#: includes/admin/templates/settings/version-template-list-table.php:28
+msgid "Core version"
+msgstr ""
+
+#: includes/admin/templates/settings/version-template-list-table.php:29
+msgid "Theme version"
+msgstr ""
+
+#: includes/admin/templates/topic/attributes.php:71
+msgid "Is Spam?"
+msgstr ""
+
+#: includes/admin/templates/topic/styling.php:33
+msgid "You could create custom templates to customize topics"
+msgstr ""
+
+#: includes/ajax/class-common.php:125
+#: modules/migration/class-init.php:407
+#: modules/migration/class-init.php:571
+#: modules/migration/class-init.php:728
+#: modules/migration/class-init.php:793
+msgid "Wrong AJAX Nonce"
+msgstr ""
+
+#: includes/ajax/class-forum.php:210
+#: includes/ajax/class-forum.php:241
+#: includes/ajax/class-forum.php:268
+#: includes/ajax/class-reply.php:444
+#: includes/ajax/class-reply.php:566
+#: includes/ajax/class-reply.php:631
+#: includes/ajax/class-reply.php:665
+#: includes/ajax/class-reply.php:700
+#: includes/ajax/class-reply.php:810
+#: includes/ajax/class-reply.php:844
+#: includes/ajax/class-topic.php:467
+#: includes/ajax/class-topic.php:592
+#: includes/ajax/class-topic.php:621
+#: includes/ajax/class-topic.php:650
+#: includes/ajax/class-topic.php:679
+#: includes/ajax/class-topic.php:708
+#: includes/ajax/class-topic.php:740
+#: includes/ajax/class-topic.php:772
+#: includes/ajax/class-topic.php:808
+#: includes/ajax/class-topic.php:842
+#: includes/frontend/class-actions-listener.php:290
+msgid "Invalid data"
+msgstr ""
+
+#: includes/ajax/class-forum.php:217
+#: includes/ajax/class-forum.php:248
+#: includes/ajax/class-forum.php:275
+msgid "Forum ID is invalid"
+msgstr ""
+
+#: includes/ajax/class-forum.php:221
+msgid "You do not have the ability to move this forum to trash"
+msgstr ""
+
+#: includes/ajax/class-notices.php:24
+msgid "Wrong Data"
+msgstr ""
+
+#: includes/ajax/class-post.php:56
+msgid "Wrong request"
+msgstr ""
+
+#: includes/ajax/class-profile.php:24
+#: includes/ajax/class-profile.php:34
+msgid "Invalid Tab"
+msgstr ""
+
+#: includes/ajax/class-profile.php:27
+#: includes/ajax/class-profile.php:39
+#: includes/ajax/class-profile.php:57
+#: includes/ajax/class-profile.php:62
+#: includes/ajax/class-profile.php:88
+#: includes/ajax/class-profile.php:93
+msgid "Invalid User"
+msgstr ""
+
+#: includes/ajax/class-reply.php:351
+#: includes/ajax/class-reply.php:357
+#: includes/ajax/class-reply.php:535
+msgid "Invalid reply"
+msgstr ""
+
+#: includes/ajax/class-reply.php:451
+#: includes/ajax/class-topic.php:876
+#: includes/ajax/class-topic.php:904
+#: includes/ajax/class-topic.php:932
+msgid "Empty Topic ID"
+msgstr ""
+
+#: includes/ajax/class-reply.php:457
+msgid "You haven't capabilities to make this action"
+msgstr ""
+
+#: includes/ajax/class-reply.php:464
+msgid "Empty or Invalid Topic ID."
+msgstr ""
+
+#: includes/ajax/class-reply.php:471
+#: includes/ajax/class-reply.php:586
+#: includes/ajax/class-topic.php:408
+#: includes/ajax/class-topic.php:495
+msgid "Content is required"
+msgstr ""
+
+#. translators: %s is a reply creation delay
+#: includes/ajax/class-reply.php:483
+msgid "You cannot leave replies faster than %s seconds"
+msgstr ""
+
+#: includes/ajax/class-reply.php:529
+msgid "Invalid reply ID"
+msgstr ""
+
+#: includes/ajax/class-reply.php:539
+#: includes/ajax/class-reply.php:579
+msgid "You do not have the ability to edit this reply"
+msgstr ""
+
+#: includes/ajax/class-reply.php:573
+#: includes/ajax/class-reply.php:638
+#: includes/ajax/class-reply.php:672
+#: includes/ajax/class-reply.php:707
+#: includes/ajax/class-reply.php:817
+#: includes/ajax/class-reply.php:851
+msgid "Reply ID is invalid"
+msgstr ""
+
+#: includes/ajax/class-reply.php:612
+#: includes/ajax/class-topic.php:528
+msgid "Something is wrong with the data"
+msgstr ""
+
+#: includes/ajax/class-reply.php:642
+msgid "You do not have the ability to move this reply to trash"
+msgstr ""
+
+#: includes/ajax/class-reply.php:676
+msgid "You do not have the ability to restore this reply"
+msgstr ""
+
+#: includes/ajax/class-reply.php:711
+msgid "You do not have the ability to delete this reply"
+msgstr ""
+
+#: includes/ajax/class-reply.php:821
+msgid "You do not have the ability to mark this reply as spam"
+msgstr ""
+
+#: includes/ajax/class-reply.php:855
+msgid "You do not have the ability to restore this reply from spam"
+msgstr ""
+
+#: includes/ajax/class-reply.php:878
+#: includes/ajax/class-reply.php:906
+#: includes/ajax/class-reply.php:933
+msgid "Empty Reply ID"
+msgstr ""
+
+#: includes/ajax/class-reply.php:886
+#: includes/ajax/class-topic.php:891
+msgid "Something wrong with reports"
+msgstr ""
+
+#: includes/ajax/class-reply.php:913
+#: includes/ajax/class-reply.php:948
+#: includes/ajax/class-topic.php:919
+#: includes/ajax/class-topic.php:947
+msgid "Security Issue"
+msgstr ""
+
+#. translators: %s is an author display name
+#: includes/ajax/class-topic.php:84
+msgid "Created by %s"
+msgstr ""
+
+#. translators: %s is a last replies author display name
+#: includes/ajax/class-topic.php:103
+msgid "Last reply by %s"
+msgstr ""
+
+#: includes/ajax/class-topic.php:377
+msgid "Invalid Data"
+msgstr ""
+
+#: includes/ajax/class-topic.php:384
+msgid "Empty Forum ID"
+msgstr ""
+
+#: includes/ajax/class-topic.php:389
+msgid "You do not have the capability to perform this action"
+msgstr ""
+
+#: includes/ajax/class-topic.php:394
+msgid "Sorry, but this forum is locked"
+msgstr ""
+
+#: includes/ajax/class-topic.php:401
+#: includes/ajax/class-topic.php:488
+msgid "Title is required"
+msgstr ""
+
+#. translators: %s is a topic delay time
+#: includes/ajax/class-topic.php:420
+msgid "You cannot create topics faster than %s seconds"
+msgstr ""
+
+#: includes/ajax/class-topic.php:474
+#: includes/ajax/class-topic.php:599
+#: includes/ajax/class-topic.php:628
+#: includes/ajax/class-topic.php:657
+#: includes/ajax/class-topic.php:686
+#: includes/ajax/class-topic.php:715
+#: includes/ajax/class-topic.php:746
+#: includes/ajax/class-topic.php:778
+#: includes/ajax/class-topic.php:815
+#: includes/ajax/class-topic.php:849
+msgid "Topic ID is invalid"
+msgstr ""
+
+#: includes/ajax/class-topic.php:481
+#: includes/ajax/class-topic.php:560
+msgid "You do not have the ability to edit this topic"
+msgstr ""
+
+#: includes/ajax/class-topic.php:549
+msgid "Invalid topic ID"
+msgstr ""
+
+#: includes/ajax/class-topic.php:556
+msgid "Invalid topic"
+msgstr ""
+
+#: includes/ajax/class-topic.php:719
+msgid "You do not have the ability to move this topic to trash"
+msgstr ""
+
+#: includes/ajax/class-topic.php:750
+msgid "You do not have the ability to restore this topic"
+msgstr ""
+
+#: includes/ajax/class-topic.php:782
+msgid "You do not have the ability to delete this topic"
+msgstr ""
+
+#: includes/ajax/class-topic.php:792
+msgid "Topic was deleted successfully. You will be redirected to the Forum page"
+msgstr ""
+
+#: includes/ajax/class-topic.php:819
+msgid "You do not have the ability to mark this topic as spam"
+msgstr ""
+
+#: includes/ajax/class-topic.php:853
+msgid "You do not have the ability to restore this topic from spam"
+msgstr ""
+
+#: includes/ajax/class-user.php:41
+#: includes/common/class-common.php:329
+msgid "Everyone"
+msgstr ""
+
+#: includes/ajax/class-user.php:46
+#: includes/common/class-common.php:326
+msgid "All"
+msgstr ""
+
+#: includes/class-config.php:139
+msgid "Forum Manager"
+msgstr ""
+
+#: includes/class-config.php:140
+msgid "Moderator"
+msgstr ""
+
+#: includes/class-config.php:141
+msgid "Participant"
+msgstr ""
+
+#: includes/class-config.php:142
+msgid "Spectator"
+msgstr ""
+
+#: includes/class-config.php:554
+#: templates/login-popup.php:17
+msgid "Login"
+msgstr ""
+
+#: includes/class-config.php:557
+msgid "Registration"
+msgstr ""
+
+#: includes/class-config.php:560
+#: templates/user-card.php:24
+msgid "User Profile"
+msgstr ""
+
+#: includes/class-config.php:594
+msgid "Enable notification for mentions"
+msgstr ""
+
+#: includes/class-config.php:595
+msgid "Whether to send the user an email when he/she was mentioned"
+msgstr ""
+
+#: includes/class-dependencies.php:58
+msgid "ForumWP 2.0 is not compatible with the \"ForumWP - Plus Modules\" plugin. Please download the \"ForumWP - Pro\" plugin from your account page <a href=\"https://forumwpplugin.com/account\" target=\"_blank\">here</a> and install/activate this plugin on your site to replace the Plus Modules plugin."
+msgstr ""
+
+#. translators: %s is a plugin name.
+#: includes/class-dependencies.php:75
+msgid "Please check <strong>\"%s\"</strong> plugin's folder name. Correct folder name is <strong>\"forumwp\"</strong>"
+msgstr ""
+
+#: includes/class-fmwp-functions.php:141
+msgctxt "Admin menu name"
+msgid "Forums"
+msgstr ""
+
+#: includes/class-fmwp-functions.php:142
+#: includes/class-fmwp-functions.php:143
+msgid "Add New Forum"
+msgstr ""
+
+#: includes/class-fmwp-functions.php:144
+#: includes/class-fmwp-functions.php:190
+#: includes/class-fmwp-functions.php:229
+msgid "Edit"
+msgstr ""
+
+#: includes/class-fmwp-functions.php:145
+#: includes/common/class-common.php:1031
+msgid "Edit Forum"
+msgstr ""
+
+#: includes/class-fmwp-functions.php:146
+msgid "New Forum"
+msgstr ""
+
+#: includes/class-fmwp-functions.php:147
+#: includes/class-fmwp-functions.php:148
+msgid "View Forum"
+msgstr ""
+
+#: includes/class-fmwp-functions.php:149
+#: templates/archive-forum.php:48
+msgid "Search Forums"
+msgstr ""
+
+#: includes/class-fmwp-functions.php:150
+msgid "No Forums found"
+msgstr ""
+
+#: includes/class-fmwp-functions.php:151
+msgid "No Forums found in trash"
+msgstr ""
+
+#: includes/class-fmwp-functions.php:152
+msgid "Parent Forum"
+msgstr ""
+
+#: includes/class-fmwp-functions.php:153
+msgid "Forum Image"
+msgstr ""
+
+#: includes/class-fmwp-functions.php:154
+msgid "Set forum image"
+msgstr ""
+
+#: includes/class-fmwp-functions.php:155
+msgid "Remove forum image"
+msgstr ""
+
+#: includes/class-fmwp-functions.php:156
+msgid "Use as forum image"
+msgstr ""
+
+#: includes/class-fmwp-functions.php:158
+msgid "This is where you can add new forums."
+msgstr ""
+
+#: includes/class-fmwp-functions.php:186
+#: includes/common/class-common.php:1001
+#: templates/archive-topic-header.php:26
+msgid "Topic"
+msgstr ""
+
+#: includes/class-fmwp-functions.php:187
+msgctxt "Admin menu name"
+msgid "Topics"
+msgstr ""
+
+#: includes/class-fmwp-functions.php:188
+msgid "Add Topic"
+msgstr ""
+
+#: includes/class-fmwp-functions.php:189
+msgid "Add New Topic"
+msgstr ""
+
+#: includes/class-fmwp-functions.php:191
+#: includes/common/class-common.php:1043
+msgid "Edit Topic"
+msgstr ""
+
+#: includes/class-fmwp-functions.php:192
+msgid "New Topic"
+msgstr ""
+
+#: includes/class-fmwp-functions.php:193
+#: includes/class-fmwp-functions.php:194
+msgid "View Topic"
+msgstr ""
+
+#: includes/class-fmwp-functions.php:195
+#: templates/archive-topic.php:94
+#: templates/archive-topic.php:95
+#: templates/archive-topic.php:132
+#: templates/archive-topic.php:134
+msgid "Search Topics"
+msgstr ""
+
+#: includes/class-fmwp-functions.php:196
+msgid "No Topics found"
+msgstr ""
+
+#: includes/class-fmwp-functions.php:197
+msgid "No Topics found in trash"
+msgstr ""
+
+#: includes/class-fmwp-functions.php:225
+#: includes/common/class-topic.php:1071
+#: includes/common/class-topic.php:1078
+#: templates/js/reply-row.php:117
+#: templates/js/reply-row.php:132
+#: templates/topic.php:286
+#: templates/topic.php:294
+#: templates/topic.php:347
+#: templates/topic.php:355
+msgid "Reply"
+msgstr ""
+
+#: includes/class-fmwp-functions.php:226
+msgctxt "Admin menu name"
+msgid "Replies"
+msgstr ""
+
+#: includes/class-fmwp-functions.php:227
+msgid "Add Reply"
+msgstr ""
+
+#: includes/class-fmwp-functions.php:228
+msgid "Add New Reply"
+msgstr ""
+
+#: includes/class-fmwp-functions.php:230
+msgid "Edit Reply"
+msgstr ""
+
+#: includes/class-fmwp-functions.php:231
+msgid "New Reply"
+msgstr ""
+
+#: includes/class-fmwp-functions.php:232
+#: includes/class-fmwp-functions.php:233
+msgid "View Reply"
+msgstr ""
+
+#: includes/class-fmwp-functions.php:234
+msgid "Search Replies"
+msgstr ""
+
+#: includes/class-fmwp-functions.php:235
+msgid "No Replies found"
+msgstr ""
+
+#: includes/class-fmwp-functions.php:236
+msgid "No Replies found in trash"
+msgstr ""
+
+#: includes/class-fmwp-functions.php:300
+msgid "Forum Category"
+msgstr ""
+
+#: includes/class-fmwp-functions.php:301
+msgctxt "Admin menu name"
+msgid "Forum Categories"
+msgstr ""
+
+#: includes/class-fmwp-functions.php:302
+msgid "Search Forum Categories"
+msgstr ""
+
+#: includes/class-fmwp-functions.php:303
+msgid "All Forum Categories"
+msgstr ""
+
+#: includes/class-fmwp-functions.php:304
+msgid "Edit Forum Category"
+msgstr ""
+
+#: includes/class-fmwp-functions.php:305
+msgid "Update Forum Category"
+msgstr ""
+
+#: includes/class-fmwp-functions.php:306
+msgid "Add New Forum Category"
+msgstr ""
+
+#: includes/class-fmwp-functions.php:307
+msgid "New Forum Category Name"
+msgstr ""
+
+#: includes/class-fmwp-functions.php:308
+msgid "Popular Forum Categories"
+msgstr ""
+
+#: includes/class-fmwp-functions.php:309
+msgid "Separate Forum Categories with commas"
+msgstr ""
+
+#: includes/class-fmwp-functions.php:310
+msgid "Add or remove Forum Categories"
+msgstr ""
+
+#: includes/class-fmwp-functions.php:311
+msgid "Choose from the most used Forum Categories"
+msgstr ""
+
+#: includes/class-fmwp-functions.php:312
+msgid "No Forum Categories found"
+msgstr ""
+
+#: includes/class-fmwp-functions.php:337
+msgid "Topic Tag"
+msgstr ""
+
+#: includes/class-fmwp-functions.php:338
+msgctxt "Admin menu name"
+msgid "Topic Tags"
+msgstr ""
+
+#: includes/class-fmwp-functions.php:339
+msgid "Search Topic Tags"
+msgstr ""
+
+#: includes/class-fmwp-functions.php:340
+msgid "All Topic Tags"
+msgstr ""
+
+#: includes/class-fmwp-functions.php:341
+msgid "Edit Topic Tag"
+msgstr ""
+
+#: includes/class-fmwp-functions.php:342
+msgid "Update Topic Tag"
+msgstr ""
+
+#: includes/class-fmwp-functions.php:343
+msgid "Add New Topic Tag"
+msgstr ""
+
+#: includes/class-fmwp-functions.php:344
+msgid "New Topic Tag Name"
+msgstr ""
+
+#: includes/class-fmwp-functions.php:345
+msgid "Popular Topic Tags"
+msgstr ""
+
+#: includes/class-fmwp-functions.php:346
+msgid "Separate Topic Tags with commas"
+msgstr ""
+
+#: includes/class-fmwp-functions.php:347
+msgid "Add or remove Topic Tags"
+msgstr ""
+
+#: includes/class-fmwp-functions.php:348
+msgid "Choose from the most used Topic tags"
+msgstr ""
+
+#: includes/class-fmwp-functions.php:349
+msgid "No Topic Tags found"
+msgstr ""
+
+#: includes/class-fmwp-functions.php:612
+msgid "Home"
+msgstr ""
+
+#: includes/class-fmwp-functions.php:645
+#: templates/new-forum.php:47
+msgid "Categories"
+msgstr ""
+
+#: includes/class-fmwp.php:71
+#: includes/class-fmwp.php:80
+msgid "Cheatin&#8217; huh?"
+msgstr ""
+
+#: includes/class-modules.php:38
+msgid "Basic"
+msgstr ""
+
+#: includes/class-modules.php:41
+msgid "Migration"
+msgstr ""
+
+#: includes/class-modules.php:42
+msgid "Ability to migration forums, topics and replies from bbPress"
+msgstr ""
+
+#: includes/common/class-forum.php:40
+msgid "Public"
+msgstr ""
+
+#: includes/common/class-forum.php:41
+msgid "Private"
+msgstr ""
+
+#: includes/common/class-forum.php:42
+msgid "Hidden"
+msgstr ""
+
+#: includes/common/class-forum.php:142
+msgid "Unlock forum"
+msgstr ""
+
+#: includes/common/class-forum.php:149
+msgid "Lock forum"
+msgstr ""
+
+#: includes/common/class-forum.php:157
+#: includes/common/class-reply.php:827
+#: includes/common/class-topic.php:551
+msgid "Move to trash"
+msgstr ""
+
+#. translators: %s template
+#: includes/common/class-mail.php:103
+#: includes/common/class-mail.php:221
+msgid "<code>%s</code> does not exist."
+msgstr ""
+
+#. translators: %s is a topic title
+#. translators: %s is a topic title.
+#: includes/common/class-reply.php:398
+#: modules/migration/class-init.php:909
+msgid "Reply To: %s"
+msgstr ""
+
+#: includes/common/class-reply.php:741
+#: includes/common/class-topic.php:206
+#: includes/common/class-topic.php:477
+msgid "Pending"
+msgstr ""
+
+#: includes/common/class-reply.php:745
+#: includes/common/class-topic.php:473
+msgid "Trashed"
+msgstr ""
+
+#: includes/common/class-reply.php:818
+msgid "Edit reply"
+msgstr ""
+
+#: includes/common/class-reply.php:836
+#: includes/common/class-topic.php:560
+msgid "Mark as spam"
+msgstr ""
+
+#: includes/common/class-reply.php:845
+#: includes/common/class-topic.php:569
+msgid "Isn't spam"
+msgstr ""
+
+#: includes/common/class-reply.php:856
+msgid "Report reply"
+msgstr ""
+
+#: includes/common/class-reply.php:863
+msgid "Un-report reply"
+msgstr ""
+
+#: includes/common/class-reply.php:873
+msgid "Clear reply's reports"
+msgstr ""
+
+#: includes/common/class-reply.php:883
+msgid "Restore reply"
+msgstr ""
+
+#: includes/common/class-reply.php:892
+msgid "Remove reply"
+msgstr ""
+
+#: includes/common/class-topic.php:205
+msgid "Open"
+msgstr ""
+
+#: includes/common/class-topic.php:207
+msgid "Trash"
+msgstr ""
+
+#: includes/common/class-topic.php:213
+msgid "Normal"
+msgstr ""
+
+#: includes/common/class-topic.php:217
+#: includes/common/class-topic.php:239
+msgid "Pinned"
+msgstr ""
+
+#: includes/common/class-topic.php:221
+#: includes/common/class-topic.php:243
+msgid "Announcement"
+msgstr ""
+
+#: includes/common/class-topic.php:225
+#: includes/common/class-topic.php:247
+msgid "Global"
+msgstr ""
+
+#: includes/common/class-topic.php:257
+msgid "Recently updated"
+msgstr ""
+
+#: includes/common/class-topic.php:258
+msgid "Most views"
+msgstr ""
+
+#: includes/common/class-topic.php:506
+msgid "Edit topic"
+msgstr ""
+
+#: includes/common/class-topic.php:515
+msgid "Pin topic"
+msgstr ""
+
+#: includes/common/class-topic.php:524
+msgid "Unpin topic"
+msgstr ""
+
+#: includes/common/class-topic.php:533
+msgid "Lock topic"
+msgstr ""
+
+#: includes/common/class-topic.php:542
+msgid "Unlock topic"
+msgstr ""
+
+#: includes/common/class-topic.php:579
+msgid "Report topic"
+msgstr ""
+
+#: includes/common/class-topic.php:586
+msgid "Un-report topic"
+msgstr ""
+
+#: includes/common/class-topic.php:596
+msgid "Clear topic's reports"
+msgstr ""
+
+#: includes/common/class-topic.php:1078
+#: templates/js/reply-row.php:120
+#: templates/js/reply-row.php:135
+#: templates/topic.php:294
+#: templates/topic.php:355
+msgid "Login to reply to this topic"
+msgstr ""
+
+#: includes/common/class-topic.php:1082
+#: templates/topic.php:287
+#: templates/topic.php:290
+#: templates/topic.php:348
+#: templates/topic.php:351
+msgid "This topic is closed to new replies"
+msgstr ""
+
+#: includes/frontend/class-actions-listener.php:75
+#: includes/frontend/class-actions-listener.php:171
+#: includes/frontend/class-actions-listener.php:243
+#: includes/frontend/class-actions-listener.php:282
+msgid "Security issue, Please try again"
+msgstr ""
+
+#: includes/frontend/class-actions-listener.php:79
+msgid "Login is empty"
+msgstr ""
+
+#: includes/frontend/class-actions-listener.php:83
+msgid "A user with this username already exists"
+msgstr ""
+
+#: includes/frontend/class-actions-listener.php:87
+msgid "Email is empty"
+msgstr ""
+
+#: includes/frontend/class-actions-listener.php:91
+msgid "Email is invalid"
+msgstr ""
+
+#: includes/frontend/class-actions-listener.php:94
+msgid "A user with this email already exists"
+msgstr ""
+
+#: includes/frontend/class-actions-listener.php:98
+msgid "Password cannot be an empty"
+msgstr ""
+
+#: includes/frontend/class-actions-listener.php:101
+msgid "Please confirm the password"
+msgstr ""
+
+#: includes/frontend/class-actions-listener.php:107
+msgid "Your password must contain at least one lowercase letter, one capital letter and one number and be at least 8 characters"
+msgstr ""
+
+#: includes/frontend/class-actions-listener.php:111
+msgid "Sorry, passwords do not match!"
+msgstr ""
+
+#: includes/frontend/class-actions-listener.php:175
+#: includes/frontend/class-actions-listener.php:247
+msgid "Empty User"
+msgstr ""
+
+#: includes/frontend/class-actions-listener.php:182
+msgid "Empty Email"
+msgstr ""
+
+#: includes/frontend/class-actions-listener.php:186
+msgid "Invalid email"
+msgstr ""
+
+#: includes/frontend/class-actions-listener.php:189
+msgid "Email already exists"
+msgstr ""
+
+#: includes/frontend/class-actions-listener.php:198
+msgid "Invalid user URL"
+msgstr ""
+
+#: includes/frontend/class-actions-listener.php:286
+msgid "You do not have capability to create forums"
+msgstr ""
+
+#: includes/frontend/class-actions-listener.php:296
+msgid "Name is required"
+msgstr ""
+
+#: includes/frontend/class-actions-listener.php:300
+msgid "Description is required"
+msgstr ""
+
+#: includes/frontend/class-actions-listener.php:304
+msgid "Invalid visibility"
+msgstr ""
+
+#: includes/frontend/class-forms.php:365
+msgid "Submit"
+msgstr ""
+
+#: includes/frontend/class-profile.php:74
+msgid "Edit Profile"
+msgstr ""
+
+#. translators: %s is a forum category name
+#: includes/frontend/class-shortcodes.php:339
+msgid "Forum Category: %s"
+msgstr ""
+
+#. translators: %s is a topic tag name
+#: includes/frontend/class-shortcodes.php:345
+msgid "Topic Tag: %s"
+msgstr ""
+
+#: includes/frontend/class-shortcodes.php:798
+#: includes/frontend/class-shortcodes.php:843
+msgid "You are already logged in"
+msgstr ""
+
+#: includes/frontend/class-shortcodes.php:901
+msgid "Forum created successfully"
+msgstr ""
+
+#: modules/migration/class-init.php:133
+msgid "No bbPress data for migration."
+msgstr ""
+
+#: modules/migration/class-init.php:139
+msgid "Migration forums from bbPress"
+msgstr ""
+
+#: modules/migration/class-init.php:141
+msgid "Create full site's backup."
+msgstr ""
+
+#: modules/migration/class-init.php:142
+msgid "Set maintenance mode (if you need)"
+msgstr ""
+
+#: modules/migration/class-init.php:143
+msgid "You have nice Internet connection"
+msgstr ""
+
+#: modules/migration/class-init.php:145
+msgid "After the click to \"Run migration\" button, the migration process will be started. All information will be displayed in \"migration Log\" field."
+msgstr ""
+
+#: modules/migration/class-init.php:146
+msgid "If the migration was successful, you will see a corresponding message. Otherwise, contact technical support if the migration failed."
+msgstr ""
+
+#: modules/migration/class-init.php:149
+msgid "Run migration"
+msgstr ""
+
+#. translators: %1$d and %2$d are from-to migrated forums numbers.
+#: modules/migration/class-init.php:431
+msgid "Forums from %1$d to %2$d are migrated"
+msgstr ""
+
+#. translators: %1$d and %2$d are from-to migrated topics numbers.
+#: modules/migration/class-init.php:595
+msgid "Topics from %1$d to %2$d are migrated"
+msgstr ""
+
+#. translators: %1$d and %2$d are from-to migrated topic tabs numbers.
+#: modules/migration/class-init.php:749
+msgid "Topic tags from %1$d to %2$d are migrated"
+msgstr ""
+
+#. translators: %1$d and %2$d are from-to migrated replies numbers.
+#: modules/migration/class-init.php:817
+msgid "Replies from %1$d to %2$d are migrated"
+msgstr ""
+
+#: modules/migration/class-init.php:949
+msgid "Migration finished"
+msgstr ""
+
+#: templates/archive-forum-category.php:22
+msgid "Search Categories"
+msgstr ""
+
+#: templates/archive-forum-category.php:22
+#: templates/archive-forum.php:49
+#: templates/archive-topic.php:95
+#: templates/archive-topic.php:121
+#: templates/archive-topic.php:134
+#: templates/forum.php:115
+#: templates/forum.php:139
+#: templates/forum.php:149
+msgid "Search"
+msgstr ""
+
+#: templates/archive-forum-header.php:17
+#: templates/archive-topic-header.php:17
+msgid "Updated"
+msgstr ""
+
+#: templates/archive-forum.php:56
+msgid "No forums have been created."
+msgstr ""
+
+#: templates/archive-topic-header.php:14
+msgid "People"
+msgstr ""
+
+#: templates/archive-topic-header.php:16
+#: templates/js/topic-row.php:85
+msgid "Views"
+msgstr ""
+
+#: templates/archive-topic.php:26
+#: templates/archive-topic.php:36
+#: templates/forum.php:36
+#: templates/forum.php:43
+msgid "New topic"
+msgstr ""
+
+#: templates/archive-topic.php:36
+#: templates/forum.php:43
+msgid "Login to create a topic"
+msgstr ""
+
+#: templates/archive-topic.php:83
+#: templates/archive-topic.php:109
+#: templates/forum.php:100
+#: templates/forum.php:128
+#: templates/topic.php:309
+#: templates/topic.php:324
+msgid "Sort:"
+msgstr ""
+
+#. translators: %s is the class attribute
+#: templates/forum.php:71
+msgid "Please <a href=\"#\" class=\"%s\" title=\"Login to view\" data-fmwp_popup_title=\"Login to view forum\">login</a> to view this forum"
+msgstr ""
+
+#: templates/forum.php:113
+#: templates/forum.php:147
+msgid "Search forum topics"
+msgstr ""
+
+#: templates/forum.php:115
+#: templates/forum.php:149
+msgid "Search in Forum"
+msgstr ""
+
+#: templates/js/forum-category-list.php:32
+msgid "{{{category.forums}}} forums"
+msgstr ""
+
+#: templates/js/forum-category-list.php:35
+msgid "{{{category.topics}}} topics"
+msgstr ""
+
+#: templates/js/forum-category-list.php:38
+msgid "{{{category.replies}}} people have replied"
+msgstr ""
+
+#: templates/js/forum-category-list.php:48
+#: templates/js/forum-row.php:92
+#: templates/js/reply-row.php:82
+#: templates/js/topic-row.php:104
+#: templates/topic.php:264
+msgid "More Actions"
+msgstr ""
+
+#: templates/js/forum-row.php:64
+msgid "Latest topic:"
+msgstr ""
+
+#: templates/js/forum-row.php:71
+#: templates/js/forum-row.php:72
+msgid "topics"
+msgstr ""
+
+#: templates/js/forum-row.php:75
+#: templates/js/topic-row.php:78
+msgid "people have replied"
+msgstr ""
+
+#: templates/js/forum-row.php:76
+#: templates/js/reply-row-answers.php:31
+#: templates/js/topic-row.php:79
+msgid "replies"
+msgstr ""
+
+#: templates/js/forum-row.php:80
+#: templates/js/topic-row.php:90
+msgid "Last Updated"
+msgstr ""
+
+#: templates/js/reply-row-answers.php:26
+msgid "Show all replies"
+msgstr ""
+
+#: templates/js/reply-row-answers.php:29
+msgid "reply"
+msgstr ""
+
+#: templates/js/reply-row.php:36
+#: templates/js/reply-row.php:45
+#: templates/js/topic-row.php:28
+msgid "Profile"
+msgstr ""
+
+#: templates/js/reply-row.php:59
+msgid "Show in topic"
+msgstr ""
+
+#: templates/js/reply-row.php:68
+msgid "Reply link"
+msgstr ""
+
+#: templates/js/topic-row.php:65
+msgid "Forum:"
+msgstr ""
+
+#: templates/js/topic-row.php:86
+msgid "views"
+msgstr ""
+
+#: templates/login-popup.php:18
+msgid "Close"
+msgstr ""
+
+#: templates/login-popup.php:26
+msgid "Don't have an account?"
+msgstr ""
+
+#: templates/login-popup.php:28
+msgid "Sign up"
+msgstr ""
+
+#: templates/login.php:23
+msgid "Invalid username, email address or incorrect password."
+msgstr ""
+
+#: templates/login.php:37
+msgid "Username or Email Address"
+msgstr ""
+
+#: templates/login.php:38
+#: templates/registration.php:73
+msgid "Password"
+msgstr ""
+
+#: templates/login.php:39
+msgid "Remember Me"
+msgstr ""
+
+#: templates/login.php:40
+msgid "Log In"
+msgstr ""
+
+#: templates/login.php:49
+#: templates/login.php:50
+msgid "Forgot Password?"
+msgstr ""
+
+#: templates/new-forum.php:26
+msgid "Name"
+msgstr ""
+
+#: templates/new-forum.php:32
+#: templates/profile/edit-form.php:68
+msgid "Description"
+msgstr ""
+
+#: templates/new-forum.php:67
+msgid "Create"
+msgstr ""
+
+#: templates/profile/edit-form.php:35
+#: templates/registration.php:36
+msgid "Username"
+msgstr ""
+
+#: templates/profile/edit-form.php:50
+#: templates/registration.php:53
+msgid "First Name"
+msgstr ""
+
+#: templates/profile/edit-form.php:56
+#: templates/registration.php:62
+msgid "Last Name"
+msgstr ""
+
+#: templates/profile/edit-form.php:62
+msgid "Website"
+msgstr ""
+
+#: templates/profile/edit-form.php:88
+#: templates/profile/notifications-form.php:50
+msgid "Update"
+msgstr ""
+
+#: templates/profile/edit.php:18
+#: templates/profile/edit.php:25
+#: templates/profile/notifications.php:11
+#: templates/profile/notifications.php:18
+msgid "Wrong user in query"
+msgstr ""
+
+#. translators: %s is a topics number
+#: templates/profile/main-mobile.php:49
+#: templates/profile/main.php:85
+#: templates/user-card.php:66
+msgid "%s topic"
+msgid_plural "%s topics"
+msgstr[0] ""
+msgstr[1] ""
+
+#. translators: %s is a replies number
+#: templates/profile/main-mobile.php:56
+#: templates/profile/main.php:92
+#: templates/user-card.php:75
+msgid "%s reply"
+msgid_plural "%s replies"
+msgstr[0] ""
+msgstr[1] ""
+
+#. translators: %s is a user registration date
+#: templates/profile/main-mobile.php:64
+#: templates/profile/main.php:100
+msgid "Joined: %s"
+msgstr ""
+
+#: templates/profile/main-mobile.php:72
+#: templates/profile/main.php:106
+msgid "Website:"
+msgstr ""
+
+#: templates/registration.php:79
+msgid "Confirm Password"
+msgstr ""
+
+#: templates/registration.php:100
+msgid "Sign Up"
+msgstr ""
+
+#: templates/reply-popup.php:24
+msgid "Back to topic"
+msgstr ""
+
+#: templates/reply-popup.php:24
+#: templates/topic-popup.php:20
+msgid "Discard"
+msgstr ""
+
+#: templates/reply-popup.php:26
+msgid "Submit Reply"
+msgstr ""
+
+#. translators: %s is a topic title
+#: templates/reply-popup.php:52
+msgid "Replying to: \"%s\""
+msgstr ""
+
+#: templates/reply-popup.php:75
+#: templates/topic-popup.php:77
+msgid "Show preview"
+msgstr ""
+
+#: templates/reply-popup.php:75
+#: templates/reply-popup.php:76
+#: templates/topic-popup.php:77
+#: templates/topic-popup.php:78
+msgid "Hide preview"
+msgstr ""
+
+#: templates/topic-popup.php:20
+msgid "Back to forum"
+msgstr ""
+
+#: templates/topic-popup.php:22
+msgid "Submit topic"
+msgstr ""
+
+#: templates/topic-popup.php:40
+msgid "Topic title"
+msgstr ""
+
+#: templates/topic-popup.php:44
+msgid "Topic tags"
+msgstr ""
+
+#. translators: %s is the class attribute
+#: templates/topic.php:125
+msgid "Please <a href=\"#\" class=\"%s\" title=\"Login to view\" data-fmwp_popup_title=\"Login to view topic\">login</a> to view this topic"
+msgstr ""
+
+#. translators: %s is a total replies count
+#: templates/topic.php:160
+msgid "<span id=\"fmwp-replies-total\">%s</span> reply"
+msgid_plural "<span id=\"fmwp-replies-total\">%s</span> replies"
+msgstr[0] ""
+msgstr[1] ""
+
+#. translators: %s is a total topics count
+#: templates/topic.php:170
+msgid "<span id=\"fmwp-views-total\">%s</span> view"
+msgid_plural "<span id=\"fmwp-views-total\">%s</span> views"
+msgstr[0] ""
+msgstr[1] ""
+
+#. translators: %s is the user display name.
+#: templates/topic.php:220
+msgid "%s Profile"
+msgstr ""
+
+#: templates/user-card.php:62
+msgid "User Topics"
+msgstr ""
+
+#: templates/user-card.php:71
+msgid "User Replies"
+msgstr ""
+
+#: assets/front/js/forum-categories-list.js:4
+msgid "No one created the forum categories."
+msgstr ""
+
+#: assets/front/js/forum-categories-list.js:5
+#: assets/front/js/forums-list.js:3
+#: assets/front/js/topics-list.js:4
+msgid "No results found."
+msgstr ""
+
+#: assets/front/js/forum.js:3
+msgid "No one has created a topic in this forum. Be the first and <a href=\"#\" class=\"fmwp-create-topic fmwp-login-to-action\">create a topic</a>."
+msgstr ""
+
+#: assets/front/js/forum.js:3
+#: assets/front/js/forum.js:4
+msgid "No one has created a topic in this forum."
+msgstr ""
+
+#: assets/front/js/forum.js:6
+msgid "No topics found for this search."
+msgstr ""
+
+#: assets/front/js/logged-in-forum.js:508
+#: assets/front/js/logged-in-topic.js:997
+msgid "Are you sure to delete permanently this topic. This operation can not be canceled."
+msgstr ""
+
+#: assets/front/js/logged-in-topic.js:402
+msgid "Are you sure to trash this reply?"
+msgstr ""
+
+#: assets/front/js/logged-in-topic.js:440
+msgid "Are you sure to restore this reply?"
+msgstr ""
+
+#: assets/front/js/logged-in-topic.js:481
+msgid "Are you sure to delete permanently this reply. This operation can not be canceled."
+msgstr ""
+
+#: assets/front/js/profile.js:367
+#: assets/front/js/user-replies.js:2
+msgid "No replies"
+msgstr ""
+
+#: assets/front/js/profile.js:428
+#: assets/front/js/user-topics.js:3
+msgid "No topics"
+msgstr ""
+
+#: assets/front/js/topic.js:3
+msgid "No one has replied to this topic. Be the first and <a href=\"#\" class=\"fmwp-write-reply fmwp-login-to-action\" data-fmwp_popup_title=\"Login to reply to this topic\">leave a reply</a>."
+msgstr ""
+
+#: assets/front/js/topic.js:3
+#: assets/front/js/topic.js:4
+msgid "No one has replied to this topic."
+msgstr ""
+
+#: assets/front/js/topics-list.js:3
+msgid "No topics have been created."
+msgstr ""

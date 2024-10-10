@@ -1,0 +1,102 @@
+@import "color"
+@import "mixins"
+@import "selectors"
+@import "responsive"
+
+#wp-admin-bar-fmwp_edit_topic > .ab-item .ab-icon:before
+  content: "\f464"
+  top: 2px
+#wp-admin-bar-fmwp_edit_forum > .ab-item .ab-icon:before
+  content: "\f464"
+  top: 2px
+
+.#{$button}
+  height: 48px
+  border-radius: (52px/2)
+  text-align: center
+  padding: 11px 20px
+  +box-shadow
+  color: $sub-color
+  background-color: transparent
+  border: 1px solid $sub-color
+  +border-box
+  &.#{$primary-button}
+    height: 52px
+    border-radius: (52px/2)
+    padding: 12px 20px
+    background-color: $button-bg
+    color: $white
+    border: 0 solid transparent
+    &:hover
+      background-color: $button-bg-hover
+      color: $white
+a
+  &.#{$button}
+    +link( $sub-color, $sub-color )
+    &.#{$primary-button}
+      +link( $white, $white )
+
+
+.#{$avatar}
+  +box-shadow
+  border-radius: 100%
+  &.#{$prefix}inline
+    display: inline
+  &.#{$prefix}block
+    display: block
+
+
++keyframes(fmwp-ajax-spinning)
+  0%
+    -webkit-transform: rotate(0deg)
+    transform: rotate(0deg)
+  100%
+    -webkit-transform: rotate(360deg)
+    transform: rotate(360deg)
+
+.#{$prefix}ajax-loading
+  color: $preloader-base
+  +transition(.1s,opacity)
+  -webkit-animation: fmwp-ajax-spinning 1.1s infinite linear
+  animation: fmwp-ajax-spinning 1.1s infinite linear
+  border-style: solid
+  border-top-color: $preloader-second
+  border-right-color: $preloader-second
+  border-bottom-color: $preloader-second
+  border-left-color: $preloader-base
+  filter: alpha(opacity=0)
+  -ms-transform: translateZ(0)
+  transform: translateZ(0)
+  border-radius: 50%
+  display: block
+  margin: 0
+  outline: 0
+  padding: 0
+  vertical-align: baseline
+
+.fmwp
+  .#{$prefix}frontend-notice
+    display: inline-block
+    font-size: 14px
+    width: 100%
+    margin: 0 0 15px 0
+    padding: 10px 15px
+    background: #fff
+    color: #000
+    border-left: 5px solid #3f7cc7
+    box-shadow: 0 7px 14px 0 rgba(50, 50, 93, 0.1), 0 3px 6px 0 rgba(0, 0, 0, 0.07)
+    -webkit-box-shadow: 0 7px 14px 0 rgba(50, 50, 93, 0.1), 0 3px 6px 0 rgba(0, 0, 0, 0.07)
+
+//.#{$prefix}video-container
+//  position: relative
+//  padding-bottom: 56.25%
+//  padding-top: 30px
+//  height: 0
+//  overflow: hidden
+//
+//  iframe, object, embed
+//    position: absolute
+//    top: 0
+//    left: 0
+//    width: 100%
+//    height: 100%
