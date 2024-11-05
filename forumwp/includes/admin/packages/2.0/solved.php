@@ -6,13 +6,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 register_post_status(
 	'fmwp_solved',
 	array(
-		'label'                     => _x( 'Solved', 'Solved status', 'forumwp-pro' ),
+		'label'                     => _x( 'Solved', 'Solved status', 'forumwp' ),
 		'public'                    => true,
 		'exclude_from_search'       => false,
 		'show_in_admin_all_list'    => true,
 		'show_in_admin_status_list' => true,
 		// translators: %s is a count.
-		'label_count'               => _n_noop( 'Solved <span class="count">(%s)</span>', 'Solved <span class="count">(%s)</span>', 'forumwp-pro' ),
+		'label_count'               => _n_noop( 'Solved <span class="count">(%s)</span>', 'Solved <span class="count">(%s)</span>', 'forumwp' ),
 	)
 );
 

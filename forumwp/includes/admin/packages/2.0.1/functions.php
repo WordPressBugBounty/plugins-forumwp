@@ -25,7 +25,7 @@ function fmwp_forum_stop_update_last_date201() {
 function fmwp_upgrade_spam201() {
 	FMWP()->ajax()->check_nonce( 'fmwp-backend-nonce' );
 
-	// phpcs:ignore WordPress.PHP.NoSilencedErrors.Discouraged -- for silenced set_time_limit
+	// phpcs:ignore WordPress.PHP.NoSilencedErrors.Discouraged, Squiz.PHP.DiscouragedFunctions.Discouraged -- for silenced set_time_limit
 	@set_time_limit( 0 );
 
 	include 'spam.php';

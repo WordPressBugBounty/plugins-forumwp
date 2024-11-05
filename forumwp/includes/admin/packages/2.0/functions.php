@@ -25,7 +25,7 @@ function fmwp_forum_stop_update_last_date() {
 function fmwp_upgrade_solved20() {
 	FMWP()->ajax()->check_nonce( 'fmwp-backend-nonce' );
 
-	// phpcs:ignore WordPress.PHP.NoSilencedErrors.Discouraged -- for silenced set_time_limit
+	// phpcs:ignore WordPress.PHP.NoSilencedErrors.Discouraged, Squiz.PHP.DiscouragedFunctions.Discouraged -- for silenced set_time_limit
 	@set_time_limit( 0 );
 
 	include 'solved.php';
@@ -39,7 +39,7 @@ function fmwp_upgrade_solved20() {
 function fmwp_upgrade_locked20() {
 	FMWP()->ajax()->check_nonce( 'fmwp-backend-nonce' );
 
-	// phpcs:ignore WordPress.PHP.NoSilencedErrors.Discouraged -- for silenced set_time_limit
+	// phpcs:ignore WordPress.PHP.NoSilencedErrors.Discouraged, Squiz.PHP.DiscouragedFunctions.Discouraged -- for silenced set_time_limit
 	@set_time_limit( 0 );
 
 	include 'locked.php';
@@ -53,7 +53,7 @@ function fmwp_upgrade_locked20() {
 function fmwp_upgrade_subscriptions20() {
 	FMWP()->ajax()->check_nonce( 'fmwp-backend-nonce' );
 
-	// phpcs:ignore WordPress.PHP.NoSilencedErrors.Discouraged -- for silenced set_time_limit
+	// phpcs:ignore WordPress.PHP.NoSilencedErrors.Discouraged, Squiz.PHP.DiscouragedFunctions.Discouraged -- for silenced set_time_limit
 	@set_time_limit( 0 );
 
 	include 'subscriptions.php';

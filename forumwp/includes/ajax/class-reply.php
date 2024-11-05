@@ -277,7 +277,7 @@ if ( ! class_exists( 'fmwp\ajax\Reply' ) ) {
 					$above_count = apply_filters( 'fmwp_pre_reply_count_by_anchor', $above_count, $orderby, $order, $reply, $left_join, $where, $topic_id );
 				}
 
-				$next_page = floor( ( $above_count + 1 ) / FMWP()->options()->get_variable( 'replies_per_page' ) );
+				$next_page = absint( floor( ( $above_count + 1 ) / FMWP()->options()->get_variable( 'replies_per_page' ) ) );
 				$next_page = 0 === $next_page ? 1 : $next_page;
 
 				$next_offset = ( $above_count + 1 ) - FMWP()->options()->get_variable( 'replies_per_page' ) * ( ( $above_count + 1 ) % $next_page );
@@ -484,10 +484,6 @@ if ( ! class_exists( 'fmwp\ajax\Reply' ) ) {
 			}
 
 			$reply_data['content'] = html_entity_decode( $reply_data['content'] ); // required because WP_Editor send encoded content.
-			preg_match( '/^<p>(.*?)<\/p>$/', $reply_data['content'], $match );
-			if ( ! empty( $match[1] ) ) {
-				$reply_data['content'] = $match[1]; // required because WP_Editor send content wrapped to <p></p>
-			}
 
 			if ( FMWP()->options()->get( 'raw_html_enabled' ) ) {
 				$request_content = wp_kses_post( wp_unslash( $reply_data['content'] ) );
@@ -592,10 +588,6 @@ if ( ! class_exists( 'fmwp\ajax\Reply' ) ) {
 			}
 
 			$reply_data['content'] = html_entity_decode( $reply_data['content'] ); // required because WP_Editor send encoded content.
-			preg_match( '/^<p>(.*?)<\/p>$/', $reply_data['content'], $match );
-			if ( ! empty( $match[1] ) ) {
-				$reply_data['content'] = $match[1]; // required because WP_Editor send content wrapped to <p></p>
-			}
 
 			if ( FMWP()->options()->get( 'raw_html_enabled' ) ) {
 				$request_content = wp_kses_post( wp_unslash( $reply_data['content'] ) );
@@ -644,6 +636,8 @@ if ( ! class_exists( 'fmwp\ajax\Reply' ) ) {
 
 			FMWP()->common()->reply()->move_to_trash( $reply_id );
 
+			update_post_meta( $reply_id, 'fmwp_user_trash_id', get_current_user_id() );
+
 			$reply = get_post( $reply_id );
 
 			wp_send_json_success(
@@ -677,6 +671,8 @@ if ( ! class_exists( 'fmwp\ajax\Reply' ) ) {
 			}
 
 			FMWP()->common()->reply()->restore( $reply_id );
+
+			delete_post_meta( $reply_id, 'fmwp_user_trash_id' );
 
 			$reply = get_post( $reply_id );
 

@@ -251,7 +251,7 @@ function fmwp_rebuild_dropdown( data, obj ) {
 	var dropdown_html = '';
 	jQuery.each( data.dropdown_actions, function( key ) {
 		// dropdown_html += '<li><span class="' + key + '">' + data.dropdown_actions[ key ] + '</span></li>';
-		dropdown_html += '<li><a href="#" class="' + key + '">' + data.dropdown_actions[ key ] + '</a></li>';
+		dropdown_html += '<li><a href="#" class="' + key + '" data-entity_id="' + data.dropdown_actions[ key ].entity_id + '" data-nonce="' + data.dropdown_actions[ key ].nonce + '">' + data.dropdown_actions[ key ].title + '</a></li>';
 	});
 	obj.parents('.fmwp-dropdown ul').html( dropdown_html );
 }

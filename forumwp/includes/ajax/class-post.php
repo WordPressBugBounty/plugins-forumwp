@@ -29,10 +29,6 @@ if ( ! class_exists( 'fmwp\ajax\Post' ) ) {
 
 				// phpcs:disable WordPress.Security.ValidatedSanitizedInput.MissingUnslash, WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- need to prepare variable after WP_Editor
 				$_REQUEST['content'] = html_entity_decode( $_REQUEST['content'] ); // required because WP_Editor send encoded content.
-				preg_match( '/^<p>(.*?)<\/p>$/', $_REQUEST['content'], $match );
-				if ( ! empty( $match[1] ) ) {
-					$_REQUEST['content'] = $match[1]; // required because WP_Editor send content wrapped to <p></p>
-				}
 				// phpcs:enable WordPress.Security.ValidatedSanitizedInput.MissingUnslash, WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- need to prepare variable after WP_Editor
 
 				if ( FMWP()->options()->get( 'raw_html_enabled' ) ) {

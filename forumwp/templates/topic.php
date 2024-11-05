@@ -4,7 +4,7 @@
  *
  * This template can be overridden by copying it to your-theme/forumwp/topic.php
  *
- * @version 2.1.0
+ * @version 2.1.1
  *
  * @var array $fmwp_topic
  */
@@ -101,11 +101,10 @@ if ( post_password_required( $topic ) ) {
 
 		$status_classes = apply_filters( 'fmwp_topic_status_classes', $status_classes, $fmwp_topic );
 
-		$topic_dropdown_items = FMWP()->common()->topic()->actions_list( $topic );
-		foreach ( $topic_dropdown_items as $key => &$value ) {
-			$value = '<a href="#" data-topic_id="' . esc_attr( $fmwp_topic['id'] ) . '" class="' . esc_attr( $key ) . '">' . $value . '</a>';
+		$actions_list = FMWP()->common()->topic()->actions_list( $topic );
+		foreach ( $actions_list as $key => $data ) {
+			$topic_dropdown_items[] = '<a href="#" data-entity_id="' . esc_attr( $fmwp_topic['id'] ) . '" class="' . esc_attr( $key ) . '" data-nonce="' . esc_attr( $data['nonce'] ) . '">' . esc_html( $data['title'] ) . '</a>';
 		}
-		unset( $value );
 	}
 
 	do_action( 'fmwp_before_individual_topic' );
@@ -177,7 +176,7 @@ if ( post_password_required( $topic ) ) {
 						if ( count( $topic_tags ) ) {
 							?>
 							<span class="fmwp-topic-stats fmwp-tags-stats">
-								<?php esc_html_e( 'Tags:' ); ?>&nbsp;
+								<?php esc_html_e( 'Tags:', 'forumwp' ); ?>&nbsp;
 								<span class="fmwp-topic-tags-list">
 									<?php
 									$tag_links = array();

@@ -4,7 +4,7 @@
  *
  * This template can be overridden by copying it to your-theme/forumwp/js/forum-category-list.php
  *
- * @version 2.1.0
+ * @version 2.1.1
  */
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -49,8 +49,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 								<i class="fas fa-angle-down"></i>
 								<div class="fmwp-dropdown" data-element=".fmwp-forum-category-actions-dropdown" data-trigger="click">
 									<ul>
-										<# _.each( category.dropdown_actions, function( title, key, list ) { #>
-											<li><a href="#" class="{{{key}}}">{{{title}}}</a></li>
+										<# _.each( category.dropdown_actions, function( actionData, key, list ) { #>
+											<li><a href="#" class="{{{key}}}" data-entity_id="{{{actionData.entity_id}}}" data-nonce="{{{actionData.nonce}}}">{{{actionData.title}}}</a></li>
 										<# }); #>
 									</ul>
 								</div>

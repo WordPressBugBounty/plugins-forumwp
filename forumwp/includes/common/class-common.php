@@ -48,17 +48,6 @@ if ( ! class_exists( 'fmwp\common\Common' ) ) {
 			add_filter( 'fmwp_sanitize_option_value', array( &$this, 'sanitize_option_value' ), 10, 3 );
 
 			add_filter( 'pre_get_posts', array( &$this, 'exclude_private_topics_replies' ) );
-
-			add_action( 'clear_auth_cookie', array( &$this, 'clear_topic_views_cookie' ) );
-		}
-
-		/**
-		 * Flush custom cookies while logout.
-		 *
-		 * @return void
-		 */
-		public function clear_topic_views_cookie() {
-			setcookie( 'fmwp_topic_views', ' ', time() - YEAR_IN_SECONDS, COOKIEPATH, COOKIE_DOMAIN, is_ssl(), true );
 		}
 
 		/**

@@ -65,6 +65,8 @@
               width: 100%
               margin: 0
               font-size: 1em
+              .#{$topic}title-line-trashed
+                display: none
               a
                 +flex( row, flex-start, baseline, nowrap )
                 width: 100%
@@ -174,6 +176,12 @@
       &.#{$topic}trashed
         .#{$topic}row-lines
           .#{$topic}row-line
+            .#{$topic}title-line
+              a
+                display: none !important
+            .#{$topic}title-line-trashed
+              font-weight: bold
+              display: inline !important
             .#{$topic}tags-wrapper
               display: flex
               .#{$topic}tag

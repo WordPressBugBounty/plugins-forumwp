@@ -2,14 +2,14 @@
 # This file is distributed under the same license as the ForumWP plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: ForumWP 2.1.0\n"
+"Project-Id-Version: ForumWP 2.1.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/forumwp\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2024-10-01T21:16:10+00:00\n"
+"POT-Creation-Date: 2024-11-05T12:57:45+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.11.0\n"
 "X-Domain: forumwp\n"
@@ -38,8 +38,8 @@ msgstr ""
 #: includes/admin/class-columns.php:68
 #: includes/admin/class-columns.php:409
 #: includes/admin/class-columns.php:419
-#: includes/common/class-reply.php:755
-#: includes/common/class-topic.php:476
+#: includes/common/class-reply.php:761
+#: includes/common/class-topic.php:513
 msgid "Reported"
 msgstr ""
 
@@ -48,7 +48,7 @@ msgstr ""
 #: includes/admin/class-columns.php:396
 #: includes/admin/class-columns.php:400
 #: includes/admin/class-columns.php:484
-#: includes/common/class-topic.php:235
+#: includes/common/class-topic.php:242
 #: templates/js/forum-row.php:41
 #: templates/single-forum-info.php:88
 #: templates/single-forum-info.php:105
@@ -59,8 +59,8 @@ msgstr ""
 #: includes/admin/class-columns.php:200
 #: includes/admin/class-columns.php:404
 #: includes/admin/class-columns.php:414
-#: includes/common/class-reply.php:750
-#: includes/common/class-topic.php:474
+#: includes/common/class-reply.php:756
+#: includes/common/class-topic.php:511
 msgid "Spam"
 msgstr ""
 
@@ -133,7 +133,7 @@ msgstr ""
 #: includes/admin/class-columns.php:575
 #: includes/admin/templates/topic/attributes.php:81
 #: includes/class-fmwp-functions.php:140
-#: includes/common/class-common.php:990
+#: includes/common/class-common.php:979
 #: templates/archive-forum-header.php:21
 msgid "Forum"
 msgstr ""
@@ -385,14 +385,14 @@ msgid "When you create a topic from topics list it will be added to the default 
 msgstr ""
 
 #: includes/admin/class-settings.php:334
-#: includes/common/class-reply.php:112
-#: includes/common/class-topic.php:256
+#: includes/common/class-reply.php:118
+#: includes/common/class-topic.php:263
 msgid "Newest to Oldest"
 msgstr ""
 
 #: includes/admin/class-settings.php:335
-#: includes/common/class-reply.php:111
-#: includes/common/class-topic.php:255
+#: includes/common/class-reply.php:117
+#: includes/common/class-topic.php:262
 msgid "Oldest to Newest"
 msgstr ""
 
@@ -722,6 +722,18 @@ msgid_plural "Locked <span class=\"count\">(%s)</span>"
 msgstr[0] ""
 msgstr[1] ""
 
+#: includes/admin/packages/2.0/solved.php:9
+msgctxt "Solved status"
+msgid "Solved"
+msgstr ""
+
+#. translators: %s is a count.
+#: includes/admin/packages/2.0/solved.php:15
+msgid "Solved <span class=\"count\">(%s)</span>"
+msgid_plural "Solved <span class=\"count\">(%s)</span>"
+msgstr[0] ""
+msgstr[1] ""
+
 #: includes/admin/templates/forum/attributes.php:15
 #: includes/admin/templates/topic/attributes.php:61
 msgid "Is Locked?"
@@ -834,22 +846,22 @@ msgstr ""
 #: includes/ajax/class-forum.php:241
 #: includes/ajax/class-forum.php:268
 #: includes/ajax/class-reply.php:444
-#: includes/ajax/class-reply.php:566
-#: includes/ajax/class-reply.php:631
-#: includes/ajax/class-reply.php:665
-#: includes/ajax/class-reply.php:700
-#: includes/ajax/class-reply.php:810
-#: includes/ajax/class-reply.php:844
-#: includes/ajax/class-topic.php:467
-#: includes/ajax/class-topic.php:592
-#: includes/ajax/class-topic.php:621
-#: includes/ajax/class-topic.php:650
-#: includes/ajax/class-topic.php:679
-#: includes/ajax/class-topic.php:708
-#: includes/ajax/class-topic.php:740
-#: includes/ajax/class-topic.php:772
-#: includes/ajax/class-topic.php:808
-#: includes/ajax/class-topic.php:842
+#: includes/ajax/class-reply.php:562
+#: includes/ajax/class-reply.php:623
+#: includes/ajax/class-reply.php:659
+#: includes/ajax/class-reply.php:696
+#: includes/ajax/class-reply.php:806
+#: includes/ajax/class-reply.php:840
+#: includes/ajax/class-topic.php:463
+#: includes/ajax/class-topic.php:584
+#: includes/ajax/class-topic.php:613
+#: includes/ajax/class-topic.php:642
+#: includes/ajax/class-topic.php:671
+#: includes/ajax/class-topic.php:700
+#: includes/ajax/class-topic.php:734
+#: includes/ajax/class-topic.php:769
+#: includes/ajax/class-topic.php:806
+#: includes/ajax/class-topic.php:840
 #: includes/frontend/class-actions-listener.php:290
 msgid "Invalid data"
 msgstr ""
@@ -868,7 +880,7 @@ msgstr ""
 msgid "Wrong Data"
 msgstr ""
 
-#: includes/ajax/class-post.php:56
+#: includes/ajax/class-post.php:52
 msgid "Wrong request"
 msgstr ""
 
@@ -888,14 +900,14 @@ msgstr ""
 
 #: includes/ajax/class-reply.php:351
 #: includes/ajax/class-reply.php:357
-#: includes/ajax/class-reply.php:535
+#: includes/ajax/class-reply.php:531
 msgid "Invalid reply"
 msgstr ""
 
 #: includes/ajax/class-reply.php:451
-#: includes/ajax/class-topic.php:876
-#: includes/ajax/class-topic.php:904
-#: includes/ajax/class-topic.php:932
+#: includes/ajax/class-topic.php:874
+#: includes/ajax/class-topic.php:902
+#: includes/ajax/class-topic.php:930
 msgid "Empty Topic ID"
 msgstr ""
 
@@ -908,9 +920,9 @@ msgid "Empty or Invalid Topic ID."
 msgstr ""
 
 #: includes/ajax/class-reply.php:471
-#: includes/ajax/class-reply.php:586
+#: includes/ajax/class-reply.php:582
 #: includes/ajax/class-topic.php:408
-#: includes/ajax/class-topic.php:495
+#: includes/ajax/class-topic.php:491
 msgid "Content is required"
 msgstr ""
 
@@ -919,64 +931,64 @@ msgstr ""
 msgid "You cannot leave replies faster than %s seconds"
 msgstr ""
 
-#: includes/ajax/class-reply.php:529
+#: includes/ajax/class-reply.php:525
 msgid "Invalid reply ID"
 msgstr ""
 
-#: includes/ajax/class-reply.php:539
-#: includes/ajax/class-reply.php:579
+#: includes/ajax/class-reply.php:535
+#: includes/ajax/class-reply.php:575
 msgid "You do not have the ability to edit this reply"
 msgstr ""
 
-#: includes/ajax/class-reply.php:573
-#: includes/ajax/class-reply.php:638
-#: includes/ajax/class-reply.php:672
-#: includes/ajax/class-reply.php:707
-#: includes/ajax/class-reply.php:817
-#: includes/ajax/class-reply.php:851
+#: includes/ajax/class-reply.php:569
+#: includes/ajax/class-reply.php:630
+#: includes/ajax/class-reply.php:666
+#: includes/ajax/class-reply.php:703
+#: includes/ajax/class-reply.php:813
+#: includes/ajax/class-reply.php:847
 msgid "Reply ID is invalid"
 msgstr ""
 
-#: includes/ajax/class-reply.php:612
-#: includes/ajax/class-topic.php:528
+#: includes/ajax/class-reply.php:604
+#: includes/ajax/class-topic.php:520
 msgid "Something is wrong with the data"
 msgstr ""
 
-#: includes/ajax/class-reply.php:642
+#: includes/ajax/class-reply.php:634
 msgid "You do not have the ability to move this reply to trash"
 msgstr ""
 
-#: includes/ajax/class-reply.php:676
+#: includes/ajax/class-reply.php:670
 msgid "You do not have the ability to restore this reply"
 msgstr ""
 
-#: includes/ajax/class-reply.php:711
+#: includes/ajax/class-reply.php:707
 msgid "You do not have the ability to delete this reply"
 msgstr ""
 
-#: includes/ajax/class-reply.php:821
+#: includes/ajax/class-reply.php:817
 msgid "You do not have the ability to mark this reply as spam"
 msgstr ""
 
-#: includes/ajax/class-reply.php:855
+#: includes/ajax/class-reply.php:851
 msgid "You do not have the ability to restore this reply from spam"
 msgstr ""
 
-#: includes/ajax/class-reply.php:878
-#: includes/ajax/class-reply.php:906
-#: includes/ajax/class-reply.php:933
+#: includes/ajax/class-reply.php:874
+#: includes/ajax/class-reply.php:902
+#: includes/ajax/class-reply.php:929
 msgid "Empty Reply ID"
 msgstr ""
 
-#: includes/ajax/class-reply.php:886
-#: includes/ajax/class-topic.php:891
+#: includes/ajax/class-reply.php:882
+#: includes/ajax/class-topic.php:889
 msgid "Something wrong with reports"
 msgstr ""
 
-#: includes/ajax/class-reply.php:913
-#: includes/ajax/class-reply.php:948
-#: includes/ajax/class-topic.php:919
-#: includes/ajax/class-topic.php:947
+#: includes/ajax/class-reply.php:909
+#: includes/ajax/class-reply.php:944
+#: includes/ajax/class-topic.php:917
+#: includes/ajax/class-topic.php:945
 msgid "Security Issue"
 msgstr ""
 
@@ -1007,7 +1019,7 @@ msgid "Sorry, but this forum is locked"
 msgstr ""
 
 #: includes/ajax/class-topic.php:401
-#: includes/ajax/class-topic.php:488
+#: includes/ajax/class-topic.php:484
 msgid "Title is required"
 msgstr ""
 
@@ -1016,63 +1028,63 @@ msgstr ""
 msgid "You cannot create topics faster than %s seconds"
 msgstr ""
 
-#: includes/ajax/class-topic.php:474
-#: includes/ajax/class-topic.php:599
-#: includes/ajax/class-topic.php:628
-#: includes/ajax/class-topic.php:657
-#: includes/ajax/class-topic.php:686
-#: includes/ajax/class-topic.php:715
-#: includes/ajax/class-topic.php:746
-#: includes/ajax/class-topic.php:778
-#: includes/ajax/class-topic.php:815
-#: includes/ajax/class-topic.php:849
+#: includes/ajax/class-topic.php:470
+#: includes/ajax/class-topic.php:591
+#: includes/ajax/class-topic.php:620
+#: includes/ajax/class-topic.php:649
+#: includes/ajax/class-topic.php:678
+#: includes/ajax/class-topic.php:707
+#: includes/ajax/class-topic.php:741
+#: includes/ajax/class-topic.php:776
+#: includes/ajax/class-topic.php:813
+#: includes/ajax/class-topic.php:847
 msgid "Topic ID is invalid"
 msgstr ""
 
-#: includes/ajax/class-topic.php:481
-#: includes/ajax/class-topic.php:560
+#: includes/ajax/class-topic.php:477
+#: includes/ajax/class-topic.php:552
 msgid "You do not have the ability to edit this topic"
 msgstr ""
 
-#: includes/ajax/class-topic.php:549
+#: includes/ajax/class-topic.php:541
 msgid "Invalid topic ID"
 msgstr ""
 
-#: includes/ajax/class-topic.php:556
+#: includes/ajax/class-topic.php:548
 msgid "Invalid topic"
 msgstr ""
 
-#: includes/ajax/class-topic.php:719
+#: includes/ajax/class-topic.php:711
 msgid "You do not have the ability to move this topic to trash"
 msgstr ""
 
-#: includes/ajax/class-topic.php:750
+#: includes/ajax/class-topic.php:745
 msgid "You do not have the ability to restore this topic"
 msgstr ""
 
-#: includes/ajax/class-topic.php:782
+#: includes/ajax/class-topic.php:780
 msgid "You do not have the ability to delete this topic"
 msgstr ""
 
-#: includes/ajax/class-topic.php:792
+#: includes/ajax/class-topic.php:790
 msgid "Topic was deleted successfully. You will be redirected to the Forum page"
 msgstr ""
 
-#: includes/ajax/class-topic.php:819
+#: includes/ajax/class-topic.php:817
 msgid "You do not have the ability to mark this topic as spam"
 msgstr ""
 
-#: includes/ajax/class-topic.php:853
+#: includes/ajax/class-topic.php:851
 msgid "You do not have the ability to restore this topic from spam"
 msgstr ""
 
 #: includes/ajax/class-user.php:41
-#: includes/common/class-common.php:329
+#: includes/common/class-common.php:318
 msgid "Everyone"
 msgstr ""
 
 #: includes/ajax/class-user.php:46
-#: includes/common/class-common.php:326
+#: includes/common/class-common.php:315
 msgid "All"
 msgstr ""
 
@@ -1140,7 +1152,7 @@ msgid "Edit"
 msgstr ""
 
 #: includes/class-fmwp-functions.php:145
-#: includes/common/class-common.php:1031
+#: includes/common/class-common.php:1020
 msgid "Edit Forum"
 msgstr ""
 
@@ -1191,7 +1203,7 @@ msgid "This is where you can add new forums."
 msgstr ""
 
 #: includes/class-fmwp-functions.php:186
-#: includes/common/class-common.php:1001
+#: includes/common/class-common.php:990
 #: templates/archive-topic-header.php:26
 msgid "Topic"
 msgstr ""
@@ -1210,7 +1222,7 @@ msgid "Add New Topic"
 msgstr ""
 
 #: includes/class-fmwp-functions.php:191
-#: includes/common/class-common.php:1043
+#: includes/common/class-common.php:1032
 msgid "Edit Topic"
 msgstr ""
 
@@ -1240,14 +1252,14 @@ msgid "No Topics found in trash"
 msgstr ""
 
 #: includes/class-fmwp-functions.php:225
-#: includes/common/class-topic.php:1071
-#: includes/common/class-topic.php:1078
+#: includes/common/class-topic.php:1143
+#: includes/common/class-topic.php:1150
 #: templates/js/reply-row.php:117
 #: templates/js/reply-row.php:132
-#: templates/topic.php:286
-#: templates/topic.php:294
-#: templates/topic.php:347
-#: templates/topic.php:355
+#: templates/topic.php:285
+#: templates/topic.php:293
+#: templates/topic.php:346
+#: templates/topic.php:354
 msgid "Reply"
 msgstr ""
 
@@ -1442,9 +1454,13 @@ msgid "Lock forum"
 msgstr ""
 
 #: includes/common/class-forum.php:157
-#: includes/common/class-reply.php:827
-#: includes/common/class-topic.php:551
+#: includes/common/class-reply.php:833
+#: includes/common/class-topic.php:588
 msgid "Move to trash"
+msgstr ""
+
+#: includes/common/class-login.php:148
+msgid "<strong>ERROR</strong>: Invalid username, email address or incorrect password."
 msgstr ""
 
 #. translators: %s template
@@ -1455,136 +1471,144 @@ msgstr ""
 
 #. translators: %s is a topic title
 #. translators: %s is a topic title.
-#: includes/common/class-reply.php:398
+#: includes/common/class-reply.php:404
 #: modules/migration/class-init.php:909
 msgid "Reply To: %s"
 msgstr ""
 
-#: includes/common/class-reply.php:741
-#: includes/common/class-topic.php:206
-#: includes/common/class-topic.php:477
+#: includes/common/class-reply.php:747
+#: includes/common/class-topic.php:213
+#: includes/common/class-topic.php:514
 msgid "Pending"
 msgstr ""
 
-#: includes/common/class-reply.php:745
-#: includes/common/class-topic.php:473
+#: includes/common/class-reply.php:751
+#: includes/common/class-topic.php:509
 msgid "Trashed"
 msgstr ""
 
-#: includes/common/class-reply.php:818
+#: includes/common/class-reply.php:824
 msgid "Edit reply"
 msgstr ""
 
-#: includes/common/class-reply.php:836
-#: includes/common/class-topic.php:560
+#: includes/common/class-reply.php:842
+#: includes/common/class-topic.php:597
 msgid "Mark as spam"
 msgstr ""
 
-#: includes/common/class-reply.php:845
-#: includes/common/class-topic.php:569
+#: includes/common/class-reply.php:851
+#: includes/common/class-topic.php:606
 msgid "Isn't spam"
 msgstr ""
 
-#: includes/common/class-reply.php:856
+#: includes/common/class-reply.php:862
 msgid "Report reply"
 msgstr ""
 
-#: includes/common/class-reply.php:863
+#: includes/common/class-reply.php:869
 msgid "Un-report reply"
 msgstr ""
 
-#: includes/common/class-reply.php:873
+#: includes/common/class-reply.php:879
 msgid "Clear reply's reports"
 msgstr ""
 
-#: includes/common/class-reply.php:883
+#: includes/common/class-reply.php:889
 msgid "Restore reply"
 msgstr ""
 
-#: includes/common/class-reply.php:892
+#: includes/common/class-reply.php:898
 msgid "Remove reply"
 msgstr ""
 
-#: includes/common/class-topic.php:205
+#: includes/common/class-topic.php:212
 msgid "Open"
 msgstr ""
 
-#: includes/common/class-topic.php:207
+#: includes/common/class-topic.php:214
 msgid "Trash"
 msgstr ""
 
-#: includes/common/class-topic.php:213
+#: includes/common/class-topic.php:220
 msgid "Normal"
 msgstr ""
 
-#: includes/common/class-topic.php:217
-#: includes/common/class-topic.php:239
+#: includes/common/class-topic.php:224
+#: includes/common/class-topic.php:246
 msgid "Pinned"
 msgstr ""
 
-#: includes/common/class-topic.php:221
-#: includes/common/class-topic.php:243
+#: includes/common/class-topic.php:228
+#: includes/common/class-topic.php:250
 msgid "Announcement"
 msgstr ""
 
-#: includes/common/class-topic.php:225
-#: includes/common/class-topic.php:247
+#: includes/common/class-topic.php:232
+#: includes/common/class-topic.php:254
 msgid "Global"
 msgstr ""
 
-#: includes/common/class-topic.php:257
+#: includes/common/class-topic.php:264
 msgid "Recently updated"
 msgstr ""
 
-#: includes/common/class-topic.php:258
+#: includes/common/class-topic.php:265
 msgid "Most views"
 msgstr ""
 
-#: includes/common/class-topic.php:506
+#: includes/common/class-topic.php:543
 msgid "Edit topic"
 msgstr ""
 
-#: includes/common/class-topic.php:515
+#: includes/common/class-topic.php:552
 msgid "Pin topic"
 msgstr ""
 
-#: includes/common/class-topic.php:524
+#: includes/common/class-topic.php:561
 msgid "Unpin topic"
 msgstr ""
 
-#: includes/common/class-topic.php:533
+#: includes/common/class-topic.php:570
 msgid "Lock topic"
 msgstr ""
 
-#: includes/common/class-topic.php:542
+#: includes/common/class-topic.php:579
 msgid "Unlock topic"
 msgstr ""
 
-#: includes/common/class-topic.php:579
+#: includes/common/class-topic.php:616
 msgid "Report topic"
 msgstr ""
 
-#: includes/common/class-topic.php:586
+#: includes/common/class-topic.php:623
 msgid "Un-report topic"
 msgstr ""
 
-#: includes/common/class-topic.php:596
+#: includes/common/class-topic.php:633
 msgid "Clear topic's reports"
 msgstr ""
 
-#: includes/common/class-topic.php:1078
+#: includes/common/class-topic.php:649
+msgid "Restore topic"
+msgstr ""
+
+#: includes/common/class-topic.php:658
+msgid "Remove topic"
+msgstr ""
+
+#: includes/common/class-topic.php:1150
 #: templates/js/reply-row.php:120
 #: templates/js/reply-row.php:135
-#: templates/topic.php:294
-#: templates/topic.php:355
+#: templates/topic.php:293
+#: templates/topic.php:354
 msgid "Login to reply to this topic"
 msgstr ""
 
-#: includes/common/class-topic.php:1082
-#: templates/topic.php:287
-#: templates/topic.php:290
-#: templates/topic.php:348
-#: templates/topic.php:351
+#: includes/common/class-topic.php:1154
+#: templates/topic.php:286
+#: templates/topic.php:289
+#: templates/topic.php:347
+#: templates/topic.php:350
 msgid "This topic is closed to new replies"
 msgstr ""
 
@@ -1780,7 +1804,7 @@ msgid "People"
 msgstr ""
 
 #: templates/archive-topic-header.php:16
-#: templates/js/topic-row.php:85
+#: templates/js/topic-row.php:90
 msgid "Views"
 msgstr ""
 
@@ -1800,8 +1824,8 @@ msgstr ""
 #: templates/archive-topic.php:109
 #: templates/forum.php:100
 #: templates/forum.php:128
-#: templates/topic.php:309
-#: templates/topic.php:324
+#: templates/topic.php:308
+#: templates/topic.php:323
 msgid "Sort:"
 msgstr ""
 
@@ -1835,8 +1859,8 @@ msgstr ""
 #: templates/js/forum-category-list.php:48
 #: templates/js/forum-row.php:92
 #: templates/js/reply-row.php:82
-#: templates/js/topic-row.php:104
-#: templates/topic.php:264
+#: templates/js/topic-row.php:109
+#: templates/topic.php:263
 msgid "More Actions"
 msgstr ""
 
@@ -1850,18 +1874,18 @@ msgid "topics"
 msgstr ""
 
 #: templates/js/forum-row.php:75
-#: templates/js/topic-row.php:78
+#: templates/js/topic-row.php:83
 msgid "people have replied"
 msgstr ""
 
 #: templates/js/forum-row.php:76
 #: templates/js/reply-row-answers.php:31
-#: templates/js/topic-row.php:79
+#: templates/js/topic-row.php:84
 msgid "replies"
 msgstr ""
 
 #: templates/js/forum-row.php:80
-#: templates/js/topic-row.php:90
+#: templates/js/topic-row.php:95
 msgid "Last Updated"
 msgstr ""
 
@@ -1887,11 +1911,16 @@ msgstr ""
 msgid "Reply link"
 msgstr ""
 
-#: templates/js/topic-row.php:65
+#: templates/js/single-topic-tags.php:15
+#: templates/topic.php:179
+msgid "Tags:"
+msgstr ""
+
+#: templates/js/topic-row.php:70
 msgid "Forum:"
 msgstr ""
 
-#: templates/js/topic-row.php:86
+#: templates/js/topic-row.php:91
 msgid "views"
 msgstr ""
 
@@ -2061,26 +2090,26 @@ msgid "Topic tags"
 msgstr ""
 
 #. translators: %s is the class attribute
-#: templates/topic.php:125
+#: templates/topic.php:124
 msgid "Please <a href=\"#\" class=\"%s\" title=\"Login to view\" data-fmwp_popup_title=\"Login to view topic\">login</a> to view this topic"
 msgstr ""
 
 #. translators: %s is a total replies count
-#: templates/topic.php:160
+#: templates/topic.php:159
 msgid "<span id=\"fmwp-replies-total\">%s</span> reply"
 msgid_plural "<span id=\"fmwp-replies-total\">%s</span> replies"
 msgstr[0] ""
 msgstr[1] ""
 
 #. translators: %s is a total topics count
-#: templates/topic.php:170
+#: templates/topic.php:169
 msgid "<span id=\"fmwp-views-total\">%s</span> view"
 msgid_plural "<span id=\"fmwp-views-total\">%s</span> views"
 msgstr[0] ""
 msgstr[1] ""
 
 #. translators: %s is the user display name.
-#: templates/topic.php:220
+#: templates/topic.php:219
 msgid "%s Profile"
 msgstr ""
 
@@ -2115,8 +2144,9 @@ msgstr ""
 msgid "No topics found for this search."
 msgstr ""
 
-#: assets/front/js/logged-in-forum.js:508
+#: assets/front/js/logged-in-forum.js:510
 #: assets/front/js/logged-in-topic.js:997
+#: assets/front/js/logged-in-topics.js:508
 msgid "Are you sure to delete permanently this topic. This operation can not be canceled."
 msgstr ""
 

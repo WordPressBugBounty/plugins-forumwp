@@ -6,7 +6,7 @@ Tags: forum, topic, reply, user-profile, user-registration
 Requires PHP: 7.0
 Requires at least: 5.5
 Tested up to: 6.6
-Stable tag: 2.1.0
+Stable tag: 2.1.1
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.txt
 
@@ -60,6 +60,29 @@ Got a problem or need help with ForumWP? Head over to our [documentation](http:/
 14. Screenshot 14
 
 == Changelog ==
+
+= 2.1.1: November 05, 2024 =
+
+* Fixed: Displaying trashed topics and replies
+* Fixed: Topic's views counting using $_COOKIES. It's cookieless for now for better security
+* Fixed: Get upload dir PHP notice
+* Fixed: Loading user profile subtabs
+* Fixed: PHP fatal error on the single reply link
+* Fixed: Displaying links for restore/delete permanently topic on the frontend
+* Fixed: Compatibility with modules
+* Fixed: blueprint.json file
+
+* Templates required update:
+  - js/forum-category-list.php
+  - js/forum-row.php
+  - js/reply-row.php
+  - js/single-topic-tags.php
+  - js/topic-row.php
+  - profile/main-mobile.php
+  - profile/main.php
+  - topic.php
+
+* Cached and optimized/minified assets(JS/CSS) must be flushed/re-generated after upgrade
 
 = 2.1.0: October 02, 2024 =
 
@@ -190,6 +213,9 @@ Got a problem or need help with ForumWP? Head over to our [documentation](http:/
 * Initial Release
 
 == Upgrade Notice ==
+
+= 2.1.1 =
+This version fixes a security related bug. Upgrade immediately.
 
 = 2.1.0 =
 This version fixes a security related bug. Upgrade immediately.

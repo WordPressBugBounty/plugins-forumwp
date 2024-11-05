@@ -159,7 +159,17 @@ if ( ! class_exists( 'fmwp\common\Forum' ) ) {
 				);
 			}
 
-			return array_unique( $items );
+			$items = array_unique( $items );
+
+			foreach ( $items as $key => $title ) {
+				$items[ $key ] = array(
+					'title'     => $title,
+					'entity_id' => $forum->ID,
+					'nonce'     => wp_create_nonce( $key . $forum->ID ),
+				);
+			}
+
+			return $items;
 		}
 
 		/**

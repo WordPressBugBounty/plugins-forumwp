@@ -48,7 +48,6 @@ if ( ! class_exists( 'fmwp\common\Topic' ) ) {
 			add_action( 'save_post_fmwp_topic', array( &$this, 'save_post' ), 999997, 3 );
 
 			add_action( 'wp_head', array( &$this, 'views_increment' ) );
-			add_action( 'template_redirect', array( &$this, 'cookies_for_views' ) );
 
 			add_filter( 'the_posts', array( &$this, 'filter_topics_from_hidden_forums' ), 99, 2 );
 
@@ -64,6 +63,7 @@ if ( ! class_exists( 'fmwp\common\Topic' ) ) {
 		public function init_statuses() {
 			$this->post_status = array( 'publish' );
 			if ( is_user_logged_in() ) {
+				$this->post_status[] = 'trash';
 				$this->post_status[] = 'pending'; //pending can be visible for author
 				if ( current_user_can( 'manage_fmwp_topics_all' ) ) {
 					$this->post_status[] = 'private';
@@ -83,7 +83,14 @@ if ( ! class_exists( 'fmwp\common\Topic' ) ) {
 				if ( isset( $wp_query->query['post_status'] ) && ( 'pending' === $wp_query->query['post_status'] || ( is_array( $wp_query->query['post_status'] ) && in_array( 'pending', $wp_query->query['post_status'], true ) ) ) ) {
 					global $wpdb;
 					if ( ! current_user_can( 'manage_fmwp_topics_all' ) ) {
-						$where = str_replace( "{$wpdb->posts}.post_status = 'pending'", "( {$wpdb->posts}.post_status = 'pending' AND {$wpdb->posts}.post_author = '" . get_current_user_id() . "' )", $where );
+						$current_user_id = get_current_user_id();
+
+						$where = str_replace( "{$wpdb->posts}.post_status = 'pending'", "( {$wpdb->posts}.post_status = 'pending' AND {$wpdb->posts}.post_author = '" . $current_user_id . "' )", $where );
+						$where = str_replace(
+							"{$wpdb->posts}.post_status = 'trash'",
+							"( {$wpdb->posts}.post_status = 'trash' AND {$wpdb->posts}.post_author = '$current_user_id' AND ( SELECT meta_value FROM {$wpdb->postmeta} WHERE {$wpdb->postmeta}.post_id = {$wpdb->posts}.ID AND {$wpdb->postmeta}.meta_key = 'fmwp_user_trash_id' ) = '$current_user_id' )",
+							$where
+						);
 					}
 				}
 			}
@@ -324,53 +331,83 @@ if ( ! class_exists( 'fmwp\common\Topic' ) ) {
 					}
 				}
 
-				if ( ! empty( $_COOKIE['fmwp_topic_views'] ) ) {
-					$views = maybe_unserialize( wp_unslash( $_COOKIE['fmwp_topic_views'] ) ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- array_map below
-					if ( ! is_array( $views ) ) {
-						$views = array();
-					}
-					$views = array_map( 'absint', $views );
+				// md5 auth_id with user_id or IP address
+				$auth_id = $this->get_auth( $post->ID );
 
-					if ( in_array( $id, $views, true ) ) {
-						$should_count = false;
-					}
-				}
+				// check if view already exists
+				$exists = $this->check_auth_topic_view( $auth_id, $post->ID );
 
-				if ( $should_count ) {
+				if ( $should_count && false === $exists ) {
 					update_post_meta( $id, 'fmwp_views', $post_views + 1 );
+
+					// add auth and post_id to the DB
+					$this->insert_auth_topic_view( $auth_id, $post->ID );
 				}
 			}
 		}
 
-		/**
-		 *
-		 */
-		public function cookies_for_views() {
-			if ( FMWP()->options()->get( 'ajax_increment_views' ) ) {
-				return;
+		public function get_auth( $post_id ) {
+			if ( is_user_logged_in() ) {
+				$user_id = get_current_user_id();
+				$auth_id = md5( $user_id . $post_id . 'topic_view' );
+			} else {
+				$user_ip = $this->get_user_ip() ? sanitize_text_field( $this->get_user_ip() ) : 'unknown_ip';
+				$auth_id = md5( $user_ip . $post_id . 'topic_view' );
 			}
 
-			global $post;
-			if ( is_int( $post ) ) {
-				// phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited -- operate with current post.
-				$post = get_post( $post );
-			}
-			if ( ! wp_is_post_revision( $post ) && ! is_preview() ) {
-				if ( is_singular( 'fmwp_topic' ) ) {
-					$views = array();
-					if ( ! empty( $_COOKIE['fmwp_topic_views'] ) ) {
-						$views = maybe_unserialize( wp_unslash( $_COOKIE['fmwp_topic_views'] ) ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- array_map below
-					}
-					if ( ! is_array( $views ) ) {
-						$views = array();
-					}
-					$views   = array_map( 'absint', $views );
-					$views[] = $post->ID;
-					$views   = array_unique( $views );
+			return $auth_id;
+		}
 
-					setcookie( 'fmwp_topic_views', maybe_serialize( $views ), time() + YEAR_IN_SECONDS, COOKIEPATH, COOKIE_DOMAIN, is_ssl(), true );
+		public function get_user_ip() {
+			$data = array( 'HTTP_CLIENT_IP', 'HTTP_X_FORWARDED_FOR', 'HTTP_X_FORWARDED', 'HTTP_X_CLUSTER_CLIENT_IP', 'HTTP_FORWARDED_FOR', 'HTTP_FORWARDED', 'REMOTE_ADDR' );
+			foreach ( $data as $key ) {
+				if ( array_key_exists( $key, $_SERVER ) === true ) {
+					foreach ( explode( ',', $_SERVER[ $key ] ) as $ip ) {
+						$ip = trim( $ip );
+						if ( $this->validate_user_ip( $ip ) ) {
+							continue;
+						}
+					}
 				}
 			}
+
+			return $ip;
+		}
+
+		public function validate_user_ip( $ip ) {
+			if ( false === filter_var( $ip, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4 | FILTER_FLAG_NO_PRIV_RANGE | FILTER_FLAG_NO_RES_RANGE ) ) {
+				return false;
+			}
+
+			return true;
+		}
+
+		public function check_auth_topic_view( $auth_id, $post_id ) {
+			global $wpdb;
+
+			$exists = $wpdb->get_var(
+				$wpdb->prepare(
+					"SELECT COUNT(*) FROM {$wpdb->prefix}fmwp_topic_views WHERE auth_id = %s AND post_id = %d",
+					$auth_id,
+					$post_id
+				)
+			);
+
+			return (bool) $exists;
+		}
+
+		public function insert_auth_topic_view( $auth_id, $post_id ) {
+			global $wpdb;
+			$table_name = $wpdb->prefix . 'fmwp_topic_views';
+
+			$wpdb->insert(
+				$table_name,
+				array(
+					'auth_id' => $auth_id,
+					'post_id' => $post_id,
+				),
+				array( '%s', '%d' )
+			);
 		}
 
 		/**
@@ -469,9 +506,9 @@ if ( ! class_exists( 'fmwp\common\Topic' ) ) {
 		public function status_tags() {
 			$tags = array();
 			if ( is_user_logged_in() ) {
+				$tags['trashed'] = __( 'Trashed', 'forumwp' );
 				if ( current_user_can( 'manage_fmwp_topics_all' ) ) {
-					$tags['trashed'] = __( 'Trashed', 'forumwp' );
-					$tags['spam']    = __( 'Spam', 'forumwp' );
+					$tags['spam'] = __( 'Spam', 'forumwp' );
 				}
 				$tags['reported'] = __( 'Reported', 'forumwp' );
 				$tags['pending']  = __( 'Pending', 'forumwp' );
@@ -598,9 +635,44 @@ if ( ! class_exists( 'fmwp\common\Topic' ) ) {
 				);
 			}
 
-			$items = apply_filters( 'fmwp_topic_dropdown_actions', $items, $user_id, $topic );
+			if ( FMWP()->common()->topic()->is_trashed( $topic->ID ) ) {
+				if ( FMWP()->user()->can_restore_topic( $user_id, $topic ) || FMWP()->user()->can_delete_topic( $user_id, $topic ) ) {
+					if ( ! empty( $items ) ) {
+						$items = array();
+					}
+				}
 
-			return array_unique( $items );
+				if ( FMWP()->user()->can_restore_topic( $user_id, $topic ) ) {
+					$items = array_merge(
+						$items,
+						array(
+							'fmwp-restore-topic' => __( 'Restore topic', 'forumwp' ),
+						)
+					);
+				}
+
+				if ( FMWP()->user()->can_delete_topic( $user_id, $topic ) ) {
+					$items = array_merge(
+						$items,
+						array(
+							'fmwp-remove-topic' => __( 'Remove topic', 'forumwp' ),
+						)
+					);
+				}
+			}
+
+			$items = apply_filters( 'fmwp_topic_dropdown_actions', $items, $user_id, $topic );
+			$items = array_unique( $items );
+
+			foreach ( $items as $key => $title ) {
+				$items[ $key ] = array(
+					'title'     => $title,
+					'entity_id' => $topic->ID,
+					'nonce'     => wp_create_nonce( $key . $topic->ID ),
+				);
+			}
+
+			return $items;
 		}
 
 		/**

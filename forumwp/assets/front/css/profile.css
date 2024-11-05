@@ -331,6 +331,8 @@ body .fmwp-profile-wrapper {
               width: 100%;
               margin: 0;
               font-size: 1em; }
+              body .fmwp-profile-wrapper .fmwp-topics-wrapper .fmwp-topic-row .fmwp-topic-row-lines .fmwp-topic-row-line.fmwp-topic-primary-data .fmwp-topic-title-line .fmwp-topic-title-line-trashed {
+                display: none; }
               body .fmwp-profile-wrapper .fmwp-topics-wrapper .fmwp-topic-row .fmwp-topic-row-lines .fmwp-topic-row-line.fmwp-topic-primary-data .fmwp-topic-title-line a {
                 display: flex;
                 flex-direction: row;
@@ -452,6 +454,11 @@ body .fmwp-profile-wrapper {
         display: flex; }
         body .fmwp-profile-wrapper .fmwp-topics-wrapper .fmwp-topic-row.fmwp-topic-spam .fmwp-topic-row-lines .fmwp-topic-row-line .fmwp-topic-tags-wrapper .fmwp-topic-tag.fmwp-topic-tag-spam {
           display: inline; }
+      body .fmwp-profile-wrapper .fmwp-topics-wrapper .fmwp-topic-row.fmwp-topic-trashed .fmwp-topic-row-lines .fmwp-topic-row-line .fmwp-topic-title-line a {
+        display: none !important; }
+      body .fmwp-profile-wrapper .fmwp-topics-wrapper .fmwp-topic-row.fmwp-topic-trashed .fmwp-topic-row-lines .fmwp-topic-row-line .fmwp-topic-title-line-trashed {
+        font-weight: bold;
+        display: inline !important; }
       body .fmwp-profile-wrapper .fmwp-topics-wrapper .fmwp-topic-row.fmwp-topic-trashed .fmwp-topic-row-lines .fmwp-topic-row-line .fmwp-topic-tags-wrapper {
         display: flex; }
         body .fmwp-profile-wrapper .fmwp-topics-wrapper .fmwp-topic-row.fmwp-topic-trashed .fmwp-topic-row-lines .fmwp-topic-row-line .fmwp-topic-tags-wrapper .fmwp-topic-tag.fmwp-topic-tag-trashed {

@@ -4,7 +4,7 @@
  *
  * This template can be overridden by copying it to your-theme/forumwp/js/topic-row.php
  *
- * @version 2.1.0
+ * @version 2.1.1
  *
  * @var array $fmwp_js_topic_row
  */
@@ -43,6 +43,11 @@ $show_forum = isset( $fmwp_js_topic_row['show_forum'] ) ? $fmwp_js_topic_row['sh
 						{{{<?php echo esc_js( $item ); ?>.title}}}
 					</span>
 				</a>
+				<span class="fmwp-topic-title-line-trashed">
+					<span class="fmwp-topic-title">
+						{{{<?php echo esc_js( $item ); ?>.title}}}
+					</span>
+				</span>
 			</span>
 			<span class="fmwp-topic-tags-wrapper">
 				<?php
@@ -104,8 +109,8 @@ $show_forum = isset( $fmwp_js_topic_row['show_forum'] ) ? $fmwp_js_topic_row['sh
 						<i class="fas fa-angle-down" title="<?php esc_attr_e( 'More Actions', 'forumwp' ); ?>"></i>
 						<div class="fmwp-dropdown" data-element=".fmwp-topic-actions-dropdown" data-trigger="click">
 							<ul>
-								<# _.each( <?php echo esc_js( $item ); ?>.dropdown_actions, function( title, key, list ) { #>
-									<li><a href="#" class="{{{key}}}">{{{title}}}</a></li>
+								<# _.each( <?php echo esc_js( $item ); ?>.dropdown_actions, function( actionData, key, list ) { #>
+									<li><a href="#" class="{{{key}}}" data-entity_id="{{{actionData.entity_id}}}" data-nonce="{{{actionData.nonce}}}">{{{actionData.title}}}</a></li>
 								<# }); #>
 							</ul>
 						</div>

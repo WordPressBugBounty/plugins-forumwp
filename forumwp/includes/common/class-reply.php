@@ -96,8 +96,14 @@ if ( ! class_exists( 'fmwp\common\Reply' ) ) {
 				if ( isset( $wp_query->query['post_status'] ) && ( 'pending' === $wp_query->query['post_status'] || ( is_array( $wp_query->query['post_status'] ) && in_array( 'pending', $wp_query->query['post_status'], true ) ) ) ) {
 					global $wpdb;
 					if ( ! current_user_can( 'manage_fmwp_replies_all' ) ) {
-						$where = str_replace( "{$wpdb->posts}.post_status = 'pending'", "( {$wpdb->posts}.post_status = 'pending' AND {$wpdb->posts}.post_author = '" . get_current_user_id() . "' )", $where );
-						$where = str_replace( "{$wpdb->posts}.post_status = 'trash'", "( {$wpdb->posts}.post_status = 'trash' AND {$wpdb->posts}.post_author = '" . get_current_user_id() . "' )", $where );
+						$current_user_id = get_current_user_id();
+
+						$where = str_replace( "{$wpdb->posts}.post_status = 'pending'", "( {$wpdb->posts}.post_status = 'pending' AND {$wpdb->posts}.post_author = '" . $current_user_id . "' )", $where );
+						$where = str_replace(
+							"{$wpdb->posts}.post_status = 'trash'",
+							"( {$wpdb->posts}.post_status = 'trash' AND ( {$wpdb->posts}.post_author = '$current_user_id' AND ( SELECT meta_value FROM {$wpdb->postmeta} WHERE {$wpdb->postmeta}.post_id = {$wpdb->posts}.ID AND {$wpdb->postmeta}.meta_key = 'fmwp_user_trash_id' ) = '$current_user_id' ) )",
+							$where
+						);
 					}
 				}
 			}
@@ -895,7 +901,17 @@ if ( ! class_exists( 'fmwp\common\Reply' ) ) {
 			}
 
 			$items = apply_filters( 'fmwp_reply_dropdown_actions', $items, $user_id, $reply );
-			return array_unique( $items );
+			$items = array_unique( $items );
+
+			foreach ( $items as $key => $title ) {
+				$items[ $key ] = array(
+					'title'     => $title,
+					'entity_id' => $reply->ID,
+					'nonce'     => wp_create_nonce( $key . $reply->ID ),
+				);
+			}
+
+			return $items;
 		}
 
 		public function get_reported_count() {

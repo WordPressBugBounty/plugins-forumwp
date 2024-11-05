@@ -67,8 +67,16 @@ if ( ! class_exists( 'fmwp\frontend\Enqueue' ) ) {
 
 				if ( FMWP()->options()->get( 'ajax_increment_views' ) ) {
 					if ( ! wp_is_post_revision( $post ) && is_singular( 'fmwp_topic' ) && ! is_preview() ) {
+						$auth = FMWP()->common()->topic()->get_auth( $post->ID );
 						wp_enqueue_script( 'fmwp-topic-views-cache', $this->js_url['frontend'] . 'topic-views-cache' . $this->scripts_prefix . '.js', array( 'fmwp-front-global' ), FMWP_VERSION, true );
-						wp_localize_script( 'fmwp-topic-views-cache', 'fmwp_topic_views', array( 'post_id' => $post->ID ) );
+						wp_localize_script(
+							'fmwp-topic-views-cache',
+							'fmwp_topic_views',
+							array(
+								'post_id' => $post->ID,
+								'auth_id' => $auth,
+							)
+						);
 					}
 				}
 			}

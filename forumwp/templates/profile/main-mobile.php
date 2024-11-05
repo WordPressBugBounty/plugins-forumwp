@@ -4,7 +4,7 @@
  *
  * This template can be overridden by copying it to your-theme/forumwp/profile/main-mobile.php
  *
- * @version 2.1.0
+ * @version 2.1.1
  */
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -124,7 +124,7 @@ $menu_items = FMWP()->frontend()->profile()->get_profile_tabs( $user );
 						<?php
 						foreach ( $submenu_items as $subtab => $sub_item ) {
 							$subtab_classes = array();
-							if ( $menu_tab === $active_tab ) {
+							if ( $menu_tab === $active_tab && $active_subtab === $subtab ) {
 								$subtab_classes[] = 'fmwp-active-tab';
 							}
 							?>

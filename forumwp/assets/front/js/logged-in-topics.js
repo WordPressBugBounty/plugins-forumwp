@@ -446,7 +446,8 @@ jQuery( document ).ready( function($) {
 				nonce: fmwp_front_data.nonce
 			},
 			success: function( data ) {
-				topic_row.remove();
+				fmwp_rebuild_dropdown( data, obj );
+				topic_row.addClass('fmwp-topic-trashed').removeClass('fmwp-topic-pending').data('trashed', true);
 				fmwp_set_busy( 'topics_list', false );
 			},
 			error: function( data ) {
@@ -455,6 +456,81 @@ jQuery( document ).ready( function($) {
 					message: data,
 					type: 'error'
 				});
+				fmwp_set_busy( 'topics_list', false );
+			}
+		});
+	});
+
+	$( document.body ).on( 'click', '.fmwp-restore-topic', function(e) {
+		e.preventDefault();
+
+		if ( fmwp_is_busy( 'topics_list' ) ) {
+			return;
+		}
+
+		var obj = $(this);
+		var topic_row = $(this).closest('.fmwp-topic-row');
+		var topic_id = topic_row.data('topic_id');
+
+		fmwp_set_busy( 'individual_topic', true );
+		wp.ajax.send( 'fmwp_restore_topic', {
+			data: {
+				topic_id: topic_id,
+				nonce: fmwp_front_data.nonce
+			},
+			success: function( data ) {
+				fmwp_rebuild_dropdown( data, obj );
+				topic_row.removeClass('fmwp-topic-trashed').data('trashed', false);
+
+				if ( data.status === 'fmwp_locked' ) {
+					topic_row.addClass('fmwp-topic-locked');
+				} else if ( data.status === 'pending' ) {
+					topic_row.addClass('fmwp-topic-pending');
+				}
+				fmwp_set_busy( 'topics_list', false );
+			},
+			error: function( data ) {
+				console.log( data );
+				$(this).fmwp_notice({
+					message: data,
+					type: 'error'
+				});
+				fmwp_set_busy( 'topics_list', false );
+			}
+		});
+	});
+
+	$( document.body ).on( 'click', '.fmwp-remove-topic', function() {
+		if ( fmwp_is_busy( 'topics_list' ) ) {
+			return;
+		}
+
+		if ( ! confirm( wp.i18n.__( 'Are you sure to delete permanently this topic. This operation can not be canceled.', 'forumwp' ) ) ) {
+			return;
+		}
+
+		var obj = $(this);
+		var topic_row = $(this).closest('.fmwp-topic-row');
+		var topic_id = topic_row.data('topic_id');
+
+		fmwp_set_busy( 'individual_topic', true );
+		wp.ajax.send( 'fmwp_delete_topic', {
+			data: {
+				topic_id: topic_id,
+				nonce: fmwp_front_data.nonce
+			},
+			success: function( data ) {
+				topic_row.remove();
+
+				fmwp_set_busy( 'topics_list', false );
+			},
+			error: function( data ) {
+				console.log( data );
+				$(this).fmwp_notice({
+					message: data,
+					type: 'error'
+				});
+
 				fmwp_set_busy( 'topics_list', false );
 			}
 		});

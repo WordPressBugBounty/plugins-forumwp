@@ -142,12 +142,16 @@ if ( ! class_exists( 'fmwp\common\Filesystem' ) ) {
 				switch_to_blog( $blog_id );
 			}
 
-			$upload_dir = wp_normalize_path( trailingslashit( $this->upload_dir[ $blog_id ] ) . untrailingslashit( $dir ) );
-
 			if ( empty( $this->upload_dir[ $blog_id ] ) ) {
-				$uploads                      = wp_upload_dir();
+				$uploads = wp_upload_dir();
+				if ( ! empty( $uploads['error'] ) ) {
+					return '';
+				}
 				$this->upload_dir[ $blog_id ] = $uploads['basedir'];
 			}
+
+			$upload_dir = wp_normalize_path( trailingslashit( $this->upload_dir[ $blog_id ] ) . untrailingslashit( $dir ) );
+
 			if ( ! $wp_filesystem->is_dir( $upload_dir ) ) {
 				wp_mkdir_p( $upload_dir );
 			}
@@ -176,7 +180,11 @@ if ( ! class_exists( 'fmwp\common\Filesystem' ) ) {
 			}
 
 			if ( empty( $this->upload_url[ $blog_id ] ) ) {
-				$uploads                      = wp_upload_dir();
+				$uploads = wp_upload_dir();
+				if ( ! empty( $uploads['error'] ) ) {
+					return '';
+				}
+
 				$this->upload_url[ $blog_id ] = $uploads['baseurl'];
 			}
 

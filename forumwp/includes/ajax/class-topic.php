@@ -421,10 +421,6 @@ if ( ! class_exists( 'fmwp\ajax\Topic' ) ) {
 			}
 
 			$request['content'] = html_entity_decode( $request['content'] ); // required because WP_Editor send encoded content.
-			preg_match( '/^<p>(.*?)<\/p>$/', $request['content'], $match );
-			if ( ! empty( $match[1] ) ) {
-				$request['content'] = $match[1]; // required because WP_Editor send content wrapped to <p></p>
-			}
 
 			if ( FMWP()->options()->get( 'raw_html_enabled' ) ) {
 				$request_content = wp_kses_post( wp_unslash( $request['content'] ) );
@@ -501,10 +497,6 @@ if ( ! class_exists( 'fmwp\ajax\Topic' ) ) {
 			}
 
 			$topic_data['content'] = html_entity_decode( $topic_data['content'] ); // required because WP_Editor send encoded content.
-			preg_match( '/^<p>(.*?)<\/p>$/', $topic_data['content'], $match );
-			if ( ! empty( $match[1] ) ) {
-				$topic_data['content'] = $match[1]; // required because WP_Editor send content wrapped to <p></p>
-			}
 
 			if ( FMWP()->options()->get( 'raw_html_enabled' ) ) {
 				$request_content = wp_kses_post( wp_unslash( $topic_data['content'] ) );
@@ -721,6 +713,8 @@ if ( ! class_exists( 'fmwp\ajax\Topic' ) ) {
 
 			FMWP()->common()->topic()->move_to_trash( $topic_id );
 
+			update_post_meta( $topic_id, 'fmwp_user_trash_id', get_current_user_id() );
+
 			$topic = get_post( $topic_id );
 			wp_send_json_success(
 				array(
@@ -739,8 +733,9 @@ if ( ! class_exists( 'fmwp\ajax\Topic' ) ) {
 			if ( empty( $_POST['topic_id'] ) ) {
 				wp_send_json_error( __( 'Invalid data', 'forumwp' ) );
 			}
+			$topic_id = absint( $_POST['topic_id'] );
 
-			$topic = get_post( absint( $_POST['topic_id'] ) );
+			$topic = get_post( $topic_id );
 
 			if ( empty( $topic ) || is_wp_error( $topic ) ) {
 				wp_send_json_error( __( 'Topic ID is invalid', 'forumwp' ) );
@@ -750,9 +745,11 @@ if ( ! class_exists( 'fmwp\ajax\Topic' ) ) {
 				wp_send_json_error( __( 'You do not have the ability to restore this topic', 'forumwp' ) );
 			}
 
-			FMWP()->common()->topic()->restore( absint( $_POST['topic_id'] ) );
+			FMWP()->common()->topic()->restore( $topic_id );
 
-			$topic = get_post( absint( $_POST['topic_id'] ) );
+			delete_post_meta( $topic_id, 'fmwp_user_trash_id' );
+
+			$topic = get_post( $topic_id );
 			wp_send_json_success(
 				array(
 					'status'           => $topic->post_status,
@@ -771,8 +768,9 @@ if ( ! class_exists( 'fmwp\ajax\Topic' ) ) {
 			if ( empty( $_POST['topic_id'] ) ) {
 				wp_send_json_error( __( 'Invalid data', 'forumwp' ) );
 			}
+			$topic_id = absint( $_POST['topic_id'] );
 
-			$topic = get_post( absint( $_POST['topic_id'] ) );
+			$topic = get_post( $topic_id );
 
 			if ( empty( $topic ) || is_wp_error( $topic ) ) {
 				wp_send_json_error( __( 'Topic ID is invalid', 'forumwp' ) );
@@ -782,10 +780,10 @@ if ( ! class_exists( 'fmwp\ajax\Topic' ) ) {
 				wp_send_json_error( __( 'You do not have the ability to delete this topic', 'forumwp' ) );
 			}
 
-			$forum_id   = FMWP()->common()->topic()->get_forum_id( absint( $_POST['topic_id'] ) );
+			$forum_id   = FMWP()->common()->topic()->get_forum_id( $topic_id );
 			$forum_link = get_permalink( $forum_id );
 
-			FMWP()->common()->topic()->delete( absint( $_POST['topic_id'] ) );
+			FMWP()->common()->topic()->delete( $topic_id );
 
 			wp_send_json_success(
 				array(
@@ -954,24 +952,17 @@ if ( ! class_exists( 'fmwp\ajax\Topic' ) ) {
 		public function increment_views() {
 			check_ajax_referer( 'fmwp-frontend-nonce', 'nonce' );
 
+			// phpcs:disable WordPress.Security.NonceVerification
 			if ( empty( $_REQUEST['post_id'] ) ) {
 				wp_send_json_error();
 			}
-
 			$post_id = absint( $_REQUEST['post_id'] );
 
-			$views = array();
-			if ( ! empty( $_COOKIE['fmwp_topic_views'] ) ) {
-				$views = maybe_unserialize( wp_unslash( $_COOKIE['fmwp_topic_views'] ) ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- array_map below
+			if ( empty( $_REQUEST['auth_id'] ) ) {
+				wp_send_json_error();
 			}
-			if ( ! is_array( $views ) ) {
-				$views = array();
-			}
-
-			$views[] = $post_id;
-			$views   = array_map( 'absint', array_unique( $views ) );
-
-			setcookie( 'fmwp_topic_views', maybe_serialize( $views ), time() + YEAR_IN_SECONDS, COOKIEPATH, COOKIE_DOMAIN, is_ssl(), true );
+			$auth_id = sanitize_text_field( $_REQUEST['auth_id'] );
+			// phpcs:enable WordPress.Security.NonceVerification
 
 			$post = get_post( $post_id );
 			if ( $post_id > 0 && 'fmwp_topic' === $post->post_type ) {
@@ -980,25 +971,21 @@ if ( ! class_exists( 'fmwp\ajax\Topic' ) ) {
 					$post_views = 0;
 				}
 
-				$should_count = true;
-				if ( ! empty( $_COOKIE['fmwp_topic_views'] ) ) {
-					$views = maybe_unserialize( wp_unslash( $_COOKIE['fmwp_topic_views'] ) ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- array_map below
-					if ( ! is_array( $views ) ) {
-						$views = array();
-					}
-					$views = array_map( 'absint', $views );
+				$exists = FMWP()->common()->topic()->check_auth_topic_view( $auth_id, $post_id );
 
-					if ( in_array( $post_id, $views, true ) ) {
-						$should_count = false;
-					}
-				}
+				if ( false === $exists ) {
 
-				if ( $should_count ) {
+					update_post_meta( $post_id, 'fmwp_views', $post_views + 1 );
+
+					// add auth and post_id to the DB
+					FMWP()->common()->topic()->insert_auth_topic_view( $auth_id, $post->ID );
+
 					update_post_meta( $post_id, 'fmwp_views', ( $post_views + 1 ) );
 					wp_send_json_success( $post_views + 1 );
+				} else {
+					wp_send_json_error( 'storage' );
 				}
 			}
-
 			wp_send_json_error();
 		}
 	}

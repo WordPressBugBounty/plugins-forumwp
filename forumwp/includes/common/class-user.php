@@ -286,6 +286,8 @@ if ( ! class_exists( 'fmwp\common\User' ) ) {
 						}
 					} elseif ( 'pending' === $reply->post_status && absint( $reply->post_author ) === $user_id ) {
 						$can_view = true;
+					} elseif ( 'trash' === $reply->post_status && absint( $reply->post_author ) === $user_id ) {
+						$can_view = true;
 					}
 				} elseif ( FMWP()->common()->reply()->is_spam( $reply ) ) {
 						$can_view = false;

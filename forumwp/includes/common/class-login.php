@@ -145,7 +145,7 @@ if ( ! class_exists( 'fmwp\common\Login' ) ) {
 			}
 
 			if ( null === $user && ( '' === $username || '' === $password ) ) {
-				return new WP_Error( 'authentication_failed', __( '<strong>ERROR</strong>: Invalid username, email address or incorrect password.' ) );
+				return new WP_Error( 'authentication_failed', __( '<strong>ERROR</strong>: Invalid username, email address or incorrect password.', 'forumwp' ) );
 			}
 
 			return $user;

@@ -443,7 +443,9 @@ jQuery( document ).ready( function($) {
 				nonce: fmwp_front_data.nonce
 			},
 			success: function( data ) {
-				topic_row.remove();
+				fmwp_rebuild_dropdown( data, obj );
+
+				topic_row.addClass('fmwp-topic-trashed').removeClass('fmwp-topic-pending').data('trashed', true);
 				fmwp_set_busy( 'individual_forum', false );
 			},
 			error: function( data ) {

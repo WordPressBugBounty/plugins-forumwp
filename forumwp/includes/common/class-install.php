@@ -250,7 +250,15 @@ post_id int(11) NOT NULL,
 user_id int(11) NOT NULL,
 creation_date varchar(25) NULL,
 PRIMARY KEY  (id)
-) $charset_collate;";
+) $charset_collate;
+CREATE TABLE {$wpdb->prefix}fmwp_topic_views (
+auth_id varchar(32) NOT NULL,
+post_id int(11) NOT NULL,
+KEY auth_id_post_id (auth_id, post_id),
+KEY auth_id (auth_id),
+KEY post_id (post_id)
+) $charset_collate;
+";
 
 			dbDelta( $tables );
 		}
