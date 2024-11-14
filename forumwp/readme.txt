@@ -5,8 +5,8 @@ Contributors: ultimatemember, nsinelnikov
 Tags: forum, topic, reply, user-profile, user-registration
 Requires PHP: 7.0
 Requires at least: 5.5
-Tested up to: 6.6
-Stable tag: 2.1.1
+Tested up to: 6.7
+Stable tag: 2.1.2
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.txt
 
@@ -60,6 +60,10 @@ Got a problem or need help with ForumWP? Head over to our [documentation](http:/
 14. Screenshot 14
 
 == Changelog ==
+
+= 2.1.2: November 14, 2024 =
+
+* Fixed: "Load textdomain just in time" issue
 
 = 2.1.1: November 05, 2024 =
 

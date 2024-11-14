@@ -3,7 +3,7 @@
  * Plugin Name: ForumWP
  * Plugin URI: https://forumwpplugin.com/
  * Description: A full-featured, powerful forum plugin for WordPress
- * Version: 2.1.1
+ * Version: 2.1.2
  * Author: ForumWP
  * Text Domain: forumwp
  * Domain Path: /languages
@@ -15,7 +15,7 @@
 defined( 'ABSPATH' ) || exit;
 
 require_once ABSPATH . 'wp-admin/includes/plugin.php';
-$plugin_data = get_plugin_data( __FILE__ );
+$plugin_data = get_plugin_data( __FILE__, true, false );
 
 // phpcs:disable Generic.NamingConventions.UpperCaseConstantName
 define( 'fmwp_url', plugin_dir_url( __FILE__ ) );
