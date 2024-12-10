@@ -4,7 +4,7 @@
  *
  * This template can be overridden by copying it to your-theme/forumwp/profile/main-mobile.php
  *
- * @version 2.1.1
+ * @version 2.1.3
  */
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -90,7 +90,7 @@ $menu_items = FMWP()->frontend()->profile()->get_profile_tabs( $user );
 				}
 				?>
 				<li class="<?php echo esc_attr( implode( ' ', $tab_classes ) ); ?>">
-					<a href="<?php echo esc_attr( $item['link'] ); ?>" class="fmwp-profile-mobile-tab-link" data-tab="<?php echo esc_attr( $menu_tab ); ?>" data-ajax="<?php echo (int) $item['ajax']; ?>" title="<?php echo esc_attr( $item['title'] ); ?>">
+					<a href="<?php echo esc_url( $item['link'] ); ?>" class="fmwp-profile-mobile-tab-link" data-tab="<?php echo esc_attr( $menu_tab ); ?>" data-ajax="<?php echo (int) $item['ajax']; ?>" title="<?php echo esc_attr( $item['title'] ); ?>">
 						<?php echo esc_html( $item['title'] ); ?>
 					</a>
 				</li>
@@ -129,7 +129,7 @@ $menu_items = FMWP()->frontend()->profile()->get_profile_tabs( $user );
 							}
 							?>
 							<li class="<?php echo esc_attr( implode( ' ', $subtab_classes ) ); ?>">
-								<a href="<?php echo esc_attr( $sub_item['link'] ); ?>" class="fmwp-profile-load-content-link fmwp-profile-subtab-link" data-tab="<?php echo esc_attr( $subtab ); ?>" title="<?php echo esc_attr( $sub_item['title'] ); ?>">
+								<a href="<?php echo esc_url( $sub_item['link'] ); ?>" class="fmwp-profile-load-content-link fmwp-profile-subtab-link" data-tab="<?php echo esc_attr( $subtab ); ?>" title="<?php echo esc_attr( $sub_item['title'] ); ?>">
 									<?php echo esc_html( $sub_item['title'] ); ?>
 								</a>
 							</li>

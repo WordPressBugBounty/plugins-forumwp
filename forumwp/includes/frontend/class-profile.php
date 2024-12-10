@@ -45,7 +45,7 @@ if ( ! class_exists( 'fmwp\frontend\Profile' ) ) {
 			foreach ( $globally_enabled_emails as $email_key => $enabled_email ) {
 				$field_key          = 'enabled_' . $email_key . '_notification';
 				$usermeta           = get_user_meta( $user->ID, 'fmwp_' . $field_key, true );
-				$data[ $field_key ] = ! empty( $usermeta ) ? ' checked="checked" ' : '';
+				$data[ $field_key ] = ! empty( $usermeta ) ? 'checked' : '';
 			}
 
 			return $data;

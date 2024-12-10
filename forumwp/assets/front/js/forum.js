@@ -9,15 +9,17 @@ jQuery( document ).ready( function($) {
 
 	fmwp_embed_containers.push( ".fmwp-forum-content" );
 
-	$('.fmwp-topics-wrapper').each( function() {
-		fmwp_get_topics( $(this), {
+	$('.fmwp-forum-wrapper .fmwp-topics-wrapper').each( function() {
+		let order = $(this).parents('.fmwp-forum-wrapper').find('.fmwp-forum-sort:visible').val();
+
+		fmwp_get_topics_for_forum( $(this), {
 			page: 1,
-			order: $(this).data('order')
+			order: order
 		});
 	});
 
 
-	$( window ).scroll( function() {
+	$( window ).on( 'scroll', function() {
 		var scrollHandling = {
 			allow: true,
 			reallow: function() {
@@ -29,23 +31,24 @@ jQuery( document ).ready( function($) {
 		if ( ! fmwp_is_busy( 'individual_forum' ) && scrollHandling.allow ) {
 			scrollHandling.allow = false;
 
-			var load_block = $('.fmwp-topics-wrapper .fmwp-load-more');
-			var search_line = $('.fmwp-topics-wrapper').parents('.fmwp-forum-content').siblings('.fmwp-forum-head').data( 'fmwp_search' );
+			var load_block = $('.fmwp-forum-wrapper .fmwp-topics-wrapper .fmwp-load-more');
+			var search_line = $('.fmwp-forum-wrapper .fmwp-topics-wrapper').parents('.fmwp-forum-content').siblings('.fmwp-forum-head').data( 'fmwp_search' );
 			if ( load_block.length ) {
 				setTimeout( scrollHandling.reallow, scrollHandling.delay );
 
 				var offset = load_block.offset().top - $( window ).scrollTop();
 				if ( 1000 > offset ) {
-					fmwp_get_topics( $('.fmwp-topics-wrapper'), {
+					let order = load_block.parents('.fmwp-forum-wrapper').find('.fmwp-forum-sort:visible').val();
+
+					fmwp_get_topics_for_forum( $('.fmwp-forum-wrapper .fmwp-topics-wrapper'), {
 						page: fmwp_topics_page,
-						order: $('.fmwp-topics-wrapper').data('order'),
+						order: order,
 						search: search_line
 					});
 				}
 			}
 		}
 	});
-
 
 	$( document.body ).on( 'change', '.fmwp-forum-sort', function(e) {
 		e.preventDefault();
@@ -59,7 +62,9 @@ jQuery( document ).ready( function($) {
 		var order = $(this).val();
 		var search_line = wrapper.parents('.fmwp-forum-content').siblings('.fmwp-forum-head').data( 'fmwp_search' );
 
-		fmwp_get_topics( wrapper, {
+		wrapper.find('.fmwp-forum-sort').val( order );
+
+		fmwp_get_topics_for_forum( wrapper, {
 			page: 1,
 			order: order,
 			search: search_line
@@ -98,9 +103,9 @@ jQuery( document ).ready( function($) {
 
 		var forum_id = $(this).parents('.fmwp-forum-head').data('fmwp_forum_id');
 		var wrapper = $('.fmwp-topics-wrapper[data-fmwp_forum_id="' + forum_id + '"]');
-		var order = $(this).parents('.fmwp-forum-head').find('.fmwp-forum-sort').val();
+		var order = $(this).parents('.fmwp-forum-head').find('.fmwp-forum-sort:visible').val();
 
-		fmwp_get_topics( wrapper, {
+		fmwp_get_topics_for_forum( wrapper, {
 			page: 1,
 			order: order,
 			search: search_line
@@ -122,7 +127,7 @@ jQuery( document ).ready( function($) {
  * @param obj
  * @param args
  */
-function fmwp_get_topics( obj, args ) {
+function fmwp_get_topics_for_forum( obj, args ) {
 	fmwp_set_busy( 'individual_forum', true );
 
 	var ajax_data = {
@@ -152,29 +157,32 @@ function fmwp_get_topics( obj, args ) {
 						}
 					}
 
-                    obj.siblings('.fmwp-topics-wrapper-heading').addClass('fmwp-no-actions-heading');
+					obj.siblings('.fmwp-topics-wrapper-heading').addClass('fmwp-no-actions-heading');
 				}
 			} else {
-                obj.siblings('.fmwp-topics-wrapper-heading').removeClass('fmwp-no-actions-heading');
+				obj.siblings('.fmwp-topics-wrapper-heading').removeClass('fmwp-no-actions-heading');
 
-				var template = wp.template( 'fmwp-topics-list' );
-				var template_content = template({
-					topics: data
-				});
+				if( jQuery('#tmpl-fmwp-topics-list').length ) {
+					var template = wp.template( 'fmwp-topics-list' );
+					var template_content = template({
+						topics: data
+					});
 
-				obj.data( 'order', args.order );
+					obj.data( 'order', args.order );
 
-				obj.find( '.fmwp-load-more' ).remove();
-				if ( args.page === 1 ) {
-					obj.html( template_content + '<span class="fmwp-load-more"></span>' );
-				} else {
-					obj.append( template_content + '<span class="fmwp-load-more"></span>' );
+					obj.find( '.fmwp-load-more' ).remove();
+					if ( args.page === 1 ) {
+						obj.html( template_content + '<span class="fmwp-load-more"></span>' );
+					} else {
+						obj.append( template_content + '<span class="fmwp-load-more"></span>' );
+					}
 				}
 
 				fmwp_topics_page = parseInt( args.page ) + 1;
 			}
 
 			fmwp_set_busy( 'individual_forum', false );
+			wp.hooks.doAction( 'fmwp_topics_load_finish' );
 		},
 		error: function( data ) {
 			fmwp_set_busy( 'individual_forum', false );

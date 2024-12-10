@@ -1,0 +1,10 @@
+{
+  "apiVersion": 2,
+  "name": "fmwp-block/fmwp-topics-list",
+  "title": "Topics list",
+  "description": "Displaying a topics list",
+  "icon": "text",
+  "category": "fmwp-blocks",
+  "editorScript": "file:./src/index.js",
+  "textdomain": "forumwp"
+}

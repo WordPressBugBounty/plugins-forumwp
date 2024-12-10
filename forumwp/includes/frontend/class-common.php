@@ -112,6 +112,13 @@ if ( ! class_exists( 'fmwp\frontend\Common' ) ) {
 			if ( ! FMWP()->options()->get( 'breadcrumb_enabled' ) ) {
 				return;
 			}
+			// Hide on not predefined pages and not single forum/topic pages
+			$forums_page_id  = FMWP()->common()->get_preset_page_id( 'forums' );
+			$topics_page_id  = FMWP()->common()->get_preset_page_id( 'topics' );
+			$current_post_id = get_the_ID();
+			if ( $current_post_id !== $forums_page_id && $current_post_id !== $topics_page_id && ! FMWP()->is_forum_page() && ! FMWP()->is_topic_page() ) {
+				return;
+			}
 
 			$breadcrumbs        = FMWP()->get_breadcrumbs_data();
 			$breadcrumbs_length = count( $breadcrumbs );

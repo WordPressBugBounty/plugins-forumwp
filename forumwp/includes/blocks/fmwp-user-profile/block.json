@@ -1,0 +1,10 @@
+{
+  "apiVersion": 2,
+  "name": "fmwp-block/fmwp-user-profile",
+  "title": "Forum user profile",
+  "description": "Displaying a user profile",
+  "icon": "text",
+  "category": "fmwp-blocks",
+  "editorScript": "file:./src/index.js",
+  "textdomain": "forumwp"
+}

@@ -74,7 +74,9 @@
         #fmwp-reply-popup-wrapper form #fmwp-reply-popup-editors #fmwp-reply-popup-editor #wp-fmwpreplycontent-wrap #wp-fmwpreplycontent-editor-container {
           height: 100%; }
           #fmwp-reply-popup-wrapper form #fmwp-reply-popup-editors #fmwp-reply-popup-editor #wp-fmwpreplycontent-wrap #wp-fmwpreplycontent-editor-container textarea {
-            height: calc( 100% - 40px); }
+            height: calc( 100% - 40px) !important;
+            resize: none;
+            font-family: inherit; }
           #fmwp-reply-popup-wrapper form #fmwp-reply-popup-editors #fmwp-reply-popup-editor #wp-fmwpreplycontent-wrap #wp-fmwpreplycontent-editor-container .mce-btn button:hover, #fmwp-reply-popup-wrapper form #fmwp-reply-popup-editors #fmwp-reply-popup-editor #wp-fmwpreplycontent-wrap #wp-fmwpreplycontent-editor-container .mce-btn button:active {
             color: inherit;
             background: none;

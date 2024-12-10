@@ -40,6 +40,8 @@ if ( ! class_exists( 'fmwp\ajax\Common' ) ) {
 			add_action( 'wp_ajax_fmwp_lock_forum', array( $this->forum(), 'lock' ) );
 			add_action( 'wp_ajax_fmwp_unlock_forum', array( $this->forum(), 'unlock' ) );
 			add_action( 'wp_ajax_fmwp_trash_forum', array( $this->forum(), 'trash' ) );
+			add_action( 'wp_ajax_fmwp_restore_forum', array( $this->forum(), 'restore' ) );
+			add_action( 'wp_ajax_fmwp_remove_forum', array( $this->forum(), 'delete' ) );
 
 			// topics list actions
 			add_action( 'wp_ajax_fmwp_get_topics', array( $this->topic(), 'get_topics' ) );

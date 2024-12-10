@@ -1,0 +1,10 @@
+{
+  "apiVersion": 2,
+  "name": "fmwp-block/fmwp-login-form",
+  "title": "Forum login form",
+  "description": "Displaying a login form",
+  "icon": "text",
+  "category": "fmwp-blocks",
+  "editorScript": "file:./src/index.js",
+  "textdomain": "forumwp"
+}

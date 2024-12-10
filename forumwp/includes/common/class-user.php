@@ -25,6 +25,10 @@ if ( ! class_exists( 'fmwp\common\User' ) ) {
 		public function get_unique_permalink( $user ) {
 			global $wpdb;
 
+			if ( empty( $user ) ) {
+				return '';
+			}
+
 			$meta = $wpdb->get_col(
 				$wpdb->prepare(
 					"SELECT meta_value
@@ -225,6 +229,10 @@ if ( ! class_exists( 'fmwp\common\User' ) ) {
 		 * @return string
 		 */
 		public function display_name( $user ) {
+			if ( empty( $user ) ) {
+				return '';
+			}
+
 			$display_name = ! empty( $user->display_name ) ? $user->display_name : $user->user_login;
 			return apply_filters( 'fmwp_user_display_name', $display_name, $user );
 		}
@@ -317,18 +325,22 @@ if ( ! class_exists( 'fmwp\common\User' ) ) {
 					$can_edit = true;
 				}
 
-				$topic_id = FMWP()->common()->topic()->get_forum_id( $reply->ID );
+				$topic_id = FMWP()->common()->reply()->get_topic_id( $reply->ID );
 				$topic    = get_post( $topic_id );
 
-				if ( ! user_can( $user_id, 'manage_fmwp_topics_all' ) && FMWP()->common()->topic()->is_locked( $topic ) ) {
+				if ( empty( $topic ) ) {
 					$can_edit = false;
-				}
+				} else {
+					if ( ! user_can( $user_id, 'manage_fmwp_topics_all' ) && FMWP()->common()->topic()->is_locked( $topic ) ) {
+						$can_edit = false;
+					}
 
-				$forum_id = FMWP()->common()->topic()->get_forum_id( $topic->ID );
-				$forum    = get_post( $forum_id );
+					$forum_id = FMWP()->common()->topic()->get_forum_id( $topic->ID );
+					$forum    = get_post( $forum_id );
 
-				if ( ! user_can( $user_id, 'manage_fmwp_forums_all' ) && FMWP()->common()->forum()->is_locked( $forum ) ) {
-					$can_edit = false;
+					if ( empty( $forum ) || ( ! user_can( $user_id, 'manage_fmwp_forums_all' ) && FMWP()->common()->forum()->is_locked( $forum ) ) ) {
+						$can_edit = false;
+					}
 				}
 			}
 
@@ -349,18 +361,22 @@ if ( ! class_exists( 'fmwp\common\User' ) ) {
 					$can_trash = true;
 				}
 
-				$topic_id = FMWP()->common()->topic()->get_forum_id( $reply->ID );
+				$topic_id = FMWP()->common()->reply()->get_topic_id( $reply->ID );
 				$topic    = get_post( $topic_id );
 
-				if ( ! user_can( $user_id, 'manage_fmwp_topics_all' ) && FMWP()->common()->topic()->is_locked( $topic ) ) {
+				if ( empty( $topic ) ) {
 					$can_trash = false;
-				}
+				} else {
+					if ( ! user_can( $user_id, 'manage_fmwp_topics_all' ) && FMWP()->common()->topic()->is_locked( $topic ) ) {
+						$can_trash = false;
+					}
 
-				$forum_id = FMWP()->common()->topic()->get_forum_id( $topic->ID );
-				$forum    = get_post( $forum_id );
+					$forum_id = FMWP()->common()->topic()->get_forum_id( $topic->ID );
+					$forum    = get_post( $forum_id );
 
-				if ( ! user_can( $user_id, 'manage_fmwp_forums_all' ) && FMWP()->common()->forum()->is_locked( $forum ) ) {
-					$can_trash = false;
+					if ( empty( $forum ) || ( ! user_can( $user_id, 'manage_fmwp_forums_all' ) && FMWP()->common()->forum()->is_locked( $forum ) ) ) {
+						$can_trash = false;
+					}
 				}
 			}
 
@@ -377,11 +393,16 @@ if ( ! class_exists( 'fmwp\common\User' ) ) {
 			$can_restore = false;
 
 			if ( 'trash' === $reply->post_status ) {
-				if ( absint( $reply->post_author ) === $user_id || user_can( $user_id, 'manage_fmwp_replies_all' ) ) {
+				if ( user_can( $user_id, 'manage_fmwp_replies_all' ) ) {
 					$can_restore = true;
+				} else {
+					$trash_author = get_post_meta( $reply->ID, 'fmwp_user_trash_id', true );
+					if ( ! empty( $trash_author ) && absint( $trash_author ) === $user_id ) {
+						$can_restore = true;
+					}
 				}
 
-				$topic_id = FMWP()->common()->topic()->get_forum_id( $reply->ID );
+				$topic_id = FMWP()->common()->reply()->get_topic_id( $reply->ID );
 				$topic    = get_post( $topic_id );
 
 				if ( ! user_can( $user_id, 'manage_fmwp_topics_all' ) && FMWP()->common()->topic()->is_locked( $topic ) ) {
@@ -413,7 +434,7 @@ if ( ! class_exists( 'fmwp\common\User' ) ) {
 					$can_delete = true;
 				}
 
-				$topic_id = FMWP()->common()->topic()->get_forum_id( $reply->ID );
+				$topic_id = FMWP()->common()->reply()->get_topic_id( $reply->ID );
 				$topic    = get_post( $topic_id );
 
 				if ( ! user_can( $user_id, 'manage_fmwp_topics_all' ) && FMWP()->common()->topic()->is_locked( $topic ) ) {
@@ -447,18 +468,22 @@ if ( ! class_exists( 'fmwp\common\User' ) ) {
 					}
 				}
 
-				$topic_id = FMWP()->common()->topic()->get_forum_id( $reply->ID );
+				$topic_id = FMWP()->common()->reply()->get_topic_id( $reply->ID );
 				$topic    = get_post( $topic_id );
 
-				if ( ! user_can( $user_id, 'manage_fmwp_topics_all' ) && FMWP()->common()->topic()->is_locked( $topic ) ) {
+				if ( empty( $topic ) ) {
 					$can_spam = false;
-				}
+				} else {
+					if ( ! user_can( $user_id, 'manage_fmwp_topics_all' ) && FMWP()->common()->topic()->is_locked( $topic ) ) {
+						$can_spam = false;
+					}
 
-				$forum_id = FMWP()->common()->topic()->get_forum_id( $topic->ID );
-				$forum    = get_post( $forum_id );
+					$forum_id = FMWP()->common()->topic()->get_forum_id( $topic->ID );
+					$forum    = get_post( $forum_id );
 
-				if ( ! user_can( $user_id, 'manage_fmwp_forums_all' ) && FMWP()->common()->forum()->is_locked( $forum ) ) {
-					$can_spam = false;
+					if ( empty( $forum ) || ( ! user_can( $user_id, 'manage_fmwp_forums_all' ) && FMWP()->common()->forum()->is_locked( $forum ) ) ) {
+						$can_spam = false;
+					}
 				}
 			}
 
@@ -480,18 +505,22 @@ if ( ! class_exists( 'fmwp\common\User' ) ) {
 				}
 			}
 
-			$topic_id = FMWP()->common()->topic()->get_forum_id( $reply->ID );
+			$topic_id = FMWP()->common()->reply()->get_topic_id( $reply->ID );
 			$topic    = get_post( $topic_id );
 
-			if ( ! user_can( $user_id, 'manage_fmwp_topics_all' ) && FMWP()->common()->topic()->is_locked( $topic ) ) {
+			if ( empty( $topic ) ) {
 				$can_restore_spam = false;
-			}
+			} else {
+				if ( ! user_can( $user_id, 'manage_fmwp_topics_all' ) && FMWP()->common()->topic()->is_locked( $topic ) ) {
+					$can_restore_spam = false;
+				}
 
-			$forum_id = FMWP()->common()->topic()->get_forum_id( $topic->ID );
-			$forum    = get_post( $forum_id );
+				$forum_id = FMWP()->common()->topic()->get_forum_id( $topic->ID );
+				$forum    = get_post( $forum_id );
 
-			if ( ! user_can( $user_id, 'manage_fmwp_forums_all' ) && FMWP()->common()->forum()->is_locked( $forum ) ) {
-				$can_restore_spam = false;
+				if ( empty( $forum ) || ( ! user_can( $user_id, 'manage_fmwp_forums_all' ) && FMWP()->common()->forum()->is_locked( $forum ) ) ) {
+					$can_restore_spam = false;
+				}
 			}
 
 			return apply_filters( 'fmwp_user_can_restore_spam_reply', $can_restore_spam, $user_id, $reply );
@@ -697,6 +726,24 @@ if ( ! class_exists( 'fmwp\common\User' ) ) {
 		 *
 		 * @return bool
 		 */
+		public function can_trash_forum( $user_id, $forum ) {
+			$can_trash = false;
+
+			if ( 'trash' !== $forum->post_status ) {
+				if ( absint( $forum->post_author ) === $user_id || user_can( $user_id, 'manage_fmwp_forums_all' ) ) {
+					$can_trash = true;
+				}
+			}
+
+			return apply_filters( 'fmwp_user_can_trash_forum', $can_trash, $user_id, $forum );
+		}
+
+		/**
+		 * @param int $user_id
+		 * @param WP_Post $forum
+		 *
+		 * @return bool
+		 */
 		public function can_edit_forum( $user_id, $forum ) {
 			$can_edit = false;
 
@@ -715,10 +762,41 @@ if ( ! class_exists( 'fmwp\common\User' ) ) {
 		 *
 		 * @return bool
 		 */
+		public function can_restore_forum( $user_id, $forum ) {
+			$can_restore = false;
+
+			if ( 'trash' === $forum->post_status ) {
+				if ( user_can( $user_id, 'manage_fmwp_forums_all' ) ) {
+					$can_restore = true;
+				} else {
+					$trash_author = get_post_meta( $forum->ID, 'fmwp_user_trash_id', true );
+					if ( ! empty( $trash_author ) && absint( $trash_author ) === $user_id ) {
+						$can_restore = true;
+					}
+				}
+			}
+
+			return apply_filters( 'fmwp_user_can_restore_forum', $can_restore, $user_id, $forum );
+		}
+
+		/**
+		 * @param int $user_id
+		 * @param WP_Post $forum
+		 *
+		 * @return bool
+		 */
 		public function can_delete_forum( $user_id, $forum ) {
 			$can_delete = false;
-			if ( user_can( $user_id, 'manage_fmwp_forums_all' ) ) {
-				$can_delete = true;
+
+			if ( 'trash' === $forum->post_status ) {
+				if ( user_can( $user_id, 'manage_fmwp_forums_all' ) ) {
+					$can_delete = true;
+				} else {
+					$trash_author = get_post_meta( $forum->ID, 'fmwp_user_trash_id', true );
+					if ( ! empty( $trash_author ) && absint( $trash_author ) === $user_id ) {
+						$can_delete = true;
+					}
+				}
 			}
 
 			return apply_filters( 'fmwp_user_can_delete_forum', $can_delete, $user_id, $forum );
@@ -759,8 +837,13 @@ if ( ! class_exists( 'fmwp\common\User' ) ) {
 			$can_restore = false;
 
 			if ( 'trash' === $topic->post_status ) {
-				if ( absint( $topic->post_author ) === $user_id || user_can( $user_id, 'manage_fmwp_topics_all' ) ) {
+				if ( user_can( $user_id, 'manage_fmwp_topics_all' ) ) {
 					$can_restore = true;
+				} else {
+					$trash_author = get_post_meta( $topic->ID, 'fmwp_user_trash_id', true );
+					if ( ! empty( $trash_author ) && absint( $trash_author ) === $user_id ) {
+						$can_restore = true;
+					}
 				}
 
 				$forum_id = FMWP()->common()->topic()->get_forum_id( $topic->ID );
@@ -822,6 +905,9 @@ if ( ! class_exists( 'fmwp\common\User' ) ) {
 		 */
 		public function generate_card( $user_id ) {
 			$user = get_userdata( $user_id );
+			if ( empty( $user ) ) {
+				return '';
+			}
 
 			ob_start();
 

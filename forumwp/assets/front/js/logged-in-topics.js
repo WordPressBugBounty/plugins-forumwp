@@ -427,7 +427,6 @@ jQuery( document ).ready( function($) {
 		});
 	});
 
-
 	$( document.body ).on( 'click', '.fmwp-trash-topic', function(e) {
 		e.preventDefault();
 
@@ -446,7 +445,7 @@ jQuery( document ).ready( function($) {
 				nonce: fmwp_front_data.nonce
 			},
 			success: function( data ) {
-				fmwp_rebuild_dropdown( data, obj );
+        		fmwp_rebuild_dropdown( data, obj );
 				topic_row.addClass('fmwp-topic-trashed').removeClass('fmwp-topic-pending').data('trashed', true);
 				fmwp_set_busy( 'topics_list', false );
 			},
@@ -472,7 +471,7 @@ jQuery( document ).ready( function($) {
 		var topic_row = $(this).closest('.fmwp-topic-row');
 		var topic_id = topic_row.data('topic_id');
 
-		fmwp_set_busy( 'individual_topic', true );
+		fmwp_set_busy( 'topics_list', true );
 		wp.ajax.send( 'fmwp_restore_topic', {
 			data: {
 				topic_id: topic_id,
@@ -481,7 +480,6 @@ jQuery( document ).ready( function($) {
 			success: function( data ) {
 				fmwp_rebuild_dropdown( data, obj );
 				topic_row.removeClass('fmwp-topic-trashed').data('trashed', false);
-
 				if ( data.status === 'fmwp_locked' ) {
 					topic_row.addClass('fmwp-topic-locked');
 				} else if ( data.status === 'pending' ) {
@@ -513,7 +511,7 @@ jQuery( document ).ready( function($) {
 		var topic_row = $(this).closest('.fmwp-topic-row');
 		var topic_id = topic_row.data('topic_id');
 
-		fmwp_set_busy( 'individual_topic', true );
+		fmwp_set_busy( 'topics_list', true );
 		wp.ajax.send( 'fmwp_delete_topic', {
 			data: {
 				topic_id: topic_id,

@@ -52,13 +52,19 @@ jQuery( document ).ready( function($) {
 		var popup = $('#fmwp-topic-popup-wrapper');
 		var form = $(this).parents( 'form' );
 		var serialize_data = form.serializeArray();
+		var editor_value;
 
-		var editor = tinyMCE.get( 'fmwptopiccontent' );
+		if ( typeof tinymce != "undefined" ) {
+			var editor = tinyMCE.get( 'fmwptopiccontent' );
+			editor_value = editor.getContent({format : 'raw'});
+		} else {
+			editor_value = $('#fmwptopiccontent').val();
+		}
 
 		var data = {};
 		$.each( serialize_data, function( i ) {
 			if ( 'fmwp-topic[content]' === serialize_data[ i ].name ) {
-				data[ serialize_data[ i ].name ] = editor.getContent({format : 'raw'});
+				data[ serialize_data[ i ].name ] = editor_value;
 			} else {
 				data[ serialize_data[ i ].name ] = serialize_data[ i ].value;
 			}
@@ -83,14 +89,14 @@ jQuery( document ).ready( function($) {
 					fmwp_create_topic_cb( data, forum_id );
 				}
 
-				obj.siblings('.fmwp-ajax-loading').css('visibility','hidden');
+				obj.siblings('.fmwp-ajax-loading').css('visibility','hidden').hide();
 				obj.css('visibility','visible');
 
 				var wrapper = $('.fmwp-forum-head[data-fmwp_forum_id="' + forum_id + '"]');
 				if ( ! wrapper.length ) {
-					$('.fmwp-archive-topics-wrapper').find('.fmwp-topics-sort').trigger('change');
+					$('.fmwp-archive-topics-wrapper').find('.fmwp-topics-sort:visible').trigger('change');
 				} else {
-					wrapper.find('.fmwp-forum-sort').trigger('change');
+					wrapper.find('.fmwp-forum-sort:visible').trigger('change');
 				}
 			},
 			error: function( data ) {
@@ -108,7 +114,7 @@ jQuery( document ).ready( function($) {
 				}
 				fmwp_set_busy( 'topic_popup', false );
 
-				obj.siblings('.fmwp-ajax-loading').css('visibility','hidden');
+				obj.siblings('.fmwp-ajax-loading').css('visibility','hidden').hide();
 				obj.css('visibility','visible');
 
 			}
@@ -121,10 +127,12 @@ jQuery( document ).ready( function($) {
 		var layout = post_template( data );
 
 		var wrapper = $('.fmwp-topics-wrapper[data-fmwp_forum_id="' + forum_id + '"]');
+		let order = wrapper.find('.fmwp-forum-sort:visible').val();
 		if ( ! wrapper.length ) {
-			wrapper = $('.fmwp-archive-topics-wrapper .fmwp-topics-wrapper')
+			wrapper = $('.fmwp-archive-topics-wrapper .fmwp-topics-wrapper');
+			order = $('.fmwp-archive-topics-wrapper').find('.fmwp-topics-sort:visible').val();
 		}
-		var order = wrapper.data('order');
+
 		if ( order === 'date_desc' ) {
 
 			if ( wrapper.find('.fmwp-topic-row.fmwp-topic-announcement:last').length ) {

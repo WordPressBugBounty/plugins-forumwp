@@ -310,7 +310,7 @@ if ( ! class_exists( 'fmwp\admin\Columns' ) ) {
 						)
 					);
 					$confirm                       = 'return confirm("' . __( 'Are you sure?', 'forumwp' ) . '") ? true : false;';
-					$actions['fmwp_clear_reports'] = '<a href="' . $url . '" onclick="' . esc_attr( $confirm ) . '">' . __( 'Clear Reports', 'forumwp' ) . '</a>';
+					$actions['fmwp_clear_reports'] = '<a href="' . esc_url( $url ) . '" onclick="' . esc_attr( $confirm ) . '">' . __( 'Clear Reports', 'forumwp' ) . '</a>';
 				}
 			}
 

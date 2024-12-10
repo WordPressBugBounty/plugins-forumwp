@@ -4,7 +4,7 @@
  *
  * This template can be overridden by copying it to your-theme/forumwp/login.php
  *
- * @version 2.1.0
+ * @version 2.1.3
  *
  * @var array $fmwp_login
  */
@@ -40,6 +40,7 @@ $redirect = ! empty( $fmwp_login['redirect'] ) ? $fmwp_login['redirect'] : '';
 		'label_log_in'   => __( 'Log In', 'forumwp' ),
 		'value_username' => '',
 		'value_remember' => false,
+		'fmwp_is_login'  => true, // internal required argument to detect FMWP login form.
 	);
 
 	echo wp_login_form( $login_args );

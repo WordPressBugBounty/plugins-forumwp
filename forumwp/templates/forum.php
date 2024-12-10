@@ -4,14 +4,13 @@
  *
  * This template can be overridden by copying it to your-theme/forumwp/forum.php
  *
- * @version 2.1.0
+ * @version 2.1.3
  *
  * @var array $fmwp_forum
  */
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
-
 $forum_id = $fmwp_forum['id'];
 $forum    = get_post( $forum_id );
 
@@ -77,56 +76,29 @@ if ( post_password_required( $forum ) ) {
 			// phpcs:enable WordPress.Security.NonceVerification -- needed only for display data
 			?>
 
-			<div class="fmwp-forum-head" data-fmwp_forum_id="<?php echo esc_attr( $fmwp_forum['id'] ); ?>">
-				<?php
-				if ( $show_header || ! FMWP()->is_forum_page() ) {
-					FMWP()->get_template_part(
-						'single-forum-info',
-						array(
-							'id'          => $forum_id,
-							'show_header' => $show_header,
-						)
-					);
-				}
-				?>
+			<?php if ( 'no' !== sanitize_key( $fmwp_forum['show_header'] ) ) { ?>
+				<div class="fmwp-forum-head" data-fmwp_forum_id="<?php echo esc_attr( $fmwp_forum['id'] ); ?>">
+					<?php
+					if ( $show_header || ! FMWP()->is_forum_page() ) {
+						FMWP()->get_template_part(
+							'single-forum-info',
+							array(
+								'id'          => $forum_id,
+								'show_header' => $show_header,
+							)
+						);
+					}
+					?>
 
-				<div class="fmwp-forum-nav-bar fmwp-responsive fmwp-ui-m fmwp-ui-l fmwp-ui-xl">
-
-					<?php echo wp_kses( $new_topic_button, FMWP()->get_allowed_html( 'templates' ) ); ?>
-
-					<div class="fmwp-forum-nav-bar-line">
-					<span class="fmwp-forum-sort-wrapper">
-						<label>
-							<span><?php esc_html_e( 'Sort:', 'forumwp' ); ?>&nbsp;</span>
-							<select class="fmwp-forum-sort">
-								<?php foreach ( FMWP()->common()->topic()->sort_by as $key => $sort_title ) { ?>
-									<option value="<?php echo esc_attr( $key ); ?>" <?php selected( $fmwp_forum['order'], $key ); ?>><?php echo esc_html( $sort_title ); ?></option>
-								<?php } ?>
-							</select>
-						</label>
-					</span>
-
-						<?php do_action( 'fmwp_single_forum_after_first_nav_line', $forum, $fmwp_forum ); ?>
-
-						<span class="fmwp-forum-search-bar">
-						<label>
-							<input type="text" value="" class="fmwp-forum-search-line" placeholder="<?php esc_attr_e( 'Search forum topics', 'forumwp' ); ?>" />
-						</label>
-						<input type="button" class="fmwp-search-topic" title="<?php esc_attr_e( 'Search in Forum', 'forumwp' ); ?>" value="<?php esc_attr_e( 'Search', 'forumwp' ); ?>" />
-					</span>
-					</div>
-				</div>
-
-				<div class="fmwp-forum-nav-bar-mobile fmwp-responsive fmwp-ui-s fmwp-ui-xs">
-					<div class="fmwp-forum-nav-bar-line-mobile">
+					<div class="fmwp-forum-nav-bar fmwp-responsive fmwp-ui-m fmwp-ui-l fmwp-ui-xl">
 
 						<?php echo wp_kses( $new_topic_button, FMWP()->get_allowed_html( 'templates' ) ); ?>
 
-						<div class="fmwp-forum-nav-bar-subline-mobile">
+						<div class="fmwp-forum-nav-bar-line">
 						<span class="fmwp-forum-sort-wrapper">
 							<label>
 								<span><?php esc_html_e( 'Sort:', 'forumwp' ); ?>&nbsp;</span>
-								<select class="fmwp-forum-sort">
+								<select class="fmwp-forum-sort" autocomplete="off">
 									<?php foreach ( FMWP()->common()->topic()->sort_by as $key => $sort_title ) { ?>
 										<option value="<?php echo esc_attr( $key ); ?>" <?php selected( $fmwp_forum['order'], $key ); ?>><?php echo esc_html( $sort_title ); ?></option>
 									<?php } ?>
@@ -136,22 +108,50 @@ if ( post_password_required( $forum ) ) {
 
 							<?php do_action( 'fmwp_single_forum_after_first_nav_line', $forum, $fmwp_forum ); ?>
 
-							<span class="fmwp-search-toggle" title="<?php esc_attr_e( 'Search', 'forumwp' ); ?>">
-							<i class="fas fa-search"></i>
+							<span class="fmwp-forum-search-bar">
+							<label>
+								<input type="text" value="" class="fmwp-forum-search-line" placeholder="<?php esc_attr_e( 'Search forum topics', 'forumwp' ); ?>" />
+							</label>
+							<input type="button" class="fmwp-search-topic" title="<?php esc_attr_e( 'Search in Forum', 'forumwp' ); ?>" value="<?php esc_attr_e( 'Search', 'forumwp' ); ?>" />
 						</span>
 						</div>
 					</div>
-					<div class="fmwp-forum-nav-bar-line-mobile fmwp-search-wrapper">
-					<span class="fmwp-forum-search-bar">
-						<label>
-							<input type="text" value="" class="fmwp-forum-search-line" placeholder="<?php esc_attr_e( 'Search forum topics', 'forumwp' ); ?>" />
-						</label>
-						<input type="button" class="fmwp-search-topic" title="<?php esc_attr_e( 'Search in Forum', 'forumwp' ); ?>" value="<?php esc_attr_e( 'Search', 'forumwp' ); ?>" />
-					</span>
+
+					<div class="fmwp-forum-nav-bar-mobile fmwp-responsive fmwp-ui-s fmwp-ui-xs">
+						<div class="fmwp-forum-nav-bar-line-mobile">
+
+							<?php echo wp_kses( $new_topic_button, FMWP()->get_allowed_html( 'templates' ) ); ?>
+
+							<div class="fmwp-forum-nav-bar-subline-mobile">
+							<span class="fmwp-forum-sort-wrapper">
+								<label>
+									<span><?php esc_html_e( 'Sort:', 'forumwp' ); ?>&nbsp;</span>
+									<select class="fmwp-forum-sort" autocomplete="off">
+										<?php foreach ( FMWP()->common()->topic()->sort_by as $key => $sort_title ) { ?>
+											<option value="<?php echo esc_attr( $key ); ?>" <?php selected( $fmwp_forum['order'], $key ); ?>><?php echo esc_html( $sort_title ); ?></option>
+										<?php } ?>
+									</select>
+								</label>
+							</span>
+
+								<?php do_action( 'fmwp_single_forum_after_first_nav_line', $forum, $fmwp_forum ); ?>
+
+								<span class="fmwp-search-toggle" title="<?php esc_attr_e( 'Search', 'forumwp' ); ?>">
+								<i class="fas fa-search"></i>
+							</span>
+							</div>
+						</div>
+						<div class="fmwp-forum-nav-bar-line-mobile fmwp-search-wrapper">
+						<span class="fmwp-forum-search-bar">
+							<label>
+								<input type="text" value="" class="fmwp-forum-search-line" placeholder="<?php esc_attr_e( 'Search forum topics', 'forumwp' ); ?>" />
+							</label>
+							<input type="button" class="fmwp-search-topic" title="<?php esc_attr_e( 'Search in Forum', 'forumwp' ); ?>" value="<?php esc_attr_e( 'Search', 'forumwp' ); ?>" />
+						</span>
+						</div>
 					</div>
 				</div>
-
-			</div>
+			<?php } ?>
 
 			<div class="fmwp-forum-content">
 				<?php

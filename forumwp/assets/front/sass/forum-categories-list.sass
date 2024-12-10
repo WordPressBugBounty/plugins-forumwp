@@ -33,11 +33,11 @@
         +flex( row, flex-start, center, nowrap )
         width: calc( 100% - 10px )
         .#{$prefix}forum-category-row-line
-          +flex( row, flex-start, center, nowrap )
+          +flex( row, space-between, center, nowrap )
           &.#{$prefix}forum-category-primary-data
-            width: 75%
+            width: 65%
           &.#{$prefix}forum-category-statistics-data
-            width: 25%
+            width: 35%
           .#{$prefix}forum-category-data
             +flex( column, space-between, stretch, nowrap )
             margin-right: 5px
@@ -54,19 +54,19 @@
             align-items: center
             justify-content: center
             margin-right: 5px
-            width: 30px
+            width: 50px
           .#{$prefix}forum-category-topics
             display: flex
             align-items: center
             justify-content: center
             margin-right: 5px
-            width: 30px
+            width: 50px
           .#{$prefix}forum-category-forums
             display: flex
             align-items: center
             justify-content: center
             margin-right: 5px
-            width: 30px
+            width: 50px
 
     .#{$prefix}forum-category-actions
       position: relative

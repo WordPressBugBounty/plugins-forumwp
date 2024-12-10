@@ -122,10 +122,10 @@ if ( ! class_exists( 'fmwp\ajax\Topic' ) ) {
 				'topic_id'          => $topic->ID,
 				'title'             => $topic->post_title,
 				'permalink'         => get_permalink( $topic->ID ),
-				'author'            => FMWP()->user()->display_name( $author ),
-				'author_url'        => FMWP()->user()->get_profile_link( $author->ID ),
-				'author_avatar'     => FMWP()->user()->get_avatar( $author->ID, 'inline', 40 ),
-				'author_card'       => FMWP()->user()->generate_card( $author->ID ),
+				'author'            => $author ? FMWP()->user()->display_name( $author ) : '',
+				'author_url'        => $author ? FMWP()->user()->get_profile_link( $author->ID ) : '',
+				'author_avatar'     => $author ? FMWP()->user()->get_avatar( $author->ID, 'inline', 40 ) : '',
+				'author_card'       => $author ? FMWP()->user()->generate_card( $author->ID ) : '',
 				'last_upgrade'      => $last_upgrade,
 				'replies'           => FMWP()->common()->topic()->get_statistics( $topic->ID, 'replies' ),
 				'respondents_count' => $respondents_count,
@@ -142,7 +142,7 @@ if ( ! class_exists( 'fmwp\ajax\Topic' ) ) {
 				'is_pinned'         => FMWP()->common()->topic()->is_pinned( $topic->ID ),
 				'is_announcement'   => FMWP()->common()->topic()->is_announcement( $topic->ID ),
 				'is_global'         => FMWP()->common()->topic()->is_global( $topic->ID ),
-				'is_author'         => ( is_user_logged_in() && get_current_user_id() === $author->ID ),
+				'is_author'         => $author && is_user_logged_in() && get_current_user_id() === $author->ID,
 				'forum_title'       => $forum->post_title,
 				'forum_url'         => get_permalink( $forum->ID ),
 				'is_spam'           => FMWP()->common()->topic()->is_spam( $topic ),
@@ -211,6 +211,7 @@ if ( ! class_exists( 'fmwp\ajax\Topic' ) ) {
 							'views' => array(
 								'key'     => 'fmwp_views',
 								'compare' => 'EXISTS',
+								'type'    => 'NUMERIC',
 							),
 						);
 						break;
@@ -250,15 +251,30 @@ if ( ! class_exists( 'fmwp\ajax\Topic' ) ) {
 
 			$post_status = FMWP()->common()->topic()->post_status;
 			if ( ! empty( $_REQUEST['status'] ) ) {
+				if ( ! is_user_logged_in() ) {
+					$status_map = array(
+						'open' => 'publish',
+					);
+				} else {
+					$status_map = array(
+						'open'    => 'publish',
+						'pending' => 'pending',
+						'trash'   => 'trash',
+					);
+				}
 
-				$status_map = array(
-					'open'    => 'publish',
-					'pending' => 'pending',
-					'trash'   => 'trash',
-				);
+				$status = sanitize_key( $_REQUEST['status'] );
+				if ( in_array( $status, array( 'trash', 'pending', 'spam' ), true ) ) {
+					if ( ! is_user_logged_in() ) {
+						// Cannot display these post statuses for not logged-in user.
+						wp_send_json_success( $response );
+					} elseif ( ! current_user_can( 'manage_fmwp_topics_all' ) ) {
+						// Display only author's posts when it cannot manage them.
+						$args['author'] = get_current_user_id();
+					}
+				}
 
-				$status      = sanitize_key( $_REQUEST['status'] );
-				$post_status = isset( $status_map[ $status ] ) ? $status_map[ $status ] : $post_status;
+				$post_status = array_key_exists( $status, $status_map ) ? $status_map[ $status ] : $post_status;
 			}
 
 			$args['post_status'] = $post_status;
@@ -348,6 +364,22 @@ if ( ! class_exists( 'fmwp\ajax\Topic' ) ) {
 						),
 					);
 				}
+			}
+
+			if ( isset( $status ) && 'spam' === $status ) {
+				$args['meta_query'][] = array(
+					'key'     => 'fmwp_spam',
+					'compare' => '=',
+					'value'   => true,
+				);
+			}
+
+			if ( isset( $status ) && 'locked' === $status ) {
+				$args['meta_query'][] = array(
+					'key'     => 'fmwp_locked',
+					'compare' => '=',
+					'value'   => true,
+				);
 			}
 
 			$args['suppress_filters'] = false;
@@ -961,7 +993,7 @@ if ( ! class_exists( 'fmwp\ajax\Topic' ) ) {
 			if ( empty( $_REQUEST['auth_id'] ) ) {
 				wp_send_json_error();
 			}
-			$auth_id = sanitize_text_field( $_REQUEST['auth_id'] );
+			$auth_id = sanitize_text_field( wp_unslash( $_REQUEST['auth_id'] ) );
 			// phpcs:enable WordPress.Security.NonceVerification
 
 			$post = get_post( $post_id );

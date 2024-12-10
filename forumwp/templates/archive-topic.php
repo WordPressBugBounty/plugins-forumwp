@@ -4,7 +4,7 @@
  *
  * This template can be overridden by copying it to your-theme/forumwp/archive-topic.php
  *
- * @version 2.1.0
+ * @version 2.1.3
  *
  * @var array $fmwp_archive_topic
  */
@@ -81,7 +81,7 @@ if ( ! empty( $unlogged_class ) ) {
 			<span class="fmwp-sort-wrapper">
 				<label>
 					<span><?php esc_html_e( 'Sort:', 'forumwp' ); ?>&nbsp;</span>
-					<select class="fmwp-topics-sort">
+					<select class="fmwp-topics-sort" autocomplete="off">
 						<?php foreach ( FMWP()->common()->topic()->sort_by as $key => $sort_title ) { ?>
 							<option value="<?php echo esc_attr( $key ); ?>" <?php selected( $fmwp_archive_topic['order'], $key ); ?>><?php echo esc_html( $sort_title ); ?></option>
 						<?php } ?>
@@ -107,7 +107,7 @@ if ( ! empty( $unlogged_class ) ) {
 				<span class="fmwp-sort-wrapper">
 					<label>
 						<span><?php esc_html_e( 'Sort:', 'forumwp' ); ?>&nbsp;</span>
-						<select class="fmwp-topics-sort">
+						<select class="fmwp-topics-sort" autocomplete="off">
 							<?php foreach ( FMWP()->common()->topic()->sort_by as $key => $sort_title ) { ?>
 								<option value="<?php echo esc_attr( $key ); ?>" <?php selected( $fmwp_archive_topic['order'], $key ); ?>>
 									<?php echo esc_html( $sort_title ); ?>
@@ -143,7 +143,7 @@ if ( ! empty( $unlogged_class ) ) {
 	$classes = apply_filters( 'fmwp_topics_wrapper_classes', '' );
 	?>
 
-	<div class="fmwp-topics-wrapper<?php echo esc_attr( $classes ); ?>"
+	<div class="fmwp-topics-wrapper<?php echo esc_attr( $classes ); ?>" data-show_forum="<?php echo esc_attr( $fmwp_archive_topic['show_forum'] ); ?>"
 		data-order="<?php echo ( ! empty( $fmwp_archive_topic['order'] ) ) ? esc_attr( $fmwp_archive_topic['order'] ) : ''; ?>"
 		<?php // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped  -- already escaped above per data attribute ?>
 		<?php echo ' ' . implode( ' ', $props ); ?>>

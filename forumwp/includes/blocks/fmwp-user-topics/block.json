@@ -1,0 +1,10 @@
+{
+  "apiVersion": 2,
+  "name": "fmwp-block/fmwp-user-topics",
+  "title": "User topics",
+  "description": "Displaying user topics",
+  "icon": "text",
+  "category": "fmwp-blocks",
+  "editorScript": "file:./src/index.js",
+  "textdomain": "forumwp"
+}

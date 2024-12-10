@@ -153,7 +153,7 @@ if ( ! class_exists( 'fmwp\admin\Emails_List_Table' ) ) {
 		protected function column_email( $item ) {
 			$active = FMWP()->options()->get( $item['key'] . '_on' );
 
-			return '<span class="dashicons fmwp-notification-status ' . ( ! empty( $active ) ? 'fmwp-notification-is-active dashicons-yes' : 'dashicons-no-alt' ) . '"></span><a href="' . add_query_arg( array( 'email' => $item['key'] ) ) . '"><strong>' . esc_html( $item['title'] ) . '</strong></a>';
+			return '<span class="dashicons fmwp-notification-status ' . ( ! empty( $active ) ? 'fmwp-notification-is-active dashicons-yes' : 'dashicons-no-alt' ) . '"></span><a href="' . esc_url( add_query_arg( array( 'email' => $item['key'] ) ) ) . '"><strong>' . esc_html( $item['title'] ) . '</strong></a>';
 		}
 
 		/**
@@ -175,7 +175,7 @@ if ( ! class_exists( 'fmwp\admin\Emails_List_Table' ) ) {
 		 * @return string
 		 */
 		protected function column_configure( $item ) {
-			return '<a class="button fmwp-email-configure" href="' . add_query_arg( array( 'email' => $item['key'] ) ) . '"><span class="dashicons dashicons-admin-generic"></span></a>';
+			return '<a class="button fmwp-email-configure" href="' . esc_url( add_query_arg( array( 'email' => $item['key'] ) ) ) . '"><span class="dashicons dashicons-admin-generic"></span></a>';
 		}
 	}
 }

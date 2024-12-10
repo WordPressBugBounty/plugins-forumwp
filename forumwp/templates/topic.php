@@ -4,7 +4,7 @@
  *
  * This template can be overridden by copying it to your-theme/forumwp/topic.php
  *
- * @version 2.1.1
+ * @version 2.1.3
  *
  * @var array $fmwp_topic
  */
@@ -130,69 +130,71 @@ if ( post_password_required( $topic ) ) {
 			// phpcs:enable WordPress.Security.NonceVerification
 			?>
 
-			<div class="fmwp-topic-head">
-				<?php
-				if ( $show_header || ! FMWP()->is_topic_page() ) {
-					if ( ! wp_is_block_theme() || ! FMWP()->is_topic_page() ) {
-						if ( $show_header && FMWP()->is_topic_page() ) {
-							?>
-							<h1><?php echo esc_html( $topic->post_title ); ?></h1>
-							<?php
-						} else {
-							?>
-							<h3><?php echo esc_html( $topic->post_title ); ?></h3>
-							<?php
-						}
-					}
-				}
-				?>
-				<span class="fmwp-topic-info">
-					<?php if ( ! empty( $forum ) && ! empty( FMWP()->options()->get( 'show_forum' ) ) ) { ?>
-						<a href="<?php echo esc_attr( $forum_link ); ?>" title="<?php echo esc_attr( $forum->post_title ); ?>" class="fmwp-topic-forum-link">
-							<?php echo esc_html( $forum->post_title ); ?>
-						</a>
-					<?php } ?>
-					<span class="fmwp-topic-stats">
-						<?php
-						$replies = FMWP()->common()->topic()->get_statistics( $fmwp_topic['id'], 'replies' );
-						// translators: %s is a total replies count
-						echo wp_kses_post( sprintf( _n( '<span id="fmwp-replies-total">%s</span> reply', '<span id="fmwp-replies-total">%s</span> replies', $replies, 'forumwp' ), $replies ) );
-						?>
-					</span>
-
-					<?php do_action( 'fmwp_topic_stats', $fmwp_topic ); ?>
-
-					<span class="fmwp-topic-stats">
-						<?php
-						$views = FMWP()->common()->topic()->get_statistics( $fmwp_topic['id'], 'views' );
-						// translators: %s is a total topics count
-						echo wp_kses_post( sprintf( _n( '<span id="fmwp-views-total">%s</span> view', '<span id="fmwp-views-total">%s</span> views', $views, 'forumwp' ), $views ) );
-						?>
-					</span>
-					<?php if ( FMWP()->options()->get( 'topic_tags' ) ) { ?>
-						<?php
-						$topic_tags = FMWP()->common()->topic()->get_tags( $topic->ID );
-
-						if ( count( $topic_tags ) ) {
-							?>
-							<span class="fmwp-topic-stats fmwp-tags-stats">
-								<?php esc_html_e( 'Tags:', 'forumwp' ); ?>&nbsp;
-								<span class="fmwp-topic-tags-list">
-									<?php
-									$tag_links = array();
-									foreach ( $topic_tags as $topic_tag ) {
-										$tag_links[] = '<a href="' . esc_url( get_term_link( $topic_tag->term_id, 'fmwp_topic_tag' ) ) . '">' . esc_html( $topic_tag->name ) . '</a>';
-									}
-									echo wp_kses( implode( ', ', $tag_links ), FMWP()->get_allowed_html( 'templates' ) );
-									?>
-								</span>
-							</span>
-							<?php
+			<?php if ( 'no' !== sanitize_key( $fmwp_topic['show_header'] ) ) { ?>
+				<div class="fmwp-topic-head">
+					<?php
+					if ( $show_header || ! FMWP()->is_topic_page() ) {
+						if ( ! wp_is_block_theme() || ! FMWP()->is_topic_page() ) {
+							if ( $show_header && FMWP()->is_topic_page() ) {
+								?>
+								<h1><?php echo esc_html( $topic->post_title ); ?></h1>
+								<?php
+							} else {
+								?>
+								<h3><?php echo esc_html( $topic->post_title ); ?></h3>
+								<?php
+							}
 						}
 					}
 					?>
-				</span>
-			</div>
+					<span class="fmwp-topic-info">
+						<?php if ( ! empty( $forum ) && ! empty( FMWP()->options()->get( 'show_forum' ) ) && 'no' !== sanitize_key( $fmwp_topic['show_forum'] ) ) { ?>
+							<a href="<?php echo esc_url( $forum_link ); ?>" title="<?php echo esc_attr( $forum->post_title ); ?>" class="fmwp-topic-forum-link">
+								<?php echo esc_html( $forum->post_title ); ?>
+							</a>
+						<?php } ?>
+						<span class="fmwp-topic-stats">
+							<?php
+							$replies = FMWP()->common()->topic()->get_statistics( $fmwp_topic['id'], 'replies' );
+							// translators: %s is a total replies count
+							echo wp_kses_post( sprintf( _n( '<span id="fmwp-replies-total">%s</span> reply', '<span id="fmwp-replies-total">%s</span> replies', $replies, 'forumwp' ), $replies ) );
+							?>
+						</span>
+
+						<?php do_action( 'fmwp_topic_stats', $fmwp_topic ); ?>
+
+						<span class="fmwp-topic-stats">
+							<?php
+							$views = FMWP()->common()->topic()->get_statistics( $fmwp_topic['id'], 'views' );
+							// translators: %s is a total topics count
+							echo wp_kses_post( sprintf( _n( '<span id="fmwp-views-total">%s</span> view', '<span id="fmwp-views-total">%s</span> views', $views, 'forumwp' ), $views ) );
+							?>
+						</span>
+						<?php if ( FMWP()->options()->get( 'topic_tags' ) ) { ?>
+							<?php
+							$topic_tags = FMWP()->common()->topic()->get_tags( $topic->ID );
+
+							if ( count( $topic_tags ) ) {
+								?>
+								<span class="fmwp-topic-stats fmwp-tags-stats">
+									<?php esc_html_e( 'Tags:', 'forumwp' ); ?>&nbsp;
+									<span class="fmwp-topic-tags-list">
+										<?php
+										$tag_links = array();
+										foreach ( $topic_tags as $topic_tag ) {
+											$tag_links[] = '<a href="' . esc_url( get_term_link( $topic_tag->term_id, 'fmwp_topic_tag' ) ) . '">' . esc_html( $topic_tag->name ) . '</a>';
+										}
+										echo wp_kses( implode( ', ', $tag_links ), FMWP()->get_allowed_html( 'templates' ) );
+										?>
+									</span>
+								</span>
+								<?php
+							}
+						}
+						?>
+					</span>
+				</div>
+			<?php } ?>
 
 			<div class="fmwp-topic-content">
 				<div class="fmwp-topic-base" data-topic_id="<?php echo esc_attr( $fmwp_topic['id'] ); ?>"
@@ -306,7 +308,7 @@ if ( post_password_required( $topic ) ) {
 							<span class="<?php echo esc_attr( implode( ' ', $sort_wrapper_classes ) ); ?> fmwp-ui-xs">
 								<label>
 									<span><?php esc_html_e( 'Sort:', 'forumwp' ); ?>&nbsp;</span>
-									<select class="fmwp-topic-sort">
+									<select class="fmwp-topic-sort" autocomplete="off">
 										<?php foreach ( FMWP()->common()->reply()->sort_by as $key => $sort_title ) { ?>
 											<option value="<?php echo esc_attr( $key ); ?>" <?php selected( $fmwp_topic['order'], $key ); ?>><?php echo esc_html( $sort_title ); ?></option>
 										<?php } ?>
@@ -321,7 +323,7 @@ if ( post_password_required( $topic ) ) {
 							<span class="<?php echo esc_attr( implode( ' ', $sort_wrapper_classes ) ); ?> fmwp-ui-s fmwp-ui-m fmwp-ui-l fmwp-ui-xl">
 								<label>
 									<span><?php esc_html_e( 'Sort:', 'forumwp' ); ?>&nbsp;</span>
-									<select class="fmwp-topic-sort">
+									<select class="fmwp-topic-sort" autocomplete="off">
 										<?php foreach ( FMWP()->common()->reply()->sort_by as $key => $sort_title ) { ?>
 											<option value="<?php echo esc_attr( $key ); ?>" <?php selected( $fmwp_topic['order'], $key ); ?>><?php echo esc_html( $sort_title ); ?></option>
 										<?php } ?>

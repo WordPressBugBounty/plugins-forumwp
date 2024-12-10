@@ -479,6 +479,7 @@ if ( ! class_exists( 'fmwp\frontend\Shortcodes' ) ) {
 					'type'          => '',
 					'order'         => FMWP()->options()->get( 'default_topics_order' ),
 					'default_forum' => FMWP()->options()->get( 'default_forum' ),
+					'is_block'      => false,
 				)
 			);
 
@@ -490,7 +491,9 @@ if ( ! class_exists( 'fmwp\frontend\Shortcodes' ) ) {
 			do_action( 'fmwp_on_topics_shortcode_init' );
 
 			if ( ! is_user_logged_in() ) {
-				add_action( 'wp_footer', array( &$this, 'login_popup' ), -1 );
+				if ( isset( $args['new_topic'] ) && 'yes' === $args['new_topic'] && ! empty( $args['default_forum'] ) ) {
+					add_action( 'wp_footer', array( &$this, 'login_popup' ), -1 );
+				}
 			} else {
 				$add_new = 'yes' === $args['new_topic'] && ! empty( $args['default_forum'] ) &&
 							FMWP()->user()->can_create_topic( $args['default_forum'] );
@@ -573,6 +576,7 @@ if ( ! class_exists( 'fmwp\frontend\Shortcodes' ) ) {
 				array(
 					'actions'    => 'edit',
 					'show_forum' => ( 'yes' === $args['show_forum'] ),
+					'is_block'   => (bool) $args['is_block'],
 				)
 			);
 
@@ -985,6 +989,8 @@ if ( ! class_exists( 'fmwp\frontend\Shortcodes' ) ) {
 				)
 			);
 
+			do_action( 'fmwp_on_user_reply_shortcode_init' );
+
 			$args = shortcode_atts( $default_args, $args );
 
 			ob_start();
@@ -1002,6 +1008,10 @@ if ( ! class_exists( 'fmwp\frontend\Shortcodes' ) ) {
 		public function user_edit() {
 			wp_enqueue_script( 'fmwp-new-forum' );
 			wp_enqueue_style( 'fmwp-forms' );
+
+			if ( ! is_user_logged_in() ) {
+				return '';
+			}
 
 			ob_start();
 

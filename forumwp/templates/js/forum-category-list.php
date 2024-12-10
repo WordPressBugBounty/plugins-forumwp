@@ -4,14 +4,27 @@
  *
  * This template can be overridden by copying it to your-theme/forumwp/js/forum-category-list.php
  *
- * @version 2.1.1
+ * @version 2.1.3
  */
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 ?>
 <script type="text/html" id="tmpl-fmwp-forum-categories-list">
+
 	<# if ( data.categories.length > 0 ) { #>
+		<div class="fmwp-forum-category-row">
+			<div class="fmwp-forum-category-row-lines">
+				<div class="fmwp-forum-category-row-line fmwp-forum-category-primary-data">	</div>
+				<div class="fmwp-forum-category-row-line fmwp-forum-category-statistics-data">
+					<div class="fmwp-forum-category-forums fmwp-tip-n" title=""><?php esc_html_e( 'Forums', 'forumwp' ); ?></div>
+					<div class="fmwp-forum-category-topics fmwp-tip-n" title=""><?php esc_html_e( 'Topics', 'forumwp' ); ?></div>
+					<div class="fmwp-forum-category-replies fmwp-tip-n" title=""><?php esc_html_e( 'Replies', 'forumwp' ); ?></div>
+				</div>
+			</div>
+			<div class="fmwp-forum-category-actions"></div>
+		</div>
+		<div class="clear"></div>
 		<# _.each( data.categories, function( category, key, list ) { #>
 			<div class="fmwp-forum-category-row <# if ( category.disabled ) { #>fmwp-forum-category-disabled<# } #>" data-category_id="{{{category.id}}}">
 				<div class="fmwp-forum-category-row-lines">

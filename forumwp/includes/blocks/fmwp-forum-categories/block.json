@@ -1,0 +1,10 @@
+{
+  "apiVersion": 2,
+  "name": "fmwp-block/fmwp-forum-categories",
+  "title": "Forum categories",
+  "description": "Displaying forum categories",
+  "icon": "text",
+  "category": "fmwp-blocks",
+  "editorScript": "file:./src/index.js",
+  "textdomain": "forumwp"
+}

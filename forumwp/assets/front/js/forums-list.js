@@ -11,7 +11,7 @@ jQuery( document ).ready( function($) {
 		});
 	});
 
-	$( window ).scroll( function() {
+	$( window ).on( 'scroll', function() {
 		var scrollHandling = {
 			allow: true,
 			reallow: function() {
@@ -136,6 +136,7 @@ function fmwp_get_forums( obj, args ) {
 			}
 
 			fmwp_set_busy( 'forums_list', false );
+			wp.hooks.doAction( 'fmwp_forums_load_finish' );
 		},
 		error: function( data ) {
 			console.log( data );

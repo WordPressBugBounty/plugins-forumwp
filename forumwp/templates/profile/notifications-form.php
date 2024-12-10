@@ -1,4 +1,11 @@
 <?php
+/**
+ * Template for the notifications form
+ *
+ * This template can be overridden by copying it to your-theme/forumwp/profile/notifications-form.php
+ *
+ * @version 2.1.3
+ */
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }

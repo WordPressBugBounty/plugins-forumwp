@@ -537,7 +537,7 @@ if ( ! class_exists( 'fmwp\frontend\Forms' ) ) {
 				if ( is_bool( $field_data['checked'] ) ) {
 					$checked = checked( $field_data['checked'], true, false );
 				} else {
-					$checked = esc_html( $field_data['checked'] );
+					$checked = ' data-checked="' . esc_attr( $field_data['checked'] ) . '" ';
 				}
 			} else {
 				$checked = checked( $value, true, false );

@@ -896,6 +896,14 @@ if ( ! class_exists( 'FMWP_Functions' ) ) {
 						'a'        => array(
 							'onclick' => array(),
 						),
+						'link'     => array(
+							'rel'   => true,
+							'href'  => true,
+							'media' => true,
+						),
+						'button'   => array(
+							'type' => true,
+						),
 					);
 					break;
 				case 'templates':

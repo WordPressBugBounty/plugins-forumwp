@@ -53,13 +53,19 @@ jQuery( document ).ready( function($) {
 
 		var form = $(this).parents( 'form' );
 		var serialize_data = form.serializeArray();
+		var editor_value;
 
-		var editor = tinyMCE.get( 'fmwpreplycontent' );
+		if ( typeof tinymce != "undefined" ) {
+			var editor = tinyMCE.get('fmwpreplycontent');
+			editor_value = editor.getContent({format : 'raw'});
+		} else {
+			editor_value = $('#fmwpreplycontent').val();
+		}
 
 		var data = {};
 		$.each( serialize_data, function( i ) {
 			if ( 'fmwp-reply[content]' === serialize_data[ i ].name ) {
-				data[ serialize_data[ i ].name ] = editor.getContent({format : 'raw'});
+				data[ serialize_data[ i ].name ] = editor_value;
 			} else {
 				data[ serialize_data[ i ].name ] = serialize_data[ i ].value;
 			}
@@ -83,7 +89,7 @@ jQuery( document ).ready( function($) {
 
 				fmwp_embed_resize_async();
 
-				obj.siblings('.fmwp-ajax-loading').css('visibility','hidden');
+				obj.siblings('.fmwp-ajax-loading').css('visibility','hidden').hide();
 				obj.css('visibility','visible');
 			},
 			error: function( data ) {
@@ -101,7 +107,7 @@ jQuery( document ).ready( function($) {
 
 				fmwp_set_busy( 'reply_popup', false );
 
-				obj.siblings('.fmwp-ajax-loading').css('visibility','hidden');
+				obj.siblings('.fmwp-ajax-loading').css('visibility','hidden').hide();
 				obj.css('visibility','visible');
 			}
 		});
@@ -120,7 +126,14 @@ jQuery( document ).ready( function($) {
 			layout = post_template( data );
 
 			wrapper = $('.fmwp-topic-wrapper[data-fmwp_topic_id="' + topic_id + '"]');
-			order = wrapper.data('order');
+
+			let $visibleSorting = wrapper.parents('.fmwp-topic-main-wrapper').find('.fmwp-topic-sort:visible');
+			if ( $visibleSorting.length ) {
+				order = $visibleSorting.val();
+			} else {
+				order = wrapper.data('order');
+			}
+
 			if ( order === 'date_desc' ) {
 				wrapper.prepend( layout );
 			} else if( order === 'date_asc' ) {
@@ -136,7 +149,14 @@ jQuery( document ).ready( function($) {
 			layout = post_template( data );
 
 			wrapper = $('.fmwp-topic-wrapper[data-fmwp_topic_id="' + topic_id + '"]');
-			order = wrapper.data('order');
+
+			let $visibleSorting = wrapper.parents('.fmwp-topic-main-wrapper').find('.fmwp-topic-sort:visible');
+			if ( $visibleSorting.length ) {
+				order = $visibleSorting.val();
+			} else {
+				order = wrapper.data('order');
+			}
+
 			var parent_reply = wrapper.find( '.fmwp-reply-row[data-reply_id="' + data.post_parent + '"]' ).find( '> .fmwp-reply-children' );
 
 			if ( order === 'date_desc' ) {
@@ -173,11 +193,6 @@ jQuery( document ).ready( function($) {
 
 		/*todo separate function to calculate replies after each action*/
 		fmwp_change_topic_sorting_visibility( wrapper );
-		// if ( wrapper.find( '.fmwp-reply-row' ).length > 1 ) {
-		// 	wrapper.siblings('.fmwp-topic-base').find('.fmwp-topic-sort-wrapper').removeClass('fmwp-topic-hidden-sort');
-		// } else {
-		// 	wrapper.siblings('.fmwp-topic-base').find('.fmwp-topic-sort-wrapper').addClass('fmwp-topic-hidden-sort');
-		// }
 	}
 
 

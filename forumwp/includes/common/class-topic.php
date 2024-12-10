@@ -54,6 +54,8 @@ if ( ! class_exists( 'fmwp\common\Topic' ) ) {
 			add_filter( 'posts_where', array( &$this, 'filter_pending_for_author' ), 10, 2 );
 
 			add_action( 'init', array( &$this, 'init_statuses' ), 10 );
+
+			add_action( 'transition_post_status', array( &$this, 'trash' ), 10, 3 );
 		}
 
 
@@ -88,7 +90,7 @@ if ( ! class_exists( 'fmwp\common\Topic' ) ) {
 						$where = str_replace( "{$wpdb->posts}.post_status = 'pending'", "( {$wpdb->posts}.post_status = 'pending' AND {$wpdb->posts}.post_author = '" . $current_user_id . "' )", $where );
 						$where = str_replace(
 							"{$wpdb->posts}.post_status = 'trash'",
-							"( {$wpdb->posts}.post_status = 'trash' AND {$wpdb->posts}.post_author = '$current_user_id' AND ( SELECT meta_value FROM {$wpdb->postmeta} WHERE {$wpdb->postmeta}.post_id = {$wpdb->posts}.ID AND {$wpdb->postmeta}.meta_key = 'fmwp_user_trash_id' ) = '$current_user_id' )",
+							"( {$wpdb->posts}.post_status = 'trash' AND {$wpdb->posts}.post_author = '$current_user_id' )",
 							$where
 						);
 					}
@@ -362,7 +364,7 @@ if ( ! class_exists( 'fmwp\common\Topic' ) ) {
 			$data = array( 'HTTP_CLIENT_IP', 'HTTP_X_FORWARDED_FOR', 'HTTP_X_FORWARDED', 'HTTP_X_CLUSTER_CLIENT_IP', 'HTTP_FORWARDED_FOR', 'HTTP_FORWARDED', 'REMOTE_ADDR' );
 			foreach ( $data as $key ) {
 				if ( array_key_exists( $key, $_SERVER ) === true ) {
-					foreach ( explode( ',', $_SERVER[ $key ] ) as $ip ) {
+					foreach ( explode( ',', sanitize_text_field( wp_unslash( $_SERVER[ $key ] ) ) ) as $ip ) {
 						$ip = trim( $ip );
 						if ( $this->validate_user_ip( $ip ) ) {
 							continue;
@@ -1224,6 +1226,16 @@ if ( ! class_exists( 'fmwp\common\Topic' ) ) {
 			if ( ! empty( $topic ) && ! is_wp_error( $topic ) ) {
 				wp_delete_post( $topic_id );
 				do_action( 'fmwp_after_delete_topic', $topic_id );
+			}
+		}
+
+		public function trash( $new_status, $old_status, $post ) {
+			if ( 'fmwp_topic' === $post->post_type ) {
+				if ( 'trash' === $new_status && 'trash' !== $old_status ) {
+					update_post_meta( $post->ID, 'fmwp_user_trash_id', get_current_user_id() );
+				} elseif ( 'trash' !== $new_status && 'trash' === $old_status ) {
+					delete_post_meta( $post->ID, 'fmwp_user_trash_id' );
+				}
 			}
 		}
 	}

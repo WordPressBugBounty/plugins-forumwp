@@ -56,7 +56,7 @@ jQuery( document ).ready( function($) {
 		wp.hooks.doAction( 'fmwp_user_profile_tab_loading', first_tab, sub_tab, user_id );
 	}
 
-	$( window ).scroll( function() {
+	$( window ).on( 'scroll', function() {
 
 		var scrollHandling = {
 			allow: true,
@@ -183,6 +183,7 @@ jQuery( document ).ready( function($) {
 
 							insert_to.find('.fmwp-profile-' + active_tab + '-content').show();
 
+							insert_to.find('[data-checked="checked"]').prop('checked', true).attr('checked', 'checked');
 
                             fmwp_responsive();
 
@@ -301,6 +302,7 @@ jQuery( document ).ready( function($) {
 
 						//scroll data tabs
 
+						insert_to.find('[data-checked="checked"]').prop('checked', true).attr('checked', 'checked');
 
                         fmwp_responsive();
 
@@ -384,7 +386,8 @@ function fmwp_profile_replies( obj, args ) {
 			}
 			fmwp_profile.replies.loading = false;
 
-            fmwp_responsive();
+			fmwp_responsive();
+			wp.hooks.doAction( 'fmwp_profile_load_finish' );
 		},
 		error: function( data ) {
 			console.log( data );
@@ -446,7 +449,8 @@ function fmwp_profile_topics( obj, args ) {
 
 			fmwp_profile.topics.loading = false;
 
-            fmwp_responsive();
+			fmwp_responsive();
+			wp.hooks.doAction( 'fmwp_profile_load_finish' );
 		},
 		error: function( data ) {
 			console.log( data );

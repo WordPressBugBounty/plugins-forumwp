@@ -47,6 +47,9 @@ if ( ! class_exists( 'fmwp\common\Forum' ) ) {
 			add_action( 'save_post_fmwp_forum', array( &$this, 'save_post' ), 999997 );
 
 			add_filter( 'the_posts', array( &$this, 'filter_private_forums' ), 99 );
+			add_filter( 'posts_where', array( &$this, 'filter_trashed_for_author' ), 10, 2 );
+
+			add_action( 'transition_post_status', array( &$this, 'trash' ), 10, 3 );
 		}
 
 		/**
@@ -88,6 +91,32 @@ if ( ! class_exists( 'fmwp\common\Forum' ) ) {
 		}
 
 		/**
+		 * @param $where
+		 * @param $wp_query
+		 *
+		 * @return mixed
+		 */
+		public function filter_trashed_for_author( $where, $wp_query ) {
+			if ( isset( $wp_query->query['post_type'] ) && 'fmwp_forum' === $wp_query->query['post_type'] ) {
+				if ( isset( $wp_query->query['post_status'] ) && ( 'trash' === $wp_query->query['post_status'] || ( is_array( $wp_query->query['post_status'] ) && in_array( 'trash', $wp_query->query['post_status'], true ) ) ) ) {
+					global $wpdb;
+					if ( ! current_user_can( 'manage_fmwp_forums_all' ) ) {
+						$current_user_id = get_current_user_id();
+
+						$where = str_replace( "{$wpdb->posts}.post_status = 'pending'", "( {$wpdb->posts}.post_status = 'pending' AND {$wpdb->posts}.post_author = '" . $current_user_id . "' )", $where );
+						$where = str_replace(
+							"{$wpdb->posts}.post_status = 'trash'",
+							"( {$wpdb->posts}.post_status = 'trash' AND {$wpdb->posts}.post_author = '$current_user_id' )",
+							$where
+						);
+					}
+				}
+			}
+
+			return $where;
+		}
+
+		/**
 		 * @param int $post_ID
 		 */
 		public function save_post( $post_ID ) {
@@ -109,6 +138,7 @@ if ( ! class_exists( 'fmwp\common\Forum' ) ) {
 			$this->post_status = array( 'publish' );
 
 			if ( is_user_logged_in() ) {
+				$this->post_status[] = 'trash'; // will be visible for trash author or `manage_fmwp_forums_all`. See `$this->filter_trashed_for_author()`.
 				if ( current_user_can( 'manage_fmwp_forums_all' ) ) {
 					$this->post_status[] = 'private';
 					$this->post_status[] = 'pending';
@@ -150,13 +180,41 @@ if ( ! class_exists( 'fmwp\common\Forum' ) ) {
 						)
 					);
 				}
+			}
 
+			if ( FMWP()->user()->can_trash_forum( $user_id, $forum ) ) {
 				$items = array_merge(
 					$items,
 					array(
 						'fmwp-trash-forum' => __( 'Move to trash', 'forumwp' ),
 					)
 				);
+			}
+
+			if ( $this->is_trashed( $forum ) ) {
+				if ( FMWP()->user()->can_restore_forum( $user_id, $forum ) || FMWP()->user()->can_delete_forum( $user_id, $forum ) ) {
+					if ( ! empty( $items ) ) {
+						$items = array();
+					}
+				}
+
+				if ( FMWP()->user()->can_restore_forum( $user_id, $forum ) ) {
+					$items = array_merge(
+						$items,
+						array(
+							'fmwp-restore-forum' => __( 'Restore forum', 'forumwp' ),
+						)
+					);
+				}
+
+				if ( FMWP()->user()->can_delete_forum( $user_id, $forum ) ) {
+					$items = array_merge(
+						$items,
+						array(
+							'fmwp-remove-forum' => __( 'Remove forum', 'forumwp' ),
+						)
+					);
+				}
 			}
 
 			$items = array_unique( $items );
@@ -461,6 +519,55 @@ if ( ! class_exists( 'fmwp\common\Forum' ) ) {
 		}
 
 		/**
+		 * Restore from Trash Forum handler
+		 *
+		 * @param $forum_id
+		 */
+		public function restore( $forum_id ) {
+			$post = get_post( $forum_id );
+
+			if ( empty( $post ) || is_wp_error( $post ) ) {
+				return;
+			}
+
+			if ( 'trash' !== $post->post_status ) {
+				return;
+			}
+
+			$prev_status = get_post_meta( $post->ID, 'fmwp_prev_status', true );
+			if ( empty( $prev_status ) ) {
+				$prev_status = 'publish';
+			}
+
+			wp_update_post(
+				array(
+					'ID'          => $post->ID,
+					'post_status' => $prev_status,
+				)
+			);
+
+			delete_post_meta( $post->ID, 'fmwp_prev_status' );
+
+			do_action( 'fmwp_after_restore_forum', $forum_id );
+		}
+
+		/**
+		 * Delete Topic handler
+		 *
+		 * @param $forum_id
+		 */
+		public function delete( $forum_id ) {
+			$forum = get_post( $forum_id );
+
+			do_action( 'fmwp_before_delete_forum', $forum_id, $forum );
+
+			if ( ! empty( $forum ) && ! is_wp_error( $forum ) ) {
+				wp_delete_post( $forum_id );
+				do_action( 'fmwp_after_delete_forum', $forum_id );
+			}
+		}
+
+		/**
 		 * Create Forum
 		 *
 		 * @param array $data
@@ -521,6 +628,16 @@ if ( ! class_exists( 'fmwp\common\Forum' ) ) {
 			}
 
 			return $forum_id;
+		}
+
+		public function trash( $new_status, $old_status, $post ) {
+			if ( 'fmwp_forum' === $post->post_type ) {
+				if ( 'trash' === $new_status && 'trash' !== $old_status ) {
+					update_post_meta( $post->ID, 'fmwp_user_trash_id', get_current_user_id() );
+				} elseif ( 'trash' !== $new_status && 'trash' === $old_status ) {
+					delete_post_meta( $post->ID, 'fmwp_user_trash_id' );
+				}
+			}
 		}
 	}
 }

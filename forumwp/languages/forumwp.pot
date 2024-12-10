@@ -2,14 +2,14 @@
 # This file is distributed under the same license as the ForumWP plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: ForumWP 2.1.2\n"
+"Project-Id-Version: ForumWP 2.1.3\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/forumwp\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2024-11-14T15:23:02+00:00\n"
+"POT-Creation-Date: 2024-12-09T20:24:35+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.11.0\n"
 "X-Domain: forumwp\n"
@@ -17,6 +17,7 @@ msgstr ""
 #. Plugin Name of the plugin
 #. Author of the plugin
 #: forumwp.php
+#: includes/common/class-enqueue.php:159
 msgid "ForumWP"
 msgstr ""
 
@@ -38,8 +39,8 @@ msgstr ""
 #: includes/admin/class-columns.php:68
 #: includes/admin/class-columns.php:409
 #: includes/admin/class-columns.php:419
-#: includes/common/class-reply.php:761
-#: includes/common/class-topic.php:513
+#: includes/common/class-reply.php:763
+#: includes/common/class-topic.php:515
 msgid "Reported"
 msgstr ""
 
@@ -48,10 +49,12 @@ msgstr ""
 #: includes/admin/class-columns.php:396
 #: includes/admin/class-columns.php:400
 #: includes/admin/class-columns.php:484
-#: includes/common/class-topic.php:242
+#: includes/common/class-topic.php:244
 #: templates/js/forum-row.php:41
 #: templates/single-forum-info.php:88
 #: templates/single-forum-info.php:105
+#: blocks-src/fmwp-topics-list/src/index.js:79
+#: includes/blocks/fmwp-topics-list/src/index.js:1
 msgid "Locked"
 msgstr ""
 
@@ -59,8 +62,10 @@ msgstr ""
 #: includes/admin/class-columns.php:200
 #: includes/admin/class-columns.php:404
 #: includes/admin/class-columns.php:414
-#: includes/common/class-reply.php:756
-#: includes/common/class-topic.php:511
+#: includes/common/class-reply.php:758
+#: includes/common/class-topic.php:513
+#: blocks-src/fmwp-topics-list/src/index.js:78
+#: includes/blocks/fmwp-topics-list/src/index.js:1
 msgid "Spam"
 msgstr ""
 
@@ -85,6 +90,7 @@ msgstr ""
 #: includes/class-fmwp-functions.php:696
 #: includes/frontend/class-profile.php:62
 #: templates/archive-forum-header.php:15
+#: templates/js/forum-category-list.php:21
 msgid "Topics"
 msgstr ""
 
@@ -99,16 +105,21 @@ msgstr ""
 #: includes/frontend/class-profile.php:66
 #: templates/archive-forum-header.php:16
 #: templates/archive-topic-header.php:15
+#: templates/js/forum-category-list.php:22
 msgid "Replies"
 msgstr ""
 
 #: includes/admin/class-columns.php:438
+#: blocks-src/fmwp-forums-list/src/index.js:50
+#: includes/blocks/fmwp-forums-list/src/index.js:1
 msgid "Category"
 msgstr ""
 
 #: includes/admin/class-columns.php:439
 #: includes/admin/class-columns.php:578
 #: includes/admin/templates/settings/version-template-list-table.php:30
+#: blocks-src/fmwp-topics-list/src/index.js:71
+#: includes/blocks/fmwp-topics-list/src/index.js:1
 msgid "Status"
 msgstr ""
 
@@ -133,13 +144,15 @@ msgstr ""
 #: includes/admin/class-columns.php:575
 #: includes/admin/templates/topic/attributes.php:81
 #: includes/class-fmwp-functions.php:140
-#: includes/common/class-common.php:979
+#: includes/common/class-common.php:971
 #: templates/archive-forum-header.php:21
 msgid "Forum"
 msgstr ""
 
 #: includes/admin/class-columns.php:576
 #: includes/admin/templates/topic/attributes.php:54
+#: blocks-src/fmwp-topics-list/src/index.js:84
+#: includes/blocks/fmwp-topics-list/src/index.js:1
 msgid "Type"
 msgstr ""
 
@@ -193,6 +206,7 @@ msgstr ""
 #: includes/class-fmwp-functions.php:660
 #: includes/class-fmwp-functions.php:707
 #: includes/class-fmwp-functions.php:724
+#: templates/js/forum-category-list.php:20
 msgid "Forums"
 msgstr ""
 
@@ -218,6 +232,8 @@ msgid "Settings"
 msgstr ""
 
 #: includes/admin/class-metabox.php:108
+#: blocks-src/fmwp-forum/src/index.js:36
+#: includes/blocks/fmwp-forum/src/index.js:1
 msgid "Forum Settings"
 msgstr ""
 
@@ -226,6 +242,8 @@ msgid "Forum Styling"
 msgstr ""
 
 #: includes/admin/class-metabox.php:116
+#: blocks-src/fmwp-topic/src/index.js:38
+#: includes/blocks/fmwp-topic/src/index.js:1
 msgid "Topic Settings"
 msgstr ""
 
@@ -385,22 +403,42 @@ msgid "When you create a topic from topics list it will be added to the default 
 msgstr ""
 
 #: includes/admin/class-settings.php:334
-#: includes/common/class-reply.php:118
-#: includes/common/class-topic.php:263
+#: includes/common/class-reply.php:120
+#: includes/common/class-topic.php:265
+#: blocks-src/fmwp-forum/src/index.js:46
+#: blocks-src/fmwp-forums-list/src/index.js:62
+#: blocks-src/fmwp-topic/src/index.js:53
+#: blocks-src/fmwp-topics-list/src/index.js:99
+#: includes/blocks/fmwp-forum/src/index.js:1
+#: includes/blocks/fmwp-forums-list/src/index.js:1
+#: includes/blocks/fmwp-topic/src/index.js:1
+#: includes/blocks/fmwp-topics-list/src/index.js:1
 msgid "Newest to Oldest"
 msgstr ""
 
 #: includes/admin/class-settings.php:335
-#: includes/common/class-reply.php:117
-#: includes/common/class-topic.php:262
+#: includes/common/class-reply.php:119
+#: includes/common/class-topic.php:264
+#: blocks-src/fmwp-forum/src/index.js:47
+#: blocks-src/fmwp-forums-list/src/index.js:63
+#: blocks-src/fmwp-topic/src/index.js:54
+#: blocks-src/fmwp-topics-list/src/index.js:100
+#: includes/blocks/fmwp-forum/src/index.js:1
+#: includes/blocks/fmwp-forums-list/src/index.js:1
+#: includes/blocks/fmwp-topic/src/index.js:1
+#: includes/blocks/fmwp-topics-list/src/index.js:1
 msgid "Oldest to Newest"
 msgstr ""
 
 #: includes/admin/class-settings.php:336
+#: blocks-src/fmwp-forums-list/src/index.js:64
+#: includes/blocks/fmwp-forums-list/src/index.js:1
 msgid "Most Priority"
 msgstr ""
 
 #: includes/admin/class-settings.php:337
+#: blocks-src/fmwp-forums-list/src/index.js:65
+#: includes/blocks/fmwp-forums-list/src/index.js:1
 msgid "Lower Priority"
 msgstr ""
 
@@ -752,6 +790,14 @@ msgid "Yes"
 msgstr ""
 
 #: includes/admin/templates/forum/attributes.php:32
+#: blocks-src/fmwp-forum/src/index.js:43
+#: blocks-src/fmwp-forums-list/src/index.js:59
+#: blocks-src/fmwp-topic/src/index.js:50
+#: blocks-src/fmwp-topics-list/src/index.js:96
+#: includes/blocks/fmwp-forum/src/index.js:1
+#: includes/blocks/fmwp-forums-list/src/index.js:1
+#: includes/blocks/fmwp-topic/src/index.js:1
+#: includes/blocks/fmwp-topics-list/src/index.js:1
 msgid "Order"
 msgstr ""
 
@@ -834,7 +880,7 @@ msgstr ""
 msgid "You could create custom templates to customize topics"
 msgstr ""
 
-#: includes/ajax/class-common.php:125
+#: includes/ajax/class-common.php:127
 #: modules/migration/class-init.php:407
 #: modules/migration/class-init.php:571
 #: modules/migration/class-init.php:728
@@ -842,9 +888,11 @@ msgstr ""
 msgid "Wrong AJAX Nonce"
 msgstr ""
 
-#: includes/ajax/class-forum.php:210
-#: includes/ajax/class-forum.php:241
-#: includes/ajax/class-forum.php:268
+#: includes/ajax/class-forum.php:211
+#: includes/ajax/class-forum.php:245
+#: includes/ajax/class-forum.php:280
+#: includes/ajax/class-forum.php:310
+#: includes/ajax/class-forum.php:337
 #: includes/ajax/class-reply.php:444
 #: includes/ajax/class-reply.php:562
 #: includes/ajax/class-reply.php:623
@@ -852,28 +900,43 @@ msgstr ""
 #: includes/ajax/class-reply.php:696
 #: includes/ajax/class-reply.php:806
 #: includes/ajax/class-reply.php:840
-#: includes/ajax/class-topic.php:463
-#: includes/ajax/class-topic.php:584
-#: includes/ajax/class-topic.php:613
-#: includes/ajax/class-topic.php:642
-#: includes/ajax/class-topic.php:671
-#: includes/ajax/class-topic.php:700
-#: includes/ajax/class-topic.php:734
-#: includes/ajax/class-topic.php:769
-#: includes/ajax/class-topic.php:806
-#: includes/ajax/class-topic.php:840
+#: includes/ajax/class-topic.php:495
+#: includes/ajax/class-topic.php:616
+#: includes/ajax/class-topic.php:645
+#: includes/ajax/class-topic.php:674
+#: includes/ajax/class-topic.php:703
+#: includes/ajax/class-topic.php:732
+#: includes/ajax/class-topic.php:766
+#: includes/ajax/class-topic.php:801
+#: includes/ajax/class-topic.php:838
+#: includes/ajax/class-topic.php:872
 #: includes/frontend/class-actions-listener.php:290
 msgid "Invalid data"
 msgstr ""
 
-#: includes/ajax/class-forum.php:217
-#: includes/ajax/class-forum.php:248
-#: includes/ajax/class-forum.php:275
+#: includes/ajax/class-forum.php:218
+#: includes/ajax/class-forum.php:252
+#: includes/ajax/class-forum.php:287
+#: includes/ajax/class-forum.php:317
+#: includes/ajax/class-forum.php:344
 msgid "Forum ID is invalid"
 msgstr ""
 
-#: includes/ajax/class-forum.php:221
+#: includes/ajax/class-forum.php:222
 msgid "You do not have the ability to move this forum to trash"
+msgstr ""
+
+#: includes/ajax/class-forum.php:256
+msgid "You do not have the ability to restore this forum"
+msgstr ""
+
+#: includes/ajax/class-forum.php:291
+#: includes/ajax/class-topic.php:812
+msgid "You do not have the ability to delete this topic"
+msgstr ""
+
+#: includes/ajax/class-forum.php:298
+msgid "Forum was deleted successfully."
 msgstr ""
 
 #: includes/ajax/class-notices.php:24
@@ -905,9 +968,9 @@ msgid "Invalid reply"
 msgstr ""
 
 #: includes/ajax/class-reply.php:451
-#: includes/ajax/class-topic.php:874
-#: includes/ajax/class-topic.php:902
-#: includes/ajax/class-topic.php:930
+#: includes/ajax/class-topic.php:906
+#: includes/ajax/class-topic.php:934
+#: includes/ajax/class-topic.php:962
 msgid "Empty Topic ID"
 msgstr ""
 
@@ -921,8 +984,8 @@ msgstr ""
 
 #: includes/ajax/class-reply.php:471
 #: includes/ajax/class-reply.php:582
-#: includes/ajax/class-topic.php:408
-#: includes/ajax/class-topic.php:491
+#: includes/ajax/class-topic.php:440
+#: includes/ajax/class-topic.php:523
 msgid "Content is required"
 msgstr ""
 
@@ -950,7 +1013,7 @@ msgid "Reply ID is invalid"
 msgstr ""
 
 #: includes/ajax/class-reply.php:604
-#: includes/ajax/class-topic.php:520
+#: includes/ajax/class-topic.php:552
 msgid "Something is wrong with the data"
 msgstr ""
 
@@ -981,14 +1044,14 @@ msgid "Empty Reply ID"
 msgstr ""
 
 #: includes/ajax/class-reply.php:882
-#: includes/ajax/class-topic.php:889
+#: includes/ajax/class-topic.php:921
 msgid "Something wrong with reports"
 msgstr ""
 
 #: includes/ajax/class-reply.php:909
 #: includes/ajax/class-reply.php:944
-#: includes/ajax/class-topic.php:917
-#: includes/ajax/class-topic.php:945
+#: includes/ajax/class-topic.php:949
+#: includes/ajax/class-topic.php:977
 msgid "Security Issue"
 msgstr ""
 
@@ -1002,79 +1065,75 @@ msgstr ""
 msgid "Last reply by %s"
 msgstr ""
 
-#: includes/ajax/class-topic.php:377
+#: includes/ajax/class-topic.php:409
 msgid "Invalid Data"
 msgstr ""
 
-#: includes/ajax/class-topic.php:384
+#: includes/ajax/class-topic.php:416
 msgid "Empty Forum ID"
 msgstr ""
 
-#: includes/ajax/class-topic.php:389
+#: includes/ajax/class-topic.php:421
 msgid "You do not have the capability to perform this action"
 msgstr ""
 
-#: includes/ajax/class-topic.php:394
+#: includes/ajax/class-topic.php:426
 msgid "Sorry, but this forum is locked"
 msgstr ""
 
-#: includes/ajax/class-topic.php:401
-#: includes/ajax/class-topic.php:484
+#: includes/ajax/class-topic.php:433
+#: includes/ajax/class-topic.php:516
 msgid "Title is required"
 msgstr ""
 
 #. translators: %s is a topic delay time
-#: includes/ajax/class-topic.php:420
+#: includes/ajax/class-topic.php:452
 msgid "You cannot create topics faster than %s seconds"
 msgstr ""
 
-#: includes/ajax/class-topic.php:470
-#: includes/ajax/class-topic.php:591
-#: includes/ajax/class-topic.php:620
-#: includes/ajax/class-topic.php:649
-#: includes/ajax/class-topic.php:678
-#: includes/ajax/class-topic.php:707
-#: includes/ajax/class-topic.php:741
-#: includes/ajax/class-topic.php:776
-#: includes/ajax/class-topic.php:813
-#: includes/ajax/class-topic.php:847
+#: includes/ajax/class-topic.php:502
+#: includes/ajax/class-topic.php:623
+#: includes/ajax/class-topic.php:652
+#: includes/ajax/class-topic.php:681
+#: includes/ajax/class-topic.php:710
+#: includes/ajax/class-topic.php:739
+#: includes/ajax/class-topic.php:773
+#: includes/ajax/class-topic.php:808
+#: includes/ajax/class-topic.php:845
+#: includes/ajax/class-topic.php:879
 msgid "Topic ID is invalid"
 msgstr ""
 
-#: includes/ajax/class-topic.php:477
-#: includes/ajax/class-topic.php:552
+#: includes/ajax/class-topic.php:509
+#: includes/ajax/class-topic.php:584
 msgid "You do not have the ability to edit this topic"
 msgstr ""
 
-#: includes/ajax/class-topic.php:541
+#: includes/ajax/class-topic.php:573
 msgid "Invalid topic ID"
 msgstr ""
 
-#: includes/ajax/class-topic.php:548
+#: includes/ajax/class-topic.php:580
 msgid "Invalid topic"
 msgstr ""
 
-#: includes/ajax/class-topic.php:711
+#: includes/ajax/class-topic.php:743
 msgid "You do not have the ability to move this topic to trash"
 msgstr ""
 
-#: includes/ajax/class-topic.php:745
+#: includes/ajax/class-topic.php:777
 msgid "You do not have the ability to restore this topic"
 msgstr ""
 
-#: includes/ajax/class-topic.php:780
-msgid "You do not have the ability to delete this topic"
-msgstr ""
-
-#: includes/ajax/class-topic.php:790
+#: includes/ajax/class-topic.php:822
 msgid "Topic was deleted successfully. You will be redirected to the Forum page"
 msgstr ""
 
-#: includes/ajax/class-topic.php:817
+#: includes/ajax/class-topic.php:849
 msgid "You do not have the ability to mark this topic as spam"
 msgstr ""
 
-#: includes/ajax/class-topic.php:851
+#: includes/ajax/class-topic.php:883
 msgid "You do not have the ability to restore this topic from spam"
 msgstr ""
 
@@ -1152,7 +1211,7 @@ msgid "Edit"
 msgstr ""
 
 #: includes/class-fmwp-functions.php:145
-#: includes/common/class-common.php:1020
+#: includes/common/class-common.php:1012
 msgid "Edit Forum"
 msgstr ""
 
@@ -1203,7 +1262,7 @@ msgid "This is where you can add new forums."
 msgstr ""
 
 #: includes/class-fmwp-functions.php:186
-#: includes/common/class-common.php:990
+#: includes/common/class-common.php:982
 #: templates/archive-topic-header.php:26
 msgid "Topic"
 msgstr ""
@@ -1222,7 +1281,7 @@ msgid "Add New Topic"
 msgstr ""
 
 #: includes/class-fmwp-functions.php:191
-#: includes/common/class-common.php:1032
+#: includes/common/class-common.php:1024
 msgid "Edit Topic"
 msgstr ""
 
@@ -1252,14 +1311,14 @@ msgid "No Topics found in trash"
 msgstr ""
 
 #: includes/class-fmwp-functions.php:225
-#: includes/common/class-topic.php:1143
-#: includes/common/class-topic.php:1150
+#: includes/common/class-topic.php:1145
+#: includes/common/class-topic.php:1152
 #: templates/js/reply-row.php:117
 #: templates/js/reply-row.php:132
-#: templates/topic.php:285
-#: templates/topic.php:293
-#: templates/topic.php:346
-#: templates/topic.php:354
+#: templates/topic.php:287
+#: templates/topic.php:295
+#: templates/topic.php:348
+#: templates/topic.php:356
 msgid "Reply"
 msgstr ""
 
@@ -1445,21 +1504,29 @@ msgstr ""
 msgid "Hidden"
 msgstr ""
 
-#: includes/common/class-forum.php:142
+#: includes/common/class-forum.php:172
 msgid "Unlock forum"
 msgstr ""
 
-#: includes/common/class-forum.php:149
+#: includes/common/class-forum.php:179
 msgid "Lock forum"
 msgstr ""
 
-#: includes/common/class-forum.php:157
-#: includes/common/class-reply.php:833
-#: includes/common/class-topic.php:588
+#: includes/common/class-forum.php:189
+#: includes/common/class-reply.php:835
+#: includes/common/class-topic.php:590
 msgid "Move to trash"
 msgstr ""
 
-#: includes/common/class-login.php:148
+#: includes/common/class-forum.php:205
+msgid "Restore forum"
+msgstr ""
+
+#: includes/common/class-forum.php:214
+msgid "Remove forum"
+msgstr ""
+
+#: includes/common/class-login.php:137
 msgid "<strong>ERROR</strong>: Invalid username, email address or incorrect password."
 msgstr ""
 
@@ -1471,144 +1538,157 @@ msgstr ""
 
 #. translators: %s is a topic title
 #. translators: %s is a topic title.
-#: includes/common/class-reply.php:404
+#: includes/common/class-reply.php:406
 #: modules/migration/class-init.php:909
 msgid "Reply To: %s"
 msgstr ""
 
-#: includes/common/class-reply.php:747
-#: includes/common/class-topic.php:213
-#: includes/common/class-topic.php:514
+#: includes/common/class-reply.php:749
+#: includes/common/class-topic.php:215
+#: includes/common/class-topic.php:516
+#: blocks-src/fmwp-topics-list/src/index.js:76
+#: includes/blocks/fmwp-topics-list/src/index.js:1
 msgid "Pending"
 msgstr ""
 
-#: includes/common/class-reply.php:751
-#: includes/common/class-topic.php:509
+#: includes/common/class-reply.php:753
+#: includes/common/class-topic.php:511
+#: templates/js/forum-row.php:55
 msgid "Trashed"
 msgstr ""
 
-#: includes/common/class-reply.php:824
+#: includes/common/class-reply.php:826
 msgid "Edit reply"
 msgstr ""
 
-#: includes/common/class-reply.php:842
-#: includes/common/class-topic.php:597
+#: includes/common/class-reply.php:844
+#: includes/common/class-topic.php:599
 msgid "Mark as spam"
 msgstr ""
 
-#: includes/common/class-reply.php:851
-#: includes/common/class-topic.php:606
+#: includes/common/class-reply.php:853
+#: includes/common/class-topic.php:608
 msgid "Isn't spam"
 msgstr ""
 
-#: includes/common/class-reply.php:862
+#: includes/common/class-reply.php:864
 msgid "Report reply"
 msgstr ""
 
-#: includes/common/class-reply.php:869
+#: includes/common/class-reply.php:871
 msgid "Un-report reply"
 msgstr ""
 
-#: includes/common/class-reply.php:879
+#: includes/common/class-reply.php:881
 msgid "Clear reply's reports"
 msgstr ""
 
-#: includes/common/class-reply.php:889
+#: includes/common/class-reply.php:891
 msgid "Restore reply"
 msgstr ""
 
-#: includes/common/class-reply.php:898
+#: includes/common/class-reply.php:900
 msgid "Remove reply"
 msgstr ""
 
-#: includes/common/class-topic.php:212
+#: includes/common/class-topic.php:214
 msgid "Open"
 msgstr ""
 
-#: includes/common/class-topic.php:214
+#: includes/common/class-topic.php:216
+#: blocks-src/fmwp-topics-list/src/index.js:77
+#: includes/blocks/fmwp-topics-list/src/index.js:1
 msgid "Trash"
 msgstr ""
 
-#: includes/common/class-topic.php:220
+#: includes/common/class-topic.php:222
 msgid "Normal"
 msgstr ""
 
-#: includes/common/class-topic.php:224
-#: includes/common/class-topic.php:246
+#: includes/common/class-topic.php:226
+#: includes/common/class-topic.php:248
 msgid "Pinned"
 msgstr ""
 
-#: includes/common/class-topic.php:228
-#: includes/common/class-topic.php:250
+#: includes/common/class-topic.php:230
+#: includes/common/class-topic.php:252
 msgid "Announcement"
 msgstr ""
 
-#: includes/common/class-topic.php:232
-#: includes/common/class-topic.php:254
+#: includes/common/class-topic.php:234
+#: includes/common/class-topic.php:256
 msgid "Global"
 msgstr ""
 
-#: includes/common/class-topic.php:264
+#: includes/common/class-topic.php:266
+#: blocks-src/fmwp-forum/src/index.js:48
+#: blocks-src/fmwp-topics-list/src/index.js:101
+#: includes/blocks/fmwp-forum/src/index.js:1
+#: includes/blocks/fmwp-topics-list/src/index.js:1
 msgid "Recently updated"
 msgstr ""
 
-#: includes/common/class-topic.php:265
+#: includes/common/class-topic.php:267
+#: blocks-src/fmwp-forum/src/index.js:49
+#: blocks-src/fmwp-topics-list/src/index.js:102
+#: includes/blocks/fmwp-forum/src/index.js:1
+#: includes/blocks/fmwp-topics-list/src/index.js:1
 msgid "Most views"
 msgstr ""
 
-#: includes/common/class-topic.php:543
+#: includes/common/class-topic.php:545
 msgid "Edit topic"
 msgstr ""
 
-#: includes/common/class-topic.php:552
+#: includes/common/class-topic.php:554
 msgid "Pin topic"
 msgstr ""
 
-#: includes/common/class-topic.php:561
+#: includes/common/class-topic.php:563
 msgid "Unpin topic"
 msgstr ""
 
-#: includes/common/class-topic.php:570
+#: includes/common/class-topic.php:572
 msgid "Lock topic"
 msgstr ""
 
-#: includes/common/class-topic.php:579
+#: includes/common/class-topic.php:581
 msgid "Unlock topic"
 msgstr ""
 
-#: includes/common/class-topic.php:616
+#: includes/common/class-topic.php:618
 msgid "Report topic"
 msgstr ""
 
-#: includes/common/class-topic.php:623
+#: includes/common/class-topic.php:625
 msgid "Un-report topic"
 msgstr ""
 
-#: includes/common/class-topic.php:633
+#: includes/common/class-topic.php:635
 msgid "Clear topic's reports"
 msgstr ""
 
-#: includes/common/class-topic.php:649
+#: includes/common/class-topic.php:651
 msgid "Restore topic"
 msgstr ""
 
-#: includes/common/class-topic.php:658
+#: includes/common/class-topic.php:660
 msgid "Remove topic"
 msgstr ""
 
-#: includes/common/class-topic.php:1150
+#: includes/common/class-topic.php:1152
 #: templates/js/reply-row.php:120
 #: templates/js/reply-row.php:135
-#: templates/topic.php:293
-#: templates/topic.php:354
+#: templates/topic.php:295
+#: templates/topic.php:356
 msgid "Login to reply to this topic"
 msgstr ""
 
-#: includes/common/class-topic.php:1154
-#: templates/topic.php:286
-#: templates/topic.php:289
-#: templates/topic.php:347
-#: templates/topic.php:350
+#: includes/common/class-topic.php:1156
+#: templates/topic.php:288
+#: templates/topic.php:291
+#: templates/topic.php:349
+#: templates/topic.php:352
 msgid "This topic is closed to new replies"
 msgstr ""
 
@@ -1710,12 +1790,12 @@ msgstr ""
 msgid "Topic Tag: %s"
 msgstr ""
 
-#: includes/frontend/class-shortcodes.php:798
-#: includes/frontend/class-shortcodes.php:843
+#: includes/frontend/class-shortcodes.php:802
+#: includes/frontend/class-shortcodes.php:847
 msgid "You are already logged in"
 msgstr ""
 
-#: includes/frontend/class-shortcodes.php:901
+#: includes/frontend/class-shortcodes.php:905
 msgid "Forum created successfully"
 msgstr ""
 
@@ -1804,19 +1884,19 @@ msgid "People"
 msgstr ""
 
 #: templates/archive-topic-header.php:16
-#: templates/js/topic-row.php:90
+#: templates/js/topic-row.php:96
 msgid "Views"
 msgstr ""
 
 #: templates/archive-topic.php:26
 #: templates/archive-topic.php:36
-#: templates/forum.php:36
-#: templates/forum.php:43
+#: templates/forum.php:35
+#: templates/forum.php:42
 msgid "New topic"
 msgstr ""
 
 #: templates/archive-topic.php:36
-#: templates/forum.php:43
+#: templates/forum.php:42
 msgid "Login to create a topic"
 msgstr ""
 
@@ -1824,13 +1904,13 @@ msgstr ""
 #: templates/archive-topic.php:109
 #: templates/forum.php:100
 #: templates/forum.php:128
-#: templates/topic.php:308
-#: templates/topic.php:323
+#: templates/topic.php:310
+#: templates/topic.php:325
 msgid "Sort:"
 msgstr ""
 
 #. translators: %s is the class attribute
-#: templates/forum.php:71
+#: templates/forum.php:70
 msgid "Please <a href=\"#\" class=\"%s\" title=\"Login to view\" data-fmwp_popup_title=\"Login to view forum\">login</a> to view this forum"
 msgstr ""
 
@@ -1844,48 +1924,48 @@ msgstr ""
 msgid "Search in Forum"
 msgstr ""
 
-#: templates/js/forum-category-list.php:32
+#: templates/js/forum-category-list.php:45
 msgid "{{{category.forums}}} forums"
 msgstr ""
 
-#: templates/js/forum-category-list.php:35
+#: templates/js/forum-category-list.php:48
 msgid "{{{category.topics}}} topics"
 msgstr ""
 
-#: templates/js/forum-category-list.php:38
+#: templates/js/forum-category-list.php:51
 msgid "{{{category.replies}}} people have replied"
 msgstr ""
 
-#: templates/js/forum-category-list.php:48
-#: templates/js/forum-row.php:92
+#: templates/js/forum-category-list.php:61
+#: templates/js/forum-row.php:100
 #: templates/js/reply-row.php:82
-#: templates/js/topic-row.php:109
-#: templates/topic.php:263
+#: templates/js/topic-row.php:115
+#: templates/topic.php:265
 msgid "More Actions"
 msgstr ""
 
-#: templates/js/forum-row.php:64
+#: templates/js/forum-row.php:72
 msgid "Latest topic:"
 msgstr ""
 
-#: templates/js/forum-row.php:71
-#: templates/js/forum-row.php:72
+#: templates/js/forum-row.php:79
+#: templates/js/forum-row.php:80
 msgid "topics"
 msgstr ""
 
-#: templates/js/forum-row.php:75
-#: templates/js/topic-row.php:83
+#: templates/js/forum-row.php:83
+#: templates/js/topic-row.php:89
 msgid "people have replied"
 msgstr ""
 
-#: templates/js/forum-row.php:76
+#: templates/js/forum-row.php:84
 #: templates/js/reply-row-answers.php:31
-#: templates/js/topic-row.php:84
+#: templates/js/topic-row.php:90
 msgid "replies"
 msgstr ""
 
-#: templates/js/forum-row.php:80
-#: templates/js/topic-row.php:95
+#: templates/js/forum-row.php:88
+#: templates/js/topic-row.php:101
 msgid "Last Updated"
 msgstr ""
 
@@ -1899,7 +1979,7 @@ msgstr ""
 
 #: templates/js/reply-row.php:36
 #: templates/js/reply-row.php:45
-#: templates/js/topic-row.php:28
+#: templates/js/topic-row.php:34
 msgid "Profile"
 msgstr ""
 
@@ -1912,15 +1992,15 @@ msgid "Reply link"
 msgstr ""
 
 #: templates/js/single-topic-tags.php:15
-#: templates/topic.php:179
+#: templates/topic.php:180
 msgid "Tags:"
 msgstr ""
 
-#: templates/js/topic-row.php:70
+#: templates/js/topic-row.php:76
 msgid "Forum:"
 msgstr ""
 
-#: templates/js/topic-row.php:91
+#: templates/js/topic-row.php:97
 msgid "views"
 msgstr ""
 
@@ -1957,8 +2037,8 @@ msgstr ""
 msgid "Log In"
 msgstr ""
 
-#: templates/login.php:49
 #: templates/login.php:50
+#: templates/login.php:51
 msgid "Forgot Password?"
 msgstr ""
 
@@ -1995,14 +2075,12 @@ msgid "Website"
 msgstr ""
 
 #: templates/profile/edit-form.php:88
-#: templates/profile/notifications-form.php:50
+#: templates/profile/notifications-form.php:57
 msgid "Update"
 msgstr ""
 
-#: templates/profile/edit.php:18
-#: templates/profile/edit.php:25
-#: templates/profile/notifications.php:11
-#: templates/profile/notifications.php:18
+#: templates/profile/edit.php:16
+#: templates/profile/notifications.php:16
 msgid "Wrong user in query"
 msgstr ""
 
@@ -2095,21 +2173,21 @@ msgid "Please <a href=\"#\" class=\"%s\" title=\"Login to view\" data-fmwp_popup
 msgstr ""
 
 #. translators: %s is a total replies count
-#: templates/topic.php:159
+#: templates/topic.php:160
 msgid "<span id=\"fmwp-replies-total\">%s</span> reply"
 msgid_plural "<span id=\"fmwp-replies-total\">%s</span> replies"
 msgstr[0] ""
 msgstr[1] ""
 
 #. translators: %s is a total topics count
-#: templates/topic.php:169
+#: templates/topic.php:170
 msgid "<span id=\"fmwp-views-total\">%s</span> view"
 msgid_plural "<span id=\"fmwp-views-total\">%s</span> views"
 msgstr[0] ""
 msgstr[1] ""
 
 #. translators: %s is the user display name.
-#: templates/topic.php:219
+#: templates/topic.php:221
 msgid "%s Profile"
 msgstr ""
 
@@ -2144,10 +2222,14 @@ msgstr ""
 msgid "No topics found for this search."
 msgstr ""
 
-#: assets/front/js/logged-in-forum.js:510
-#: assets/front/js/logged-in-topic.js:997
-#: assets/front/js/logged-in-topics.js:508
+#: assets/front/js/logged-in-forum.js:509
+#: assets/front/js/logged-in-topic.js:1005
+#: assets/front/js/logged-in-topics.js:506
 msgid "Are you sure to delete permanently this topic. This operation can not be canceled."
+msgstr ""
+
+#: assets/front/js/logged-in-forums.js:146
+msgid "Are you sure to delete permanently this forum. This operation can not be canceled."
 msgstr ""
 
 #: assets/front/js/logged-in-topic.js:402
@@ -2162,12 +2244,12 @@ msgstr ""
 msgid "Are you sure to delete permanently this reply. This operation can not be canceled."
 msgstr ""
 
-#: assets/front/js/profile.js:367
+#: assets/front/js/profile.js:369
 #: assets/front/js/user-replies.js:2
 msgid "No replies"
 msgstr ""
 
-#: assets/front/js/profile.js:428
+#: assets/front/js/profile.js:431
 #: assets/front/js/user-topics.js:3
 msgid "No topics"
 msgstr ""
@@ -2183,4 +2265,342 @@ msgstr ""
 
 #: assets/front/js/topics-list.js:3
 msgid "No topics have been created."
+msgstr ""
+
+#: blocks-src/fmwp-forum-categories/src/index.js:26
+#: includes/blocks/fmwp-forum-categories/src/index.js:1
+msgid "Forum Categories Settings"
+msgstr ""
+
+#: blocks-src/fmwp-forum-categories/src/index.js:28
+#: blocks-src/fmwp-forums-list/src/index.js:40
+#: blocks-src/fmwp-topics-list/src/index.js:47
+#: includes/blocks/fmwp-forum-categories/src/index.js:1
+#: includes/blocks/fmwp-forums-list/src/index.js:1
+#: includes/blocks/fmwp-topics-list/src/index.js:1
+msgid "Enable Search?"
+msgstr ""
+
+#: blocks-src/fmwp-forum/src/index.js:38
+#: blocks-src/fmwp-topic/src/index.js:45
+#: includes/blocks/fmwp-forum/src/index.js:1
+#: includes/blocks/fmwp-topic/src/index.js:1
+msgid "Show Header?"
+msgstr ""
+
+#: blocks-src/fmwp-forum/src/index.js:50
+#: blocks-src/fmwp-topics-list/src/index.js:103
+#: includes/blocks/fmwp-forum/src/index.js:1
+#: includes/blocks/fmwp-topics-list/src/index.js:1
+msgid "Most replies"
+msgstr ""
+
+#: blocks-src/fmwp-forum/src/index.js:51
+#: blocks-src/fmwp-topic/src/index.js:55
+#: blocks-src/fmwp-topics-list/src/index.js:104
+#: includes/blocks/fmwp-forum/src/index.js:1
+#: includes/blocks/fmwp-topic/src/index.js:1
+#: includes/blocks/fmwp-topics-list/src/index.js:1
+msgid "Most likes (Likes module)"
+msgstr ""
+
+#: blocks-src/fmwp-forum/src/index.js:52
+#: blocks-src/fmwp-topic/src/index.js:56
+#: blocks-src/fmwp-topics-list/src/index.js:105
+#: includes/blocks/fmwp-forum/src/index.js:1
+#: includes/blocks/fmwp-topic/src/index.js:1
+#: includes/blocks/fmwp-topics-list/src/index.js:1
+msgid "Most votes (Votes module)"
+msgstr ""
+
+#: blocks-src/fmwp-forum/src/index.js:57
+#: includes/blocks/fmwp-forum/src/index.js:1
+msgid "Forum ID"
+msgstr ""
+
+#: blocks-src/fmwp-forum/src/index.js:60
+#: includes/blocks/fmwp-forum/src/index.js:1
+msgid "Select a Forum"
+msgstr ""
+
+#: blocks-src/fmwp-forums-list/src/index.js:38
+#: includes/blocks/fmwp-forums-list/src/index.js:1
+msgid "Forum Filter Settings"
+msgstr ""
+
+#: blocks-src/fmwp-forums-list/src/index.js:45
+#: includes/blocks/fmwp-forums-list/src/index.js:1
+msgid "Include Subcategories?"
+msgstr ""
+
+#: blocks-src/fmwp-forums-list/src/index.js:53
+#: includes/blocks/fmwp-forums-list/src/index.js:1
+msgid "Select a Category"
+msgstr ""
+
+#: blocks-src/fmwp-login-form/src/index.js:29
+#: includes/blocks/fmwp-login-form/src/index.js:1
+msgid "Login form"
+msgstr ""
+
+#: blocks-src/fmwp-login-form/src/index.js:31
+#: blocks-src/fmwp-registration-form/src/index.js:51
+#: includes/blocks/fmwp-login-form/src/index.js:1
+#: includes/blocks/fmwp-registration-form/src/index.js:1
+msgid "Redirect"
+msgstr ""
+
+#: blocks-src/fmwp-registration-form/src/index.js:39
+#: includes/blocks/fmwp-registration-form/src/index.js:1
+msgid "Registation form"
+msgstr ""
+
+#: blocks-src/fmwp-registration-form/src/index.js:41
+#: includes/blocks/fmwp-registration-form/src/index.js:1
+msgid "Hide first name?"
+msgstr ""
+
+#: blocks-src/fmwp-registration-form/src/index.js:46
+#: includes/blocks/fmwp-registration-form/src/index.js:1
+msgid "Hide last name?"
+msgstr ""
+
+#: blocks-src/fmwp-topic/src/index.js:40
+#: blocks-src/fmwp-topics-list/src/index.js:57
+#: includes/blocks/fmwp-topic/src/index.js:1
+#: includes/blocks/fmwp-topics-list/src/index.js:1
+msgid "Show Forum?"
+msgstr ""
+
+#: blocks-src/fmwp-topic/src/index.js:61
+#: includes/blocks/fmwp-topic/src/index.js:1
+msgid "Topic ID"
+msgstr ""
+
+#: blocks-src/fmwp-topic/src/index.js:64
+#: includes/blocks/fmwp-topic/src/index.js:1
+msgid "Select a Topic"
+msgstr ""
+
+#: blocks-src/fmwp-topics-list/src/index.js:45
+#: includes/blocks/fmwp-topics-list/src/index.js:1
+msgid "Topics List Settings"
+msgstr ""
+
+#: blocks-src/fmwp-topics-list/src/index.js:52
+#: includes/blocks/fmwp-topics-list/src/index.js:1
+msgid "Enable New Topic?"
+msgstr ""
+
+#: blocks-src/fmwp-topics-list/src/index.js:62
+#: includes/blocks/fmwp-topics-list/src/index.js:1
+msgid "Tag"
+msgstr ""
+
+#: blocks-src/fmwp-topics-list/src/index.js:65
+#: includes/blocks/fmwp-topics-list/src/index.js:1
+msgid "Select a Tag"
+msgstr ""
+
+#: blocks-src/fmwp-topics-list/src/index.js:74
+#: includes/blocks/fmwp-topics-list/src/index.js:1
+msgid "Select a status"
+msgstr ""
+
+#: blocks-src/fmwp-topics-list/src/index.js:75
+#: includes/blocks/fmwp-topics-list/src/index.js:1
+msgid "Published"
+msgstr ""
+
+#: blocks-src/fmwp-topics-list/src/index.js:87
+#: includes/blocks/fmwp-topics-list/src/index.js:1
+msgid "Select a type"
+msgstr ""
+
+#: blocks-src/fmwp-topics-list/src/index.js:88
+#: includes/blocks/fmwp-topics-list/src/index.js:1
+msgid "Normal topics"
+msgstr ""
+
+#: blocks-src/fmwp-topics-list/src/index.js:89
+#: includes/blocks/fmwp-topics-list/src/index.js:1
+msgid "Pinned topics"
+msgstr ""
+
+#: blocks-src/fmwp-topics-list/src/index.js:90
+#: includes/blocks/fmwp-topics-list/src/index.js:1
+msgid "Announcement topics"
+msgstr ""
+
+#: blocks-src/fmwp-topics-list/src/index.js:91
+#: includes/blocks/fmwp-topics-list/src/index.js:1
+msgid "Global topics"
+msgstr ""
+
+#: blocks-src/fmwp-user-replies/src/index.js:32
+#: includes/blocks/fmwp-user-replies/src/index.js:1
+msgid "User replies Settings"
+msgstr ""
+
+#: blocks-src/fmwp-user-replies/src/index.js:34
+#: blocks-src/fmwp-user-topics/src/index.js:34
+#: includes/blocks/fmwp-user-replies/src/index.js:1
+#: includes/blocks/fmwp-user-topics/src/index.js:1
+msgid "User"
+msgstr ""
+
+#: blocks-src/fmwp-user-replies/src/index.js:37
+#: blocks-src/fmwp-user-topics/src/index.js:37
+#: includes/blocks/fmwp-user-replies/src/index.js:1
+#: includes/blocks/fmwp-user-topics/src/index.js:1
+msgid "Select a User"
+msgstr ""
+
+#: blocks-src/fmwp-user-topics/src/index.js:32
+#: includes/blocks/fmwp-user-topics/src/index.js:1
+msgid "User Topics Settings"
+msgstr ""
+
+#: blocks-src/fmwp-forum-categories/block.json
+#: includes/blocks/fmwp-forum-categories/block.json
+msgctxt "block title"
+msgid "Forum categories"
+msgstr ""
+
+#: blocks-src/fmwp-forum-categories/block.json
+#: includes/blocks/fmwp-forum-categories/block.json
+msgctxt "block description"
+msgid "Displaying forum categories"
+msgstr ""
+
+#: blocks-src/fmwp-forum/block.json
+#: includes/blocks/fmwp-forum/block.json
+msgctxt "block title"
+msgid "Single forum"
+msgstr ""
+
+#: blocks-src/fmwp-forum/block.json
+#: includes/blocks/fmwp-forum/block.json
+msgctxt "block description"
+msgid "Displaying a single forum"
+msgstr ""
+
+#: blocks-src/fmwp-forums-list/block.json
+#: includes/blocks/fmwp-forums-list/block.json
+msgctxt "block title"
+msgid "Forums list"
+msgstr ""
+
+#: blocks-src/fmwp-forums-list/block.json
+#: includes/blocks/fmwp-forums-list/block.json
+msgctxt "block description"
+msgid "Displaying a forums list"
+msgstr ""
+
+#: blocks-src/fmwp-login-form/block.json
+#: includes/blocks/fmwp-login-form/block.json
+msgctxt "block title"
+msgid "Forum login form"
+msgstr ""
+
+#: blocks-src/fmwp-login-form/block.json
+#: includes/blocks/fmwp-login-form/block.json
+msgctxt "block description"
+msgid "Displaying a login form"
+msgstr ""
+
+#: blocks-src/fmwp-new-forum/block.json
+#: includes/blocks/fmwp-new-forum/block.json
+msgctxt "block title"
+msgid "Forum form"
+msgstr ""
+
+#: blocks-src/fmwp-new-forum/block.json
+#: includes/blocks/fmwp-new-forum/block.json
+msgctxt "block description"
+msgid "Displaying a new forum form"
+msgstr ""
+
+#: blocks-src/fmwp-registration-form/block.json
+#: includes/blocks/fmwp-registration-form/block.json
+msgctxt "block title"
+msgid "Forum registration form"
+msgstr ""
+
+#: blocks-src/fmwp-registration-form/block.json
+#: includes/blocks/fmwp-registration-form/block.json
+msgctxt "block description"
+msgid "Displaying a registration form"
+msgstr ""
+
+#: blocks-src/fmwp-topic/block.json
+#: includes/blocks/fmwp-topic/block.json
+msgctxt "block title"
+msgid "Single topic"
+msgstr ""
+
+#: blocks-src/fmwp-topic/block.json
+#: includes/blocks/fmwp-topic/block.json
+msgctxt "block description"
+msgid "Displaying a single topic"
+msgstr ""
+
+#: blocks-src/fmwp-topics-list/block.json
+#: includes/blocks/fmwp-topics-list/block.json
+msgctxt "block title"
+msgid "Topics list"
+msgstr ""
+
+#: blocks-src/fmwp-topics-list/block.json
+#: includes/blocks/fmwp-topics-list/block.json
+msgctxt "block description"
+msgid "Displaying a topics list"
+msgstr ""
+
+#: blocks-src/fmwp-user-edit/block.json
+#: includes/blocks/fmwp-user-edit/block.json
+msgctxt "block title"
+msgid "Forum user edit"
+msgstr ""
+
+#: blocks-src/fmwp-user-edit/block.json
+#: includes/blocks/fmwp-user-edit/block.json
+msgctxt "block description"
+msgid "Displaying a user edit"
+msgstr ""
+
+#: blocks-src/fmwp-user-profile/block.json
+#: includes/blocks/fmwp-user-profile/block.json
+msgctxt "block title"
+msgid "Forum user profile"
+msgstr ""
+
+#: blocks-src/fmwp-user-profile/block.json
+#: includes/blocks/fmwp-user-profile/block.json
+msgctxt "block description"
+msgid "Displaying a user profile"
+msgstr ""
+
+#: blocks-src/fmwp-user-replies/block.json
+#: includes/blocks/fmwp-user-replies/block.json
+msgctxt "block title"
+msgid "User replies"
+msgstr ""
+
+#: blocks-src/fmwp-user-replies/block.json
+#: includes/blocks/fmwp-user-replies/block.json
+msgctxt "block description"
+msgid "Displaying user replies"
+msgstr ""
+
+#: blocks-src/fmwp-user-topics/block.json
+#: includes/blocks/fmwp-user-topics/block.json
+msgctxt "block title"
+msgid "User topics"
+msgstr ""
+
+#: blocks-src/fmwp-user-topics/block.json
+#: includes/blocks/fmwp-user-topics/block.json
+msgctxt "block description"
+msgid "Displaying user topics"
 msgstr ""

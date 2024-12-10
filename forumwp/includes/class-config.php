@@ -123,7 +123,7 @@ if ( ! class_exists( 'fmwp\Config' ) ) {
 				'mail_from'                 => get_bloginfo( 'name' ),
 				'mail_from_addr'            => get_bloginfo( 'admin_email' ),
 				'mention_on'                => true,
-				'mention_sub'               => '{author_name} has mentioned you in {topic_title}',
+				'mention_sub'               => '{author_name} has mentioned you in {post_title}',
 				'disable-fa-styles'         => false,
 				'uninstall-delete-settings' => false,
 			);

@@ -305,7 +305,7 @@ if ( ! class_exists( 'fmwp\common\Common' ) ) {
 							$tag_args[] = "{$arg}=\"{$value}\"";
 						}
 
-						$link    = '<a href="' . esc_attr( FMWP()->user()->get_profile_link( $user->ID ) ) . '" class="fmwp-link fmwp-mention-link" ' . implode( ' ', $tag_args ) . '>' . FMWP()->user()->display_name( $user ) . '</a>';
+						$link    = '<a href="' . esc_url( FMWP()->user()->get_profile_link( $user->ID ) ) . '" class="fmwp-link fmwp-mention-link" ' . implode( ' ', $tag_args ) . '>' . FMWP()->user()->display_name( $user ) . '</a>';
 						$content = str_replace( '@' . $match, $link, $content );
 					}
 				}
@@ -537,6 +537,7 @@ if ( ! class_exists( 'fmwp\common\Common' ) ) {
 			$this->forum();
 			$this->topic();
 			$this->reply();
+			$this->blocks();
 		}
 
 
@@ -557,7 +558,6 @@ if ( ! class_exists( 'fmwp\common\Common' ) ) {
 			do_action( 'before_forumwp_init' );
 
 			$this->set_variables();
-			$this->localize();
 
 			$this->create_post_types();
 			$this->register_post_statuses();
@@ -579,27 +579,6 @@ if ( ! class_exists( 'fmwp\common\Common' ) ) {
 			FMWP()->templates_path  = FMWP_PATH . 'templates' . DIRECTORY_SEPARATOR;
 			FMWP()->theme_templates = get_stylesheet_directory() . DIRECTORY_SEPARATOR . 'forumwp' . DIRECTORY_SEPARATOR;
 		}
-
-
-		/**
-		 * Loading FMWP textdomain, 'forumwp' by default
-		 *
-		 * @used-by Common::init()
-		 */
-		public function localize() {
-			$language_locale = ( '' !== get_locale() ) ? get_locale() : 'en_US';
-
-			$language_locale = apply_filters( 'fmwp_language_locale', $language_locale );
-
-			$language_domain = apply_filters( 'fmwp_language_textdomain', 'forumwp' );
-
-			$language_file = WP_LANG_DIR . DIRECTORY_SEPARATOR . 'plugins' . DIRECTORY_SEPARATOR . $language_domain . '-' . $language_locale . '.mo';
-
-			$language_file = apply_filters( 'fmwp_language_file', $language_file );
-
-			load_textdomain( $language_domain, $language_file );
-		}
-
 
 		/**
 		 * @since 2.0
@@ -721,6 +700,19 @@ if ( ! class_exists( 'fmwp\common\Common' ) ) {
 				}
 			);
 
+			if ( FMWP()->options()->get( 'raw_html_enabled' ) ) {
+				$tinymce = array(
+					'init_instance_callback' => "function (editor) {
+													editor.on( 'keyup paste mouseover', function (e) {
+													var content = editor.getContent( { format: 'html' } ).trim();
+													var textarea = jQuery( '#' + editor.id );
+													textarea.val( content ).trigger( 'keyup' ).trigger( 'keypress' ).trigger( 'keydown' ).trigger( 'change' ).trigger( 'paste' ).trigger( 'mouseover' );
+												});}",
+				);
+			} else {
+				$tinymce = false;
+			}
+
 			$editor_settings = apply_filters(
 				'fmwp_content_editor_options',
 				array(
@@ -729,14 +721,7 @@ if ( ! class_exists( 'fmwp\common\Common' ) ) {
 					'editor_height' => 145,
 					'media_buttons' => false,
 					'quicktags'     => false,
-					'tinymce'       => array(
-						'init_instance_callback' => "function (editor) {
-													editor.on( 'keyup paste mouseover', function (e) {
-													var content = editor.getContent( { format: 'html' } ).trim();
-													var textarea = jQuery( '#' + editor.id );
-													textarea.val( content ).trigger( 'keyup' ).trigger( 'keypress' ).trigger( 'keydown' ).trigger( 'change' ).trigger( 'paste' ).trigger( 'mouseover' );
-												});}",
-					),
+					'tinymce'       => $tinymce,
 				)
 			);
 
@@ -900,8 +885,10 @@ if ( ! class_exists( 'fmwp\common\Common' ) ) {
 
 					$send = FMWP()->user()->can_view_reply( $user_id, $post_ID );
 
-					$email_args['topic_url']   = get_permalink( $topic_id );
-					$email_args['topic_title'] = $topic->post_title;
+					$email_args['topic_url']   = get_permalink( $topic_id ); // backward compatibility
+					$email_args['topic_title'] = $topic->post_title; // backward compatibility
+					$email_args['post_url']    = get_permalink( $topic_id );
+					$email_args['post_title']  = $topic->post_title;
 
 					if ( ! empty( $topic->post_password ) || ! empty( $forum->post_password ) ) {
 						$email_args['post_content'] = '';
@@ -933,8 +920,10 @@ if ( ! class_exists( 'fmwp\common\Common' ) ) {
 						}
 					}
 
-					$email_args['topic_url']   = get_permalink( $topic_id );
-					$email_args['topic_title'] = $topic->post_title;
+					$email_args['topic_url']   = get_permalink( $topic_id ); // backward compatibility
+					$email_args['topic_title'] = $topic->post_title; // backward compatibility
+					$email_args['post_url']    = get_permalink( $topic_id );
+					$email_args['post_title']  = $topic->post_title;
 
 					if ( ! empty( $forum->post_password ) ) {
 						$email_args['post_content'] = '';
@@ -948,6 +937,9 @@ if ( ! class_exists( 'fmwp\common\Common' ) ) {
 							}
 						}
 					}
+
+					$email_args['post_url']   = get_permalink( $post->ID );
+					$email_args['post_title'] = $post->post_title;
 				}
 
 				$send = apply_filters( 'fmwp_send_mention_email', $send, $post_ID, $post, $update );
@@ -1167,6 +1159,30 @@ if ( ! class_exists( 'fmwp\common\Common' ) ) {
 			}
 
 			return FMWP()->classes['fmwp\common\reply'];
+		}
+
+		/**
+		 * @since 2.1.1
+		 *
+		 * @return Blocks
+		 */
+		public function blocks() {
+			if ( empty( FMWP()->classes['fmwp\common\blocks'] ) ) {
+				FMWP()->classes['fmwp\common\blocks'] = new Blocks();
+			}
+
+			return FMWP()->classes['fmwp\common\blocks'];
+		}
+
+		/**
+		 * Loading FMWP textdomain, 'forumwp' by default
+		 *
+		 * @used-by Common::init()
+		 *
+		 * @deprecated 2.1.3
+		 */
+		public function localize() {
+			_deprecated_function( __METHOD__, '2.1.3' );
 		}
 	}
 }

@@ -4,7 +4,7 @@
  *
  * This template can be overridden by copying it to your-theme/forumwp/js/topic-row.php
  *
- * @version 2.1.1
+ * @version 2.1.3
  *
  * @var array $fmwp_js_topic_row
  */
@@ -15,6 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 $item       = isset( $fmwp_js_topic_row['item'] ) ? $fmwp_js_topic_row['item'] : 'topic';
 $actions    = isset( $fmwp_js_topic_row['actions'] ) ? $fmwp_js_topic_row['actions'] : '';
 $show_forum = isset( $fmwp_js_topic_row['show_forum'] ) ? $fmwp_js_topic_row['show_forum'] : true;
+$is_block   = isset( $fmwp_js_topic_row['is_block'] ) ? $fmwp_js_topic_row['is_block'] : false;
 ?>
 <?php //phpcs:ignore Squiz.ControlStructures.ControlSignature.NewlineAfterOpenBrace -- inline add classes, rewrite for future templates ?>
 <div class="fmwp-topic-row<# if ( <?php echo esc_js( $item ); ?>.is_trashed ) { #> fmwp-topic-trashed<# } #><# if ( <?php echo esc_js( $item ); ?>.is_spam ) { #> fmwp-topic-spam<# } #><# if ( <?php echo esc_js( $item ); ?>.is_pending ) { #> fmwp-topic-pending<# } #><# if ( <?php echo esc_js( $item ); ?>.is_reported ) { #> fmwp-topic-reported<# } #><# if ( <?php echo esc_js( $item ); ?>.is_locked ) { #> fmwp-topic-locked<# } #><# if ( <?php echo esc_js( $item ); ?>.is_pinned ) { #> fmwp-topic-pinned<# } #><# if ( <?php echo esc_js( $item ); ?>.is_announcement ) { #> fmwp-topic-announcement<# } #><# if ( <?php echo esc_js( $item ); ?>.is_global ) { #> fmwp-topic-global<# } #><?php if ( FMWP()->options()->get( 'topic_tags' ) ) { ?><# if ( <?php echo esc_js( $item ); ?>.tags.length > 0 ) { #> fmwp-topic-tagged<# } #><?php } ?><?php do_action( 'fmwp_js_template_topic_row_classes', $item ); ?>"
@@ -22,7 +23,12 @@ $show_forum = isset( $fmwp_js_topic_row['show_forum'] ) ? $fmwp_js_topic_row['sh
 	data-is_author="<# if ( <?php echo esc_js( $item ); ?>.is_author ) { #>1<# } #>"
 	data-trashed="<# if ( <?php echo esc_js( $item ); ?>.is_trashed ) { #>1<# } #>"
 	data-locked="<# if ( <?php echo esc_js( $item ); ?>.is_locked ) { #>1<# } #>"
-	data-pinned="<# if ( <?php echo esc_js( $item ); ?>.is_pinned ) { #>1<# } #>">
+	data-pinned="<# if ( <?php echo esc_js( $item ); ?>.is_pinned ) { #>1<# } #>"
+	<?php if ( $is_block ) { ?>
+	data-forum="{{{<?php echo esc_js( $item ); ?>.forum_title}}}"
+	data-forum_url="{{{<?php echo esc_js( $item ); ?>.forum_url}}}"
+	<?php } ?>
+>
 
 	<div class="fmwp-topic-avatar fmwp-responsive fmwp-ui-xs">
 		<a href="{{{<?php echo esc_js( $item ); ?>.author_url}}}" title="{{{<?php echo esc_js( $item ); ?>.author}}} <?php esc_attr_e( 'Profile', 'forumwp' ); ?>" data-fmwp_tooltip="{{<?php echo esc_js( $item ); ?>.author_card}}" data-fmwp_tooltip_id="fmwp-user-card-tooltip">
@@ -65,7 +71,7 @@ $show_forum = isset( $fmwp_js_topic_row['show_forum'] ) ? $fmwp_js_topic_row['sh
 				?>
 			</span>
 
-			<?php if ( $show_forum ) { ?>
+			<?php if ( true === (bool) $show_forum ) { ?>
 				<span class="fmwp-topic-forum">
 					<strong><?php esc_html_e( 'Forum:', 'forumwp' ); ?></strong> <a href="{{{<?php echo esc_js( $item ); ?>.forum_url}}}">{{{<?php echo esc_js( $item ); ?>.forum_title}}}</a>
 				</span>

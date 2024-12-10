@@ -4,7 +4,7 @@
  *
  * This template can be overridden by copying it to your-theme/forumwp/js/forum-row.php
  *
- * @version 2.1.1
+ * @version 2.1.3
  *
  * @var array $fmwp_js_forum_row
  */
@@ -16,7 +16,7 @@ $item    = isset( $fmwp_js_forum_row['item'] ) ? $fmwp_js_forum_row['item'] : 'f
 $actions = isset( $fmwp_js_forum_row['actions'] ) ? $fmwp_js_forum_row['actions'] : '';
 ?>
 
-<div class="fmwp-forum-row<# if ( <?php echo esc_js( $item ); ?>.is_locked ) { #> fmwp-forum-locked<# } #><# if ( Object.keys( <?php echo esc_js( $item ); ?>.dropdown_actions ).length === 0 ) { #> fmwp-forum-no-actions<# } #>" data-forum_id="{{{<?php echo esc_js( $item ); ?>.forum_id}}}">
+<div class="fmwp-forum-row<# if ( <?php echo esc_js( $item ); ?>.is_locked ) { #> fmwp-forum-locked<# } #><# if ( <?php echo esc_js( $item ); ?>.is_trashed ) { #> fmwp-forum-trashed<# } #><# if ( Object.keys( <?php echo esc_js( $item ); ?>.dropdown_actions ).length === 0 ) { #> fmwp-forum-no-actions<# } #>" data-forum_id="{{{<?php echo esc_js( $item ); ?>.forum_id}}}" data-trashed="<# if ( <?php echo esc_js( $item ); ?>.is_trashed ) { #>1<# } #>">
 	<div class="fmwp-forum-row-lines">
 
 		<div class="fmwp-forum-row-line fmwp-forum-primary-data">
@@ -45,6 +45,14 @@ $actions = isset( $fmwp_js_forum_row['actions'] ) ? $fmwp_js_forum_row['actions'
 								{{{<?php echo esc_js( $item ); ?>.title}}}
 							</span>
 						</a>
+						<span class="fmwp-forum-title-line-trashed">
+							<span class="fmwp-forum-title">
+								{{{<?php echo esc_js( $item ); ?>.title}}}
+							</span>
+						</span>
+					</span>
+					<span class="fmwp-forum-tag fmwp-forum-status-tag fmwp-forum-tag-trashed">
+						<?php esc_html_e( 'Trashed', 'forumwp' ); ?>
 					</span>
 					<span class="fmwp-forum-categories-wrapper">
 						<?php if ( FMWP()->options()->get( 'forum_categories' ) ) { ?>

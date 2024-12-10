@@ -3,6 +3,10 @@
   width: 100%;
   line-height: 40px;
   margin-bottom: 10px; }
+  .fmwp-breadcrumbs:after {
+    content: '';
+    display: block;
+    clear: both; }
   .fmwp-breadcrumbs ul {
     list-style: none;
     clear: both;

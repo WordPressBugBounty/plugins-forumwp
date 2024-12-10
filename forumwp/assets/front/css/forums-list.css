@@ -355,6 +355,20 @@
                     margin: 0 7px 0 0;
                     font-size: 12px;
                     display: none; }
+                .fmwp-archive-forums-wrapper .fmwp-forums-wrapper .fmwp-forum-row .fmwp-forum-row-lines .fmwp-forum-row-line .fmwp-forum-data .fmwp-forum-first-line .fmwp-forum-title-line .fmwp-forum-title-line-trashed {
+                  display: none; }
+              .fmwp-archive-forums-wrapper .fmwp-forums-wrapper .fmwp-forum-row .fmwp-forum-row-lines .fmwp-forum-row-line .fmwp-forum-data .fmwp-forum-first-line .fmwp-forum-status-tag {
+                border: 1px solid #eee;
+                border-radius: 3px 3px 3px 3px;
+                -moz-border-radius: 3px 3px 3px 3px;
+                -webkit-border-radius: 3px 3px 3px 3px;
+                font-size: 0.8em;
+                padding: 3px 5px;
+                margin-right: 3px;
+                line-height: 1;
+                cursor: default; }
+                .fmwp-archive-forums-wrapper .fmwp-forums-wrapper .fmwp-forum-row .fmwp-forum-row-lines .fmwp-forum-row-line .fmwp-forum-data .fmwp-forum-first-line .fmwp-forum-status-tag.fmwp-forum-tag-trashed {
+                  display: none; }
               .fmwp-archive-forums-wrapper .fmwp-forums-wrapper .fmwp-forum-row .fmwp-forum-row-lines .fmwp-forum-row-line .fmwp-forum-data .fmwp-forum-first-line .fmwp-forum-categories-wrapper {
                 display: flex;
                 flex-direction: row;
@@ -413,6 +427,15 @@
           color: #a3a3a3; }
           .fmwp-archive-forums-wrapper .fmwp-forums-wrapper .fmwp-forum-row .fmwp-forum-actions .fmwp-forum-actions-dropdown:hover {
             color: #7d7d7d; }
+      .fmwp-archive-forums-wrapper .fmwp-forums-wrapper .fmwp-forum-row.fmwp-forum-trashed .fmwp-forum-row-lines .fmwp-forum-row-line .fmwp-forum-data .fmwp-forum-first-line .fmwp-forum-title-line a {
+        display: none !important; }
+      .fmwp-archive-forums-wrapper .fmwp-forums-wrapper .fmwp-forum-row.fmwp-forum-trashed .fmwp-forum-row-lines .fmwp-forum-row-line .fmwp-forum-data .fmwp-forum-first-line .fmwp-forum-title-line .fmwp-forum-title-line-trashed {
+        font-weight: bold;
+        display: inline !important; }
+      .fmwp-archive-forums-wrapper .fmwp-forums-wrapper .fmwp-forum-row.fmwp-forum-trashed .fmwp-forum-row-lines .fmwp-forum-row-line .fmwp-forum-data .fmwp-forum-first-line .fmwp-forum-status-tag.fmwp-forum-tag-trashed {
+        color: #ff474c;
+        border-color: #ff474c;
+        display: inline; }
       .fmwp-archive-forums-wrapper .fmwp-forums-wrapper .fmwp-forum-row.fmwp-forum-trashed .fmwp-forum-row-lines .fmwp-forum-row-line .fmwp-forum-data .fmwp-forum-first-line .fmwp-forum-categories-wrapper .fmwp-forum-category.fmwp-forum-category-trashed {
         display: inline; }
       .fmwp-archive-forums-wrapper .fmwp-forums-wrapper .fmwp-forum-row.fmwp-forum-locked .fmwp-forum-row-lines .fmwp-forum-row-line .fmwp-forum-data .fmwp-forum-first-line .fmwp-forum-title-line a .fmwp-forum-locked-marker {

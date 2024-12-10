@@ -6,7 +6,7 @@ Tags: forum, topic, reply, user-profile, user-registration
 Requires PHP: 7.0
 Requires at least: 5.5
 Tested up to: 6.7
-Stable tag: 2.1.2
+Stable tag: 2.1.3
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.txt
 
@@ -60,6 +60,42 @@ Got a problem or need help with ForumWP? Head over to our [documentation](http:/
 14. Screenshot 14
 
 == Changelog ==
+
+= 2.1.3: December 09, 2024 =
+
+* Added: Gutenberg blocks associated with ForumWP shortcodes
+* Added: Dependencies for topic/reply editor from the "Enable raw HTML in topic/reply content" setting
+* Fixed: Displaying breadcrumbs
+* Fixed: Displaying trashed forums, topics, replies
+* Fixed: Replies actions links
+* Fixed: Order by most views
+* Fixed: Login form redirects
+* Fixed: Shortcodes arguments using
+* Fixed: Getting order value from the topics and replies order field
+* Fixed: Security vulnerability CVE-2024-11204
+* Fixed: Security vulnerability CVE-2024-10879
+* Fixed: jQuery deprecated issues
+* Fixed: Small PHP notices and warnings
+
+* Templates required update:
+  - emails/mention.php
+  - js/forum-category-list.php
+  - js/forum-row.php
+  - js/topic-row.php
+  - js/topics-list.php
+  - profile/edit.php
+  - profile/main-mobile.php
+  - profile/notifications.php
+  - profile/notifications-form.php
+  - archive-topic.php
+  - forum.php
+  - login.php
+  - login-popup.php
+  - reply-status-tags.php
+  - single-forum-info.php
+  - topic.php
+
+* Cached and optimized/minified assets(JS/CSS) must be flushed/re-generated after upgrade
 
 = 2.1.2: November 14, 2024 =
 
@@ -217,6 +253,9 @@ Got a problem or need help with ForumWP? Head over to our [documentation](http:/
 * Initial Release
 
 == Upgrade Notice ==
+
+= 2.1.3 =
+This version fixes a security related bug. Upgrade immediately.
 
 = 2.1.1 =
 This version fixes a security related bug. Upgrade immediately.

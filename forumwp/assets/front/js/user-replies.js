@@ -12,7 +12,7 @@ jQuery( document ).ready( function($) {
 	});
 
 
-	$( window ).scroll( function() {
+	$( window ).on( 'scroll', function() {
 		var scrollHandling = {
 			allow: true,
 			reallow: function() {
@@ -47,6 +47,9 @@ jQuery( document ).ready( function($) {
  * @param args
  */
 function fmwp_user_replies( obj, args ) {
+	if ( ! args.user_id ) {
+		return;
+	}
 	fmwp_set_busy( 'user_replies', true );
 
 	wp.ajax.send( 'fmwp_profile_replies', {
@@ -81,6 +84,7 @@ function fmwp_user_replies( obj, args ) {
 			}
 
 			fmwp_set_busy( 'user_replies', false );
+			wp.hooks.doAction( 'fmwp_user_replies_load_finish' );
 		},
 		error: function( data ) {
 			console.log( data );

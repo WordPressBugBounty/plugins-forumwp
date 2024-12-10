@@ -90,6 +90,7 @@ if ( ! class_exists( 'fmwp\ajax\Forum' ) ) {
 				'latest_topic'     => $last_topic,
 				'latest_topic_url' => $last_topic_url,
 				'is_locked'        => FMWP()->common()->forum()->is_locked( $forum->ID ),
+				'is_trashed'       => FMWP()->common()->forum()->is_trashed( $forum->ID ),
 			);
 
 			if ( FMWP()->options()->get( 'forum_categories' ) ) {
@@ -217,16 +218,84 @@ if ( ! class_exists( 'fmwp\ajax\Forum' ) ) {
 				wp_send_json_error( __( 'Forum ID is invalid', 'forumwp' ) );
 			}
 
-			if ( ! FMWP()->user()->can_delete_forum( get_current_user_id(), $forum ) ) {
+			if ( ! FMWP()->user()->can_trash_forum( get_current_user_id(), $forum ) ) {
 				wp_send_json_error( __( 'You do not have the ability to move this forum to trash', 'forumwp' ) );
 			}
 
 			FMWP()->common()->forum()->move_to_trash( $forum_id );
 
+			update_post_meta( $forum_id, 'fmwp_user_trash_id', get_current_user_id() );
+
 			$forum = get_post( $forum_id );
 			wp_send_json_success(
 				array(
 					'dropdown_actions' => FMWP()->common()->forum()->actions_list( $forum ),
+				)
+			);
+		}
+
+		/**
+		 * AJAX handler for Restore Topic
+		 *
+		 */
+		public function restore() {
+			check_ajax_referer( 'fmwp-frontend-nonce', 'nonce' );
+
+			if ( empty( $_POST['forum_id'] ) ) {
+				wp_send_json_error( __( 'Invalid data', 'forumwp' ) );
+			}
+			$forum_id = absint( $_POST['forum_id'] );
+
+			$forum = get_post( $forum_id );
+
+			if ( empty( $forum ) || is_wp_error( $forum ) ) {
+				wp_send_json_error( __( 'Forum ID is invalid', 'forumwp' ) );
+			}
+
+			if ( ! FMWP()->user()->can_restore_forum( get_current_user_id(), $forum ) ) {
+				wp_send_json_error( __( 'You do not have the ability to restore this forum', 'forumwp' ) );
+			}
+
+			FMWP()->common()->forum()->restore( $forum_id );
+
+			delete_post_meta( $forum_id, 'fmwp_user_trash_id' );
+
+			$forum = get_post( $forum_id );
+			wp_send_json_success(
+				array(
+					'status'           => $forum->post_status,
+					'dropdown_actions' => FMWP()->common()->forum()->actions_list( $forum ),
+				)
+			);
+		}
+
+		/**
+		 * AJAX handler for Delete Reply
+		 *
+		 */
+		public function delete() {
+			check_ajax_referer( 'fmwp-frontend-nonce', 'nonce' );
+
+			if ( empty( $_POST['forum_id'] ) ) {
+				wp_send_json_error( __( 'Invalid data', 'forumwp' ) );
+			}
+			$forum_id = absint( $_POST['forum_id'] );
+
+			$forum = get_post( $forum_id );
+
+			if ( empty( $forum ) || is_wp_error( $forum ) ) {
+				wp_send_json_error( __( 'Forum ID is invalid', 'forumwp' ) );
+			}
+
+			if ( ! FMWP()->user()->can_delete_forum( get_current_user_id(), $forum ) ) {
+				wp_send_json_error( __( 'You do not have the ability to delete this topic', 'forumwp' ) );
+			}
+
+			FMWP()->common()->forum()->delete( $forum_id );
+
+			wp_send_json_success(
+				array(
+					'message' => __( 'Forum was deleted successfully.', 'forumwp' ),
 				)
 			);
 		}

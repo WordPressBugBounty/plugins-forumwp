@@ -489,10 +489,18 @@ jQuery( document ).ready( function($) {
 		var is_sub = reply_row.parent().closest('.fmwp-reply-row').length;
 		var is_sub_sub = reply_row.parent().closest('.fmwp-reply-row').parent().closest('.fmwp-reply-row').length;
 
+		let order;
+		let $visibleSorting = reply_row.parents('.fmwp-topic-main-wrapper').find('.fmwp-topic-sort:visible');
+		if ( $visibleSorting.length ) {
+			order = $visibleSorting.val();
+		} else {
+			order = $('.fmwp-topic-wrapper').data('order');
+		}
+
 		fmwp_set_busy( 'individual_topic', true );
 		wp.ajax.send( 'fmwp_delete_reply', {
 			data: {
-				order: $('.fmwp-topic-wrapper').data('order'),
+				order: order,
 				reply_id: reply_id,
 				nonce: fmwp_front_data.nonce
 			},

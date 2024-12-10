@@ -4,7 +4,7 @@
  *
  * This template can be overridden by copying it to your-theme/forumwp/js/topics-list.php
  *
- * @version 2.1.0
+ * @version 2.1.3
  *
  * @var array $fmwp_js_topics_list
  */
@@ -22,6 +22,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 					'item'       => 'topic',
 					'actions'    => isset( $fmwp_js_topics_list['actions'] ) ? $fmwp_js_topics_list['actions'] : '',
 					'show_forum' => isset( $fmwp_js_topics_list['show_forum'] ) ? $fmwp_js_topics_list['show_forum'] : true,
+					'is_block'   => isset( $fmwp_js_topics_list['is_block'] ) ? $fmwp_js_topics_list['is_block'] : false,
 				)
 			);
 			?>

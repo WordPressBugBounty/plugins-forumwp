@@ -68,7 +68,9 @@
         #fmwp-topic-popup-wrapper form #fmwp-topic-popup-editors #fmwp-topic-popup-editor #wp-fmwptopiccontent-wrap #wp-fmwptopiccontent-editor-container {
           height: 100%; }
           #fmwp-topic-popup-wrapper form #fmwp-topic-popup-editors #fmwp-topic-popup-editor #wp-fmwptopiccontent-wrap #wp-fmwptopiccontent-editor-container textarea {
-            height: calc( 100% - 40px); }
+            height: calc( 100% - 40px) !important;
+            resize: none;
+            font-family: inherit; }
           #fmwp-topic-popup-wrapper form #fmwp-topic-popup-editors #fmwp-topic-popup-editor #wp-fmwptopiccontent-wrap #wp-fmwptopiccontent-editor-container .mce-btn button:hover, #fmwp-topic-popup-wrapper form #fmwp-topic-popup-editors #fmwp-topic-popup-editor #wp-fmwptopiccontent-wrap #wp-fmwptopiccontent-editor-container .mce-btn button:active {
             color: inherit;
             background: none;

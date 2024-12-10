@@ -20,9 +20,16 @@ jQuery( document ).ready( function($) {
 	}
 
 	$('.fmwp-topic-wrapper').each( function() {
+		let order;
+		let $visibleSorting = $(this).parents('.fmwp-topic-main-wrapper').find('.fmwp-topic-sort:visible');
+		if ( $visibleSorting.length ) {
+			order = $visibleSorting.val();
+		} else {
+			order = $(this).data('order');
+		}
 		fmwp_get_replies( $(this), {
 			page: 1,
-			order: $(this).data('order')
+			order: order
 		});
 	});
 
@@ -34,7 +41,7 @@ jQuery( document ).ready( function($) {
 		delay: 400 //(milliseconds) adjust to the highest acceptable value
 	};
 
-	$( window ).scroll( function() {
+	$( window ).on( 'scroll', function() {
 		if ( ! fmwp_delay_reply_loading && ! fmwp_is_busy( 'individual_topic' ) && scrollHandling.allow ) {
 			scrollHandling.allow = false;
 
@@ -44,9 +51,16 @@ jQuery( document ).ready( function($) {
 
 				var offset = load_block.offset().top - $( window ).scrollTop();
 				if ( 1000 > offset ) {
+					let order;
+					let $visibleSorting = load_block.parents('.fmwp-topic-main-wrapper').find('.fmwp-topic-sort:visible');
+					if ( $visibleSorting.length ) {
+						order = $visibleSorting.val();
+					} else {
+						order = $('.fmwp-topic-wrapper').data('order');
+					}
 					fmwp_get_replies( $('.fmwp-topic-wrapper'), {
 						page: fmwp_replies_page,
-						order: $('.fmwp-topic-wrapper').data('order')
+						order: order
 					});
 				}
 			}
@@ -63,6 +77,8 @@ jQuery( document ).ready( function($) {
 
 		var wrapper = $(this).parents('.fmwp-topic-content').find('.fmwp-topic-wrapper');
 		var order = $(this).val();
+
+		wrapper.find( '.fmwp-topic-sort' ).val(order);
 
 		fmwp_replies_page = 1;
 
@@ -96,7 +112,14 @@ jQuery( document ).ready( function($) {
 		} else {
 
 			var wrapper = $(this).parents('.fmwp-topic-content').find('.fmwp-topic-wrapper');
-			var order = wrapper.data('order');
+
+			let order;
+			let $visibleSorting = $(this).parents('.fmwp-topic-main-wrapper').find('.fmwp-topic-sort:visible');
+			if ( $visibleSorting.length ) {
+				order = $visibleSorting.val();
+			} else {
+				order = wrapper.data('order');
+			}
 
 			var request_data = {
 				reply_id:   reply_id,
@@ -278,6 +301,7 @@ function fmwp_get_replies( obj, args ) {
 
 			fmwp_embed_resize_async();
 			fmwp_set_busy( 'individual_topic', false );
+			wp.hooks.doAction( 'fmwp_replies_load_finish' );
 		},
 		error: function( data ) {
 			console.log( data );

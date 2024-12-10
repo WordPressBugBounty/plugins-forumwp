@@ -13,7 +13,7 @@ jQuery( document ).ready( function($) {
 	});
 
 
-	$( window ).scroll( function() {
+	$( window ).on( 'scroll', function() {
 		var scrollHandling = {
 			allow: true,
 			reallow: function() {
@@ -122,6 +122,7 @@ function fmwp_get_forum_categories( obj, args ) {
 			}
 
 			fmwp_forum_categories_loading = false;
+			wp.hooks.doAction( 'fmwp_forum_categories_load_finish' );
 		},
 		error: function( data ) {
 			console.log( data );

@@ -31,18 +31,21 @@ if ( ! class_exists( 'fmwp\common\Login' ) ) {
 			add_filter( 'authenticate', array( &$this, 'verify_username_password' ), 1, 3 );
 			add_action( 'template_redirect', array( &$this, 'custom_logout_handler' ), 1 );
 
+			add_action( 'login_form_bottom', array( &$this, 'add_login_field' ), 10, 2 );
 			add_filter( 'login_redirect', array( &$this, 'add_fallback_url' ) );
 		}
 
-		public function add_fallback_url( $redirect_to ) {
-			$ref = wp_get_raw_referer();
-			if ( ! $ref ) {
-				return $redirect_to;
+		public function add_login_field( $content, $args ) {
+			if ( ! empty( $args['fmwp_is_login'] ) ) {
+				$hidden_field = '<input type="hidden" name="fmwp_is_login" value="1">';
+				return $content . $hidden_field;
 			}
 
-			$postid = url_to_postid( $ref );
+			return $content;
+		}
 
-			if ( empty( $postid ) || FMWP()->common()->get_preset_page_id( 'login' ) !== $postid ) {
+		public function add_fallback_url( $redirect_to ) {
+			if ( ! isset( $_REQUEST['fmwp_is_login'] ) || true !== (bool) $_REQUEST['fmwp_is_login'] ) { // phpcs:ignore WordPress.Security.NonceVerification
 				return $redirect_to;
 			}
 
@@ -105,14 +108,7 @@ if ( ! class_exists( 'fmwp\common\Login' ) ) {
 		 * @return void
 		 */
 		public function login_failed() {
-			$ref = wp_get_raw_referer();
-			if ( ! $ref ) {
-				return;
-			}
-
-			$postid = url_to_postid( $ref );
-
-			if ( empty( $postid ) || FMWP()->common()->get_preset_page_id( 'login' ) !== $postid ) {
+			if ( ! isset( $_REQUEST['fmwp_is_login'] ) || true !== (bool) $_REQUEST['fmwp_is_login'] ) { // phpcs:ignore WordPress.Security.NonceVerification
 				return;
 			}
 
@@ -133,14 +129,7 @@ if ( ! class_exists( 'fmwp\common\Login' ) ) {
 		 * @return WP_Error
 		 */
 		public function verify_username_password( $user, $username, $password ) {
-			$ref = wp_get_raw_referer();
-			if ( ! $ref ) {
-				return $user;
-			}
-
-			$postid = url_to_postid( $ref );
-
-			if ( empty( $postid ) || FMWP()->common()->get_preset_page_id( 'login' ) !== $postid ) {
+			if ( ! isset( $_REQUEST['fmwp_is_login'] ) || true !== (bool) $_REQUEST['fmwp_is_login'] ) { // phpcs:ignore WordPress.Security.NonceVerification
 				return $user;
 			}
 

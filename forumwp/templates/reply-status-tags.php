@@ -4,7 +4,7 @@
  *
  * This template can be overridden by copying it to your-theme/forumwp/reply-status-tags.php
  *
- * @version 2.1.0
+ * @version 2.1.3
  */
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -15,10 +15,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 	foreach ( FMWP()->common()->reply()->status_tags() as $class => $data ) {
 		$attr_title = '';
 		if ( ! empty( $data['label'] ) ) {
-			$attr_title = 'title="' . $data['label'] . '"';
+			$attr_title = $data['label'];
 		}
 		?>
-		<span class="fmwp-reply-tag fmwp-reply-tag-<?php echo esc_attr( $class ); ?> fmwp-tip-n" <?php echo esc_attr( $attr_title ); ?>>
+		<span class="fmwp-reply-tag fmwp-reply-tag-<?php echo esc_attr( $class ); ?> fmwp-tip-n" <?php echo '' !== $attr_title ? 'title="' . esc_attr( $attr_title ) . '"' : ''; ?>>
 			<?php echo esc_html( $data['title'] ); ?>
 		</span>
 		<?php

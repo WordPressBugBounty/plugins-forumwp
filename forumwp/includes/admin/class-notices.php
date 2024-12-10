@@ -205,7 +205,7 @@ if ( ! class_exists( 'fmwp\admin\Notices' ) ) {
 				?>
 			</p>
 			<p>
-				<a href="<?php echo esc_attr( add_query_arg( 'fmwp_adm_action', 'install_core_pages' ) ); ?>" class="button button-primary">
+				<a href="<?php echo esc_url( add_query_arg( 'fmwp_adm_action', 'install_core_pages' ) ); ?>" class="button button-primary">
 					<?php esc_html_e( 'Create Pages', 'forumwp' ); ?>
 				</a>
 				&nbsp;
@@ -353,7 +353,7 @@ if ( ! class_exists( 'fmwp\admin\Notices' ) ) {
 					?>
 				</p>
 				<p>
-					<a href="<?php echo esc_attr( get_edit_post_link( $page->ID ) ); ?>" class="button button-primary">
+					<a href="<?php echo esc_url( get_edit_post_link( $page->ID ) ); ?>" class="button button-primary">
 						<?php esc_html_e( 'Edit page', 'forumwp' ); ?>
 					</a>
 				</p>

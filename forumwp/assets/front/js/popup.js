@@ -86,14 +86,23 @@ function fmwp_autocomplete_mentions() {
 				terms.push( ui.item.replace_item );
 				terms.push( "" );
 
-				var editor = tinymce.get( textarea_id );
-				if ( editor && editor instanceof tinymce.Editor ) {
+				if ( typeof tinymce != "undefined" ) {
+					var editor = tinymce.get(textarea_id);
+					if (editor && editor instanceof tinymce.Editor) {
 
-					editor.setContent( jQuery.trim( terms.join(" ") ) + '&nbsp;', {format: 'html'} );
+						editor.setContent(jQuery.trim(terms.join(" ")) + '&nbsp;', {format: 'html'});
 
-					tinymce.activeEditor.focus();
-					tinymce.activeEditor.selection.select( tinymce.activeEditor.getBody(), true );
-					tinymce.activeEditor.selection.collapse( false );
+						tinymce.activeEditor.focus();
+						tinymce.activeEditor.selection.select(tinymce.activeEditor.getBody(), true);
+						tinymce.activeEditor.selection.collapse(false);
+					}
+				} else {
+					var textarea = document.getElementById(textarea_id);
+					if (textarea) {
+						textarea.value = jQuery.trim(terms.join(" "));
+						textarea.focus();
+						textarea.setSelectionRange(textarea.value.length, textarea.value.length);
+					}
 				}
 
 				event.preventDefault();

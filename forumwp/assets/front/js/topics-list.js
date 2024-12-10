@@ -5,45 +5,45 @@ var fmwp_no_topics_search_template = '<span class="fmwp-forum-no-topics">' + wp.
 
 jQuery( document ).ready( function($) {
 
-	$('.fmwp-topics-wrapper').each( function() {
-		var order = $(this).parents('.fmwp-archive-topics-wrapper').find('.fmwp-topics-sort').val();
-		fmwp_get_topics( $(this), {
-			page: 1,
-			order: order,
+	if ( $('.fmwp-archive-topics-wrapper').length ) {
+		$('.fmwp-topics-wrapper').each( function() {
+			var order = $(this).parents('.fmwp-archive-topics-wrapper').find('.fmwp-topics-sort').val();
+			fmwp_get_topics( $(this), {
+				page: 1,
+				order: order,
+			});
 		});
-	});
 
+		$( window ).scroll( function() {
+			var scrollHandling = {
+				allow: true,
+				reallow: function() {
+					scrollHandling.allow = true;
+				},
+				delay: 400 //(milliseconds) adjust to the highest acceptable value
+			};
 
-	$( window ).scroll( function() {
-		var scrollHandling = {
-			allow: true,
-			reallow: function() {
-				scrollHandling.allow = true;
-			},
-			delay: 400 //(milliseconds) adjust to the highest acceptable value
-		};
+			if( ! fmwp_is_busy( 'topics_list' ) && scrollHandling.allow ) {
+				scrollHandling.allow = false;
 
-		if( ! fmwp_is_busy( 'topics_list' ) && scrollHandling.allow ) {
-			scrollHandling.allow = false;
+				var load_block = $('.fmwp-topics-wrapper .fmwp-load-more');
+				var search_line = $('.fmwp-topics-wrapper').parents('.fmwp-archive-topics-wrapper').data( 'fmwp_search' );
+				var order = $('.fmwp-topics-wrapper').parents('.fmwp-archive-topics-wrapper').find('.fmwp-topics-sort:visible').val();
+				if ( load_block.length ) {
+					setTimeout( scrollHandling.reallow, scrollHandling.delay );
 
-			var load_block = $('.fmwp-topics-wrapper .fmwp-load-more');
-			var search_line = $('.fmwp-topics-wrapper').parents('.fmwp-archive-topics-wrapper').data( 'fmwp_search' );
-			var order = $('.fmwp-topics-wrapper').parents('.fmwp-archive-topics-wrapper').find('.fmwp-topics-sort').val();
-			if ( load_block.length ) {
-				setTimeout( scrollHandling.reallow, scrollHandling.delay );
-
-				var offset = load_block.offset().top - $( window ).scrollTop();
-				if ( 1000 > offset ) {
-					fmwp_get_topics( $('.fmwp-topics-wrapper'), {
-						page: fmwp_topics_page,
-						order: order,
-						search: search_line
-					});
+					var offset = load_block.offset().top - $( window ).scrollTop();
+					if ( 1000 > offset ) {
+						fmwp_get_topics( $('.fmwp-topics-wrapper'), {
+							page: fmwp_topics_page,
+							order: order,
+							search: search_line
+						});
+					}
 				}
 			}
-		}
-	});
-
+		});
+	}
 
 	$( document.body ).on( 'change', '.fmwp-topics-sort', function(e) {
 		e.preventDefault();
@@ -81,7 +81,7 @@ jQuery( document ).ready( function($) {
 		$(this).parents('.fmwp-archive-topics-wrapper').find( '.fmwp-topics-search-line' ).val( search_line );
 		$(this).parents('.fmwp-archive-topics-wrapper').data( 'fmwp_search', search_line );
 
-		var order = $(this).parents('.fmwp-archive-topics-wrapper').find('.fmwp-topics-sort').val();
+		var order = $(this).parents('.fmwp-archive-topics-wrapper').find('.fmwp-topics-sort:visible').val();
 
 		fmwp_topics_page = 1;
 
@@ -168,6 +168,7 @@ function fmwp_get_topics( obj, args ) {
 			}
 
 			fmwp_set_busy( 'topics_list', false );
+			wp.hooks.doAction( 'fmwp_topics_load_finish' );
 		},
 		error: function( data ) {
 			console.log( data );

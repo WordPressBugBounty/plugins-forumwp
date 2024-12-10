@@ -3,7 +3,7 @@
  * Plugin Name: ForumWP
  * Plugin URI: https://forumwpplugin.com/
  * Description: A full-featured, powerful forum plugin for WordPress
- * Version: 2.1.2
+ * Version: 2.1.3
  * Author: ForumWP
  * Text Domain: forumwp
  * Domain Path: /languages

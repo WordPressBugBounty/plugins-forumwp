@@ -4,7 +4,7 @@
  *
  * This template can be overridden by copying it to your-theme/forumwp/single-forum-info.php
  *
- * @version 2.1.0
+ * @version 2.1.3
  *
  * @var array $fmwp_single_forum_info
  */
@@ -124,7 +124,7 @@ if ( ! count( $forum_categories ) && wp_is_block_theme() && FMWP()->is_forum_pag
 						<span class="fmwp-forum-categories">
 							<?php foreach ( $forum_categories as $category ) { ?>
 								<span class="fmwp-forum-category">
-									<a href="<?php echo esc_attr( get_term_link( $category->term_id, 'fmwp_forum_category' ) ); ?>">
+									<a href="<?php echo esc_url( get_term_link( $category->term_id, 'fmwp_forum_category' ) ); ?>">
 										<?php echo esc_html( $category->name ); ?>
 									</a>
 								</span>

@@ -4,7 +4,7 @@
  *
  * This template can be overridden by copying it to your-theme/forumwp/login-popup.php
  *
- * @version 2.1.0
+ * @version 2.1.3
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -24,7 +24,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 	<span>
 		<?php esc_html_e( 'Don\'t have an account?', 'forumwp' ); ?>
-		<a href="<?php echo esc_attr( FMWP()->common()->get_preset_page_link( 'register' ) ); ?>">
+		<a href="<?php echo esc_url( FMWP()->common()->get_preset_page_link( 'register' ) ); ?>">
 			<?php esc_html_e( 'Sign up', 'forumwp' ); ?>
 		</a>
 	</span>
